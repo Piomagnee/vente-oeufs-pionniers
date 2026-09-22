@@ -339,9 +339,6 @@ textarea{
     rgba(63,37,29,.10);
 }
 
-
-/* IMAGE */
-
 .product-image{
   position:relative;
   width:100%;
@@ -397,9 +394,6 @@ textarea{
   font-size:18px;
 }
 
-
-/* BADGES */
-
 .flavour-badge{
   position:absolute;
   top:12px;
@@ -417,9 +411,6 @@ textarea{
   font-weight:800;
   letter-spacing:1px;
 }
-
-
-/* CONTENU */
 
 .product-content{
   padding:18px;
@@ -653,7 +644,7 @@ textarea{
 
 
 /* =====================================================
-   BOUTON COMMANDE
+   BOUTON
 ===================================================== */
 
 .order-button{
@@ -682,13 +673,13 @@ textarea{
 }
 
 .order-button:disabled{
-  opacity:.6;
+  opacity:.65;
   cursor:not-allowed;
 }
 
 
 /* =====================================================
-   MESSAGE
+   MESSAGES
 ===================================================== */
 
 .form-message{
@@ -786,7 +777,12 @@ textarea{
   color:var(--chocolate);
 
   font-size:17px;
+
+  overflow-wrap:anywhere;
 }
+
+
+/* QR */
 
 .qr-area{
   text-align:center;
@@ -802,6 +798,9 @@ textarea{
 
   border:1px solid var(--border);
   border-radius:14px;
+
+  min-width:220px;
+  min-height:80px;
 }
 
 .qr-help{
@@ -811,6 +810,9 @@ textarea{
 
   font-size:13px;
 }
+
+
+/* COORDONNÉES BANCAIRES */
 
 .bank-box{
   background:white;
@@ -1074,10 +1076,8 @@ une aventure.
 
 <p class="hero-description">
 
-Soutenez le projet de camp
-des Pionniers de Magnée
-tout en vous faisant plaisir
-avec nos œufs en chocolat.
+Soutenez le projet de camp des Pionniers de Magnée
+tout en vous faisant plaisir avec nos œufs en chocolat.
 
 </p>
 
@@ -1169,11 +1169,9 @@ Choisissez vos saveurs
 </h2>
 
 <p>
-
 Blanc, lait ou noir.
 Découvrez nos 15 saveurs
 et composez votre commande.
-
 </p>
 
 </div>
@@ -1232,6 +1230,7 @@ Total
 <form id="orderForm">
 
 <div class="form-grid">
+
 
 <div>
 
@@ -1326,10 +1325,13 @@ placeholder="Une précision concernant votre commande ?"></textarea>
 
 </div>
 
+
 </div>
 
 
-<!-- CONFIDENTIALITÉ -->
+<!-- =====================================================
+     CONFIDENTIALITÉ
+===================================================== -->
 
 <div class="privacy-box">
 
@@ -1365,6 +1367,7 @@ id="formMessage"
 class="form-message">
 </div>
 
+
 </form>
 
 
@@ -1389,6 +1392,7 @@ Finalisez votre paiement
 
 <p class="payment-intro">
 
+Votre commande a été transmise.
 Effectuez maintenant votre virement
 avec les informations ci-dessous.
 
@@ -1401,17 +1405,29 @@ avec les informations ci-dessous.
 Référence de votre commande
 </span>
 
-<strong id="orderReference"></strong>
+<strong id="orderReference">
+—
+</strong>
 
 </div>
 
 
 <div class="qr-area">
 
-<div id="qrcode"></div>
+<div id="qrcode">
+
+<div style="
+padding:20px;
+color:#817770;
+font-size:13px;
+">
+Préparation du QR...
+</div>
+
+</div>
 
 <div class="qr-help">
-Scannez avec votre application bancaire si elle prend en charge ce QR.
+Scannez le QR avec votre application bancaire si elle le prend en charge.
 </div>
 
 </div>
@@ -1439,7 +1455,9 @@ Pionniers de Magnée
 IBAN
 </span>
 
-<strong id="ibanDisplay"></strong>
+<strong id="ibanDisplay">
+—
+</strong>
 
 </div>
 
@@ -1450,7 +1468,9 @@ IBAN
 Montant
 </span>
 
-<strong id="paymentAmount"></strong>
+<strong id="paymentAmount">
+—
+</strong>
 
 </div>
 
@@ -1461,7 +1481,9 @@ Montant
 Communication
 </span>
 
-<strong id="communication"></strong>
+<strong id="communication">
+—
+</strong>
 
 </div>
 
@@ -1515,7 +1537,7 @@ Merci pour votre soutien
 
 
 <!-- =====================================================
-     QR CODE
+     LIBRAIRIE QR
 ===================================================== -->
 
 <script
@@ -1678,11 +1700,6 @@ const categories = [
 ];
 
 
-/*
-  Cette variable permet de conserver la même
-  référence pendant toute la tentative de commande.
-*/
-
 let currentOrderReference = null;
 
 let orderInProgress = false;
@@ -1696,6 +1713,7 @@ function createProducts(){
 
   const container =
   document.getElementById("products");
+
 
   container.innerHTML="";
 
@@ -1931,8 +1949,11 @@ function createProducts(){
 function changeQuantity(index,change){
 
   if(orderInProgress){
+
     return;
+
   }
+
 
   quantities[index] += change;
 
@@ -1974,59 +1995,61 @@ function updateSummary(){
   let totalSachets=0;
 
 
-  products.forEach(function(product,index){
+  products.forEach(
+    function(product,index){
 
 
-    const quantity =
-    quantities[index];
+      const quantity =
+      quantities[index];
 
 
-    if(quantity === 0){
+      if(quantity === 0){
 
-      return;
+        return;
 
-    }
-
-
-    const subtotal =
-    quantity *
-    CONFIG.prixSachet;
+      }
 
 
-    html += `
+      const subtotal =
+      quantity *
+      CONFIG.prixSachet;
 
-      <div class="summary-line">
 
-        <div class="summary-product">
+      html += `
+
+        <div class="summary-line">
+
+          <div class="summary-product">
+
+            <strong>
+              ${product.nom}
+            </strong>
+
+            <small>
+
+              Chocolat
+              ${product.type.toLowerCase()}
+              •
+              ${quantity}
+              sachet${quantity > 1 ? "s" : ""}
+
+            </small>
+
+          </div>
 
           <strong>
-            ${product.nom}
+            ${subtotal} €
           </strong>
-
-          <small>
-
-            Chocolat
-            ${product.type.toLowerCase()}
-            •
-            ${quantity}
-            sachet${quantity > 1 ? "s" : ""}
-
-          </small>
 
         </div>
 
-        <strong>
-          ${subtotal} €
-        </strong>
-
-      </div>
-
-    `;
+      `;
 
 
-    totalSachets += quantity;
+      totalSachets += quantity;
 
-  });
+    }
+  );
 
 
   if(totalSachets === 0){
@@ -2107,9 +2130,11 @@ function generateOrderReference(){
     const values =
     new Uint32Array(1);
 
+
     window.crypto.getRandomValues(
       values
     );
+
 
     random =
     100000 +
@@ -2145,7 +2170,7 @@ function generateOrderReference(){
 
 
 /* =====================================================
-   QR DE PAIEMENT
+   QR PAIEMENT
 ===================================================== */
 
 function generatePaymentQR(
@@ -2162,40 +2187,120 @@ function generatePaymentQR(
   container.innerHTML="";
 
 
-  const payload = [
+  /*
+    Si la librairie QR ne s'est pas chargée,
+    on affiche simplement un message.
+    Cela n'empêche PAS le paiement.
+  */
 
-    "BCD",
-    "002",
-    "1",
-    "SCT",
-    "",
-    CONFIG.nomCompte,
-    CONFIG.iban,
-    "EUR" +
-    Number(amount).toFixed(2),
-    "",
-    "",
-    reference,
-    ""
+  if(typeof QRCode === "undefined"){
 
-  ].join("\n");
+    container.innerHTML = `
+
+      <div style="
+        padding:20px;
+        max-width:240px;
+        color:#817770;
+        font-size:13px;
+        text-align:center;
+      ">
+
+        QR indisponible.
+        <br>
+        Utilisez les coordonnées bancaires ci-dessous.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
 
 
-  new QRCode(
-    container,
-    {
+  try{
 
-      text:payload,
 
-      width:210,
+    const payload = [
 
-      height:210,
+      "BCD",
 
-      correctLevel:
-      QRCode.CorrectLevel.M
+      "002",
 
-    }
-  );
+      "1",
+
+      "SCT",
+
+      "",
+
+      CONFIG.nomCompte,
+
+      CONFIG.iban,
+
+      "EUR" +
+      Number(amount).toFixed(2),
+
+      "",
+
+      "",
+
+      reference,
+
+      ""
+
+    ].join("\n");
+
+
+    new QRCode(
+      container,
+      {
+
+        text:
+        payload,
+
+        width:
+        210,
+
+        height:
+        210,
+
+        correctLevel:
+        QRCode.CorrectLevel.M
+
+      }
+    );
+
+
+  }
+
+  catch(error){
+
+
+    console.error(
+      "Impossible de générer le QR :",
+      error
+    );
+
+
+    container.innerHTML = `
+
+      <div style="
+        padding:20px;
+        max-width:240px;
+        color:#817770;
+        font-size:13px;
+        text-align:center;
+      ">
+
+        QR indisponible.
+        <br>
+        Utilisez les coordonnées bancaires ci-dessous.
+
+      </div>
+
+    `;
+
+  }
 
 }
 
@@ -2217,40 +2322,35 @@ function sendOrder(order){
 
 
   /*
-    IMPORTANT :
+    On utilise no-cors.
 
-    Apps Script reçoit correctement la commande,
-    mais sa réponse ne peut pas être lue normalement
-    depuis GitHub Pages avec cette méthode.
+    Google Apps Script reçoit la commande,
+    mais le navigateur ne peut pas lire
+    directement sa réponse.
 
-    On déclenche donc l'envoi sans essayer
-    de lire la réponse du serveur.
+    On ne bloque donc pas l'interface
+    en attendant cette réponse.
   */
 
   fetch(
     CONFIG.googleScriptURL,
     {
 
-      method:"POST",
+      method:
+      "POST",
 
-      mode:"no-cors",
+      mode:
+      "no-cors",
 
-      body:body
+      body:
+      body
 
     }
   )
   .catch(function(error){
 
-    /*
-      On journalise uniquement l'erreur.
-
-      On n'affiche pas une fausse erreur au client
-      alors que Google Sheets peut avoir reçu
-      correctement la commande.
-    */
-
     console.error(
-      "Erreur réseau lors de l'envoi :",
+      "Erreur lors de l'envoi de la commande :",
       error
     );
 
@@ -2260,7 +2360,131 @@ function sendOrder(order){
 
 
 /* =====================================================
-   VALIDATION COMMANDE
+   AFFICHAGE DU PAIEMENT
+===================================================== */
+
+function showPayment(
+  total,
+  reference
+){
+
+  /*
+    1.
+    On remplit d'abord TOUTES
+    les informations essentielles.
+  */
+
+
+  document
+  .getElementById(
+    "orderReference"
+  )
+  .textContent =
+  reference;
+
+
+  document
+  .getElementById(
+    "paymentAmount"
+  )
+  .textContent =
+
+  Number(total)
+  .toFixed(2)
+  .replace(".",",")
+
+  +
+
+  " €";
+
+
+  document
+  .getElementById(
+    "ibanDisplay"
+  )
+  .textContent =
+  CONFIG.ibanAffiche;
+
+
+  document
+  .getElementById(
+    "communication"
+  )
+  .textContent =
+  reference;
+
+
+  /*
+    2.
+    On affiche le paiement AVANT
+    de toucher au QR.
+  */
+
+
+  const payment =
+  document.getElementById(
+    "payment"
+  );
+
+
+  payment.style.display =
+  "block";
+
+
+  /*
+    3.
+    Ensuite seulement,
+    on tente de générer le QR.
+  */
+
+
+  try{
+
+    generatePaymentQR(
+      total,
+      reference
+    );
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Erreur QR :",
+      error
+    );
+
+  }
+
+
+  /*
+    4.
+    Scroll vers le paiement.
+  */
+
+
+  setTimeout(
+    function(){
+
+      payment.scrollIntoView({
+
+        behavior:
+        "smooth",
+
+        block:
+        "start"
+
+      });
+
+    },
+    100
+  );
+
+}
+
+
+/* =====================================================
+   VALIDATION DU FORMULAIRE
 ===================================================== */
 
 document
@@ -2273,11 +2497,21 @@ document
     event.preventDefault();
 
 
+    /*
+      Protection double clic.
+    */
+
+
     if(orderInProgress){
 
       return;
 
     }
+
+
+    /*
+      Nombre total de sachets.
+    */
 
 
     const totalSachets =
@@ -2289,6 +2523,11 @@ document
       },
       0
     );
+
+
+    /*
+      Au moins un sachet.
+    */
 
 
     if(totalSachets === 0){
@@ -2303,8 +2542,9 @@ document
 
 
     /*
-      Création de la référence une seule fois.
+      Référence unique.
     */
+
 
     if(!currentOrderReference){
 
@@ -2312,6 +2552,11 @@ document
       generateOrderReference();
 
     }
+
+
+    /*
+      Produits commandés.
+    */
 
 
     const orderedProducts=[];
@@ -2340,6 +2585,11 @@ document
 
       }
     );
+
+
+    /*
+      Objet envoyé à Apps Script.
+    */
 
 
     const order = {
@@ -2389,6 +2639,11 @@ document
     };
 
 
+    /*
+      Éléments interface.
+    */
+
+
     const button =
     document.getElementById(
       "orderButton"
@@ -2402,13 +2657,16 @@ document
 
 
     /*
-      Bloque le double clic.
+      Verrouillage.
     */
 
-    orderInProgress=true;
+
+    orderInProgress =
+    true;
 
 
-    button.disabled=true;
+    button.disabled =
+    true;
 
 
     button.textContent =
@@ -2419,141 +2677,65 @@ document
     "form-message";
 
 
-    message.textContent="";
+    message.textContent =
+    "";
 
 
     /*
-      Envoi
+      Envoi vers Google Sheets.
     */
+
 
     sendOrder(order);
 
 
     /*
-      On attend un court instant uniquement
-      pour éviter une transition visuelle brutale.
+      Calcul du montant.
     */
 
-    setTimeout(
-      function(){
+
+    const total =
+    totalSachets *
+    CONFIG.prixSachet;
 
 
-        const total =
-        totalSachets *
-        CONFIG.prixSachet;
+    /*
+      IMPORTANT :
+
+      On affiche le paiement directement.
+
+      Le QR ne peut donc plus empêcher
+      l'affichage des coordonnées bancaires.
+    */
 
 
-        /*
-          Message
-        */
-
-        message.className =
-        "form-message success-message";
-
-
-        message.textContent =
-        "Votre commande a été transmise. Vous pouvez maintenant effectuer le paiement.";
-
-
-        /*
-          Référence
-        */
-
-        document
-        .getElementById(
-          "orderReference"
-        )
-        .textContent =
-        currentOrderReference;
-
-
-        /*
-          Montant
-        */
-
-        document
-        .getElementById(
-          "paymentAmount"
-        )
-        .textContent =
-
-        total
-        .toFixed(2)
-        .replace(".",",")
-
-        +
-
-        " €";
-
-
-        /*
-          IBAN
-        */
-
-        document
-        .getElementById(
-          "ibanDisplay"
-        )
-        .textContent =
-        CONFIG.ibanAffiche;
-
-
-        /*
-          Communication
-        */
-
-        document
-        .getElementById(
-          "communication"
-        )
-        .textContent =
-        currentOrderReference;
-
-
-        /*
-          QR
-        */
-
-        generatePaymentQR(
-          total,
-          currentOrderReference
-        );
-
-
-        /*
-          Affichage paiement
-        */
-
-        const payment =
-        document.getElementById(
-          "payment"
-        );
-
-
-        payment.style.display =
-        "block";
-
-
-        payment.scrollIntoView({
-
-          behavior:"smooth",
-
-          block:"center"
-
-        });
-
-
-        /*
-          Bouton
-        */
-
-        button.textContent =
-        "Commande transmise";
-
-
-      },
-      500
+    showPayment(
+      total,
+      currentOrderReference
     );
+
+
+    /*
+      Message de confirmation.
+    */
+
+
+    message.className =
+    "form-message success-message";
+
+
+    message.textContent =
+    "Votre commande a été transmise. Vous pouvez maintenant effectuer le paiement.";
+
+
+    /*
+      Le bouton est mis à jour
+      immédiatement.
+    */
+
+
+    button.textContent =
+    "Commande transmise";
 
 
   }
