@@ -5,730 +5,1019 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>
-Vente d'œufs en chocolat – Pionniers de Magnée
-</title>
+<title>Vente d'œufs en chocolat – Pionniers de Magnée</title>
 
 <style>
 
 :root{
---chocolate:#3f251d;
---chocolate-light:#684336;
---cream:#f7f3ed;
---cream-dark:#eee6dc;
---white:#ffffff;
---text:#292522;
---muted:#817770;
---gold:#b18a57;
---border:#e8e0d7;
---success:#487257;
---error:#a53d3d;
+  --chocolate:#3f251d;
+  --chocolate-light:#684336;
+  --cream:#f7f3ed;
+  --cream-dark:#eee6dc;
+  --white:#ffffff;
+  --text:#292522;
+  --muted:#817770;
+  --gold:#b18a57;
+  --border:#e8e0d7;
+  --success:#487257;
+  --error:#a53d3d;
 }
 
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html{
-scroll-behavior:smooth;
+  scroll-behavior:smooth;
 }
 
 body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-background:var(--cream);
-color:var(--text);
-line-height:1.6;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  line-height:1.6;
 }
 
-button,input,textarea{
-font-family:inherit;
+button,
+input,
+textarea{
+  font-family:inherit;
 }
 
-/* NAVIGATION */
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
 .navbar{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-z-index:10;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:22px 5%;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:22px 5%;
 }
 
 .nav-logo{
-display:flex;
-align-items:center;
-text-decoration:none;
+  display:flex;
+  align-items:center;
+  text-decoration:none;
 }
 
 .nav-logo img{
-width:76px;
-height:76px;
-object-fit:contain;
-background:white;
-border-radius:50%;
-padding:4px;
-box-shadow:0 5px 20px rgba(0,0,0,.12);
+  width:76px;
+  height:76px;
+  object-fit:contain;
+  background:white;
+  border-radius:50%;
+  padding:4px;
+  box-shadow:0 5px 20px rgba(0,0,0,.12);
 }
 
 .nav-link{
-color:white;
-text-decoration:none;
-font-size:14px;
-font-weight:650;
-border:1px solid rgba(255,255,255,.35);
-padding:10px 19px;
-border-radius:50px;
-transition:.2s;
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:650;
+  border:1px solid rgba(255,255,255,.35);
+  padding:10px 19px;
+  border-radius:50px;
+  transition:.2s;
 }
 
 .nav-link:hover{
-background:white;
-color:var(--chocolate);
+  background:white;
+  color:var(--chocolate);
 }
 
-/* HERO */
+
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero{
-min-height:94vh;
-background:
-radial-gradient(circle at 50% 40%,rgba(255,255,255,.06),transparent 40%),
-linear-gradient(135deg,#321c16,var(--chocolate-light));
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:130px 20px 70px;
+  min-height:94vh;
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(255,255,255,.06),
+      transparent 40%
+    ),
+    linear-gradient(
+      135deg,
+      #321c16,
+      var(--chocolate-light)
+    );
+
+  color:white;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  padding:130px 20px 70px;
 }
 
 .hero-content{
-max-width:850px;
+  max-width:850px;
 }
 
 .hero-logo{
-width:155px;
-height:155px;
-object-fit:contain;
-margin-bottom:24px;
-filter:drop-shadow(0 8px 18px rgba(0,0,0,.15));
+  width:155px;
+  height:155px;
+  object-fit:contain;
+  margin-bottom:24px;
+
+  filter:
+    drop-shadow(
+      0 8px 18px rgba(0,0,0,.15)
+    );
 }
 
 .hero-small{
-text-transform:uppercase;
-letter-spacing:3px;
-font-size:12px;
-font-weight:700;
-color:#dbc9b8;
-margin-bottom:18px;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:12px;
+  font-weight:700;
+  color:#dbc9b8;
+  margin-bottom:18px;
 }
 
 .hero h1{
-font-size:clamp(3rem,7vw,5.5rem);
-line-height:1;
-letter-spacing:-2px;
-margin-bottom:25px;
+  font-size:clamp(3rem,7vw,5.5rem);
+  line-height:1;
+  letter-spacing:-2px;
+  margin-bottom:25px;
 }
 
 .hero-description{
-max-width:650px;
-margin:0 auto 35px;
-font-size:1.12rem;
-color:#eee5de;
+  max-width:650px;
+  margin:0 auto 35px;
+  font-size:1.12rem;
+  color:#eee5de;
 }
 
 .hero-info{
-display:flex;
-justify-content:center;
-gap:10px;
-flex-wrap:wrap;
-margin-bottom:38px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:38px;
 }
 
 .hero-badge{
-background:rgba(255,255,255,.08);
-border:1px solid rgba(255,255,255,.15);
-padding:9px 17px;
-border-radius:50px;
-font-size:14px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  padding:9px 17px;
+  border-radius:50px;
+  font-size:14px;
 }
 
 .main-button{
-display:inline-block;
-background:white;
-color:var(--chocolate);
-text-decoration:none;
-padding:15px 28px;
-border-radius:50px;
-font-weight:750;
-transition:.2s;
+  display:inline-block;
+  background:white;
+  color:var(--chocolate);
+  text-decoration:none;
+  padding:15px 28px;
+  border-radius:50px;
+  font-weight:750;
+  transition:.2s;
 }
 
 .main-button:hover{
-transform:translateY(-2px);
+  transform:translateY(-2px);
 }
 
-/* GENERAL */
+
+/* =====================================================
+   TITRES
+===================================================== */
 
 .section-label{
-color:var(--gold);
-text-transform:uppercase;
-letter-spacing:2.5px;
-font-size:11px;
-font-weight:800;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:2.5px;
+  font-size:11px;
+  font-weight:800;
 }
 
 .section-title{
-font-size:clamp(2rem,4vw,2.8rem);
-line-height:1.15;
-margin:10px 0 20px;
-color:var(--chocolate);
+  font-size:clamp(2rem,4vw,2.8rem);
+  line-height:1.15;
+  margin:10px 0 20px;
+  color:var(--chocolate);
 }
 
-/* PROJET */
+
+/* =====================================================
+   PROJET
+===================================================== */
 
 .project{
-background:white;
-padding:100px 20px;
+  background:white;
+  padding:100px 20px;
 }
 
 .project-content{
-max-width:760px;
-margin:auto;
-text-align:center;
+  max-width:760px;
+  margin:auto;
+  text-align:center;
 }
 
 .project-text{
-color:var(--muted);
-font-size:1.08rem;
+  color:var(--muted);
+  font-size:1.08rem;
 }
 
 .project-thanks{
-display:block;
-margin-top:25px;
-color:var(--chocolate);
-font-weight:700;
+  display:block;
+  margin-top:25px;
+  color:var(--chocolate);
+  font-weight:700;
 }
 
-/* BOUTIQUE */
+
+/* =====================================================
+   BOUTIQUE
+===================================================== */
 
 .shop{
-max-width:1200px;
-margin:auto;
-padding:100px 20px 70px;
+  max-width:1200px;
+  margin:auto;
+  padding:100px 20px 70px;
 }
 
 .shop-header{
-max-width:650px;
-text-align:center;
-margin:0 auto 70px;
+  max-width:650px;
+  text-align:center;
+  margin:0 auto 70px;
 }
 
 .shop-header p{
-color:var(--muted);
+  color:var(--muted);
 }
 
+
+/* =====================================================
+   CATÉGORIES
+===================================================== */
+
 .chocolate-category{
-margin-bottom:80px;
+  margin-bottom:80px;
 }
 
 .category-header{
-display:flex;
-align-items:flex-end;
-justify-content:space-between;
-padding-bottom:16px;
-margin-bottom:25px;
-border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  padding-bottom:16px;
+  margin-bottom:25px;
+  border-bottom:1px solid var(--border);
 }
 
 .category-label{
-color:var(--gold);
-text-transform:uppercase;
-letter-spacing:2px;
-font-size:10px;
-font-weight:800;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:10px;
+  font-weight:800;
 }
 
 .category-header h3{
-color:var(--chocolate);
-font-size:1.7rem;
+  color:var(--chocolate);
+  font-size:1.7rem;
+  line-height:1.2;
 }
 
 .category-count{
-color:var(--muted);
-font-size:13px;
+  color:var(--muted);
+  font-size:13px;
 }
 
 .category-products{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:18px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:18px;
 }
 
-/* PRODUIT */
+
+/* =====================================================
+   PRODUITS
+===================================================== */
 
 .product{
-position:relative;
-overflow:hidden;
-background:white;
-border:1px solid var(--border);
-border-radius:18px;
-box-shadow:0 8px 30px rgba(63,37,29,.055);
-transition:.2s;
+  position:relative;
+  overflow:hidden;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+
+  box-shadow:
+    0 8px 30px
+    rgba(63,37,29,.055);
+
+  transition:
+    transform .2s,
+    box-shadow .2s;
 }
 
 .product:hover{
-transform:translateY(-4px);
-box-shadow:0 12px 35px rgba(63,37,29,.10);
+  transform:translateY(-4px);
+
+  box-shadow:
+    0 12px 35px
+    rgba(63,37,29,.10);
 }
 
+
+/* IMAGE */
+
 .product-image{
-position:relative;
-width:100%;
-aspect-ratio:1/1;
-overflow:hidden;
-background:linear-gradient(135deg,#f2ece5,#e8ded4);
+  position:relative;
+  width:100%;
+  aspect-ratio:1/1;
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f2ece5,
+      #e8ded4
+    );
 }
 
 .product-image img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-transition:transform .35s;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .35s;
 }
 
 .product:hover .product-image img{
-transform:scale(1.035);
+  transform:scale(1.035);
 }
 
 .image-placeholder{
-position:absolute;
-inset:0;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-color:#a4968c;
-font-size:12px;
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  color:#a4968c;
+  text-align:center;
+  font-size:12px;
 }
 
 .placeholder-icon{
-width:44px;
-height:44px;
-border:1px solid #cfc2b8;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-margin-bottom:9px;
-font-size:18px;
+  width:44px;
+  height:44px;
+
+  border:1px solid #cfc2b8;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-bottom:9px;
+  font-size:18px;
 }
+
+
+/* BADGES */
 
 .flavour-badge{
-position:absolute;
-top:12px;
-right:12px;
-z-index:2;
-background:var(--chocolate);
-color:white;
-padding:5px 10px;
-border-radius:50px;
-font-size:9px;
-font-weight:800;
-letter-spacing:1px;
+  position:absolute;
+  top:12px;
+  right:12px;
+  z-index:2;
+
+  background:var(--chocolate);
+  color:white;
+
+  padding:5px 10px;
+
+  border-radius:50px;
+
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1px;
 }
 
+
+/* CONTENU */
+
 .product-content{
-padding:18px;
+  padding:18px;
 }
 
 .chocolate-type{
-color:var(--gold);
-text-transform:uppercase;
-font-size:9px;
-font-weight:800;
-letter-spacing:1.4px;
+  color:var(--gold);
+  text-transform:uppercase;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:1.4px;
 }
 
 .product h4{
-color:var(--chocolate);
-font-size:1.05rem;
-margin:3px 0 4px;
+  color:var(--chocolate);
+  font-size:1.05rem;
+  margin:3px 0 4px;
 }
 
 .product-description{
-color:var(--muted);
-font-size:12px;
+  color:var(--muted);
+  font-size:12px;
 }
 
 .product-bottom{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-top:17px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:17px;
 }
 
 .price{
-color:var(--chocolate);
-font-weight:800;
-font-size:17px;
+  color:var(--chocolate);
+  font-weight:800;
+  font-size:17px;
 }
 
+
+/* =====================================================
+   QUANTITÉS
+===================================================== */
+
 .quantity{
-display:flex;
-align-items:center;
-gap:9px;
+  display:flex;
+  align-items:center;
+  gap:9px;
 }
 
 .quantity button{
-width:31px;
-height:31px;
-display:flex;
-align-items:center;
-justify-content:center;
-border:1px solid var(--border);
-border-radius:50%;
-background:var(--cream);
-color:var(--chocolate);
-font-size:18px;
-cursor:pointer;
+  width:31px;
+  height:31px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid var(--border);
+  border-radius:50%;
+
+  background:var(--cream);
+  color:var(--chocolate);
+
+  font-size:18px;
+  cursor:pointer;
+
+  transition:.15s;
 }
 
 .quantity button:hover{
-background:var(--chocolate);
-color:white;
+  background:var(--chocolate);
+  border-color:var(--chocolate);
+  color:white;
 }
 
 .quantity span{
-min-width:17px;
-text-align:center;
-font-size:14px;
-font-weight:750;
+  min-width:17px;
+  text-align:center;
+  font-size:14px;
+  font-weight:750;
 }
 
-/* COMMANDE */
+
+/* =====================================================
+   COMMANDE
+===================================================== */
 
 .checkout-wrapper{
-background:white;
-padding:90px 20px;
+  background:white;
+  padding:90px 20px;
 }
 
 .checkout{
-max-width:800px;
-margin:auto;
+  max-width:800px;
+  margin:auto;
 }
 
 .checkout-header{
-text-align:center;
-margin-bottom:35px;
+  text-align:center;
+  margin-bottom:35px;
 }
 
 .summary{
-background:var(--cream);
-border:1px solid var(--border);
-padding:25px;
-border-radius:16px;
-margin-bottom:30px;
+  background:var(--cream);
+  border:1px solid var(--border);
+  padding:25px;
+  border-radius:16px;
+  margin-bottom:30px;
 }
 
 .summary-empty{
-color:var(--muted);
+  color:var(--muted);
 }
 
 .summary-line{
-display:flex;
-justify-content:space-between;
-gap:15px;
-margin:11px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin:11px 0;
 }
 
 .summary-product strong{
-color:var(--chocolate);
+  color:var(--chocolate);
 }
 
 .summary-product small{
-display:block;
-color:var(--muted);
+  display:block;
+  color:var(--muted);
 }
 
 .total{
-display:flex;
-justify-content:space-between;
-border-top:1px solid var(--border);
-margin-top:18px;
-padding-top:18px;
-font-size:1.3rem;
-font-weight:800;
-color:var(--chocolate);
+  display:flex;
+  justify-content:space-between;
+
+  border-top:1px solid var(--border);
+
+  margin-top:18px;
+  padding-top:18px;
+
+  font-size:1.3rem;
+  font-weight:800;
+
+  color:var(--chocolate);
 }
 
+
+/* =====================================================
+   FORMULAIRE
+===================================================== */
+
 .form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:17px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:17px;
 }
 
 .full{
-grid-column:1/-1;
+  grid-column:1/-1;
 }
 
 label{
-display:block;
-margin-bottom:6px;
-color:var(--chocolate);
-font-size:13px;
-font-weight:700;
+  display:block;
+  margin-bottom:6px;
+
+  color:var(--chocolate);
+
+  font-size:13px;
+  font-weight:700;
 }
 
-input,textarea{
-width:100%;
-border:1px solid var(--border);
-border-radius:10px;
-background:white;
-padding:13px 14px;
-color:var(--text);
-font-size:16px;
+input,
+textarea{
+  width:100%;
+
+  border:1px solid var(--border);
+  border-radius:10px;
+
+  background:white;
+
+  padding:13px 14px;
+
+  color:var(--text);
+
+  font-size:16px;
 }
 
 input:focus,
 textarea:focus{
-outline:none;
-border-color:var(--gold);
-box-shadow:0 0 0 3px rgba(177,138,87,.1);
+  outline:none;
+  border-color:var(--gold);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(177,138,87,.1);
 }
 
 textarea{
-min-height:90px;
-resize:vertical;
+  min-height:90px;
+  resize:vertical;
 }
 
-/* CONFIDENTIALITE */
+
+/* =====================================================
+   CONFIDENTIALITÉ
+===================================================== */
 
 .privacy-box{
-margin-top:22px;
-padding:18px;
-background:#faf8f5;
-border:1px solid var(--border);
-border-radius:12px;
-font-size:12px;
-color:var(--muted);
+  margin-top:22px;
+  padding:18px;
+
+  background:#faf8f5;
+
+  border:1px solid var(--border);
+  border-radius:12px;
+
+  color:var(--muted);
+
+  font-size:12px;
+  line-height:1.6;
 }
 
 .privacy-box strong{
-display:block;
-color:var(--chocolate);
-font-size:13px;
-margin-bottom:5px;
+  display:block;
+
+  color:var(--chocolate);
+
+  font-size:13px;
+
+  margin-bottom:5px;
 }
 
+
+/* =====================================================
+   BOUTON COMMANDE
+===================================================== */
+
 .order-button{
-width:100%;
-margin-top:24px;
-padding:17px;
-border:none;
-border-radius:11px;
-background:var(--chocolate);
-color:white;
-font-size:16px;
-font-weight:750;
-cursor:pointer;
+  width:100%;
+
+  margin-top:24px;
+
+  padding:17px;
+
+  border:none;
+  border-radius:11px;
+
+  background:var(--chocolate);
+  color:white;
+
+  font-size:16px;
+  font-weight:750;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.order-button:hover{
+  background:var(--chocolate-light);
 }
 
 .order-button:disabled{
-opacity:.6;
-cursor:not-allowed;
+  opacity:.6;
+  cursor:not-allowed;
 }
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
 
 .form-message{
-display:none;
-margin-top:15px;
-padding:14px 16px;
-border-radius:10px;
-font-size:14px;
+  display:none;
+
+  margin-top:15px;
+
+  padding:14px 16px;
+
+  border-radius:10px;
+
+  font-size:14px;
 }
 
-.success-message{
-display:block;
-background:#edf5ef;
-color:var(--success);
-border:1px solid #cfe2d4;
+.form-message.success-message{
+  display:block;
+
+  background:#edf5ef;
+  color:var(--success);
+
+  border:1px solid #cfe2d4;
 }
 
-.error-message{
-display:block;
-background:#fff0f0;
-color:var(--error);
-border:1px solid #efd0d0;
+.form-message.error-message{
+  display:block;
+
+  background:#fff0f0;
+  color:var(--error);
+
+  border:1px solid #efd0d0;
 }
 
-/* PAIEMENT */
+
+/* =====================================================
+   PAIEMENT
+===================================================== */
 
 .payment{
-display:none;
-margin-top:35px;
-padding:30px;
-background:var(--cream);
-border:1px solid var(--border);
-border-radius:16px;
+  display:none;
+
+  margin-top:35px;
+  padding:30px;
+
+  background:var(--cream);
+
+  border:1px solid var(--border);
+  border-radius:16px;
 }
 
 .success{
-color:var(--success);
-font-weight:750;
-margin-bottom:8px;
+  color:var(--success);
+  font-weight:750;
+  margin-bottom:8px;
 }
 
 .payment h3{
-color:var(--chocolate);
-font-size:1.5rem;
+  color:var(--chocolate);
+  font-size:1.5rem;
+  margin-bottom:7px;
 }
 
 .payment-intro{
-color:var(--muted);
+  color:var(--muted);
+}
+
+.order-reference-box{
+  margin-top:18px;
+
+  padding:15px 18px;
+
+  background:white;
+
+  border:1px solid var(--border);
+  border-radius:10px;
+
+  text-align:center;
+}
+
+.order-reference-box span{
+  display:block;
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.order-reference-box strong{
+  display:block;
+
+  margin-top:3px;
+
+  color:var(--chocolate);
+
+  font-size:17px;
 }
 
 .qr-area{
-text-align:center;
-margin:30px 0;
+  text-align:center;
+  margin:30px 0;
 }
 
 #qrcode{
-display:inline-block;
-background:white;
-padding:15px;
-border:1px solid var(--border);
-border-radius:14px;
+  display:inline-block;
+
+  background:white;
+
+  padding:15px;
+
+  border:1px solid var(--border);
+  border-radius:14px;
 }
 
 .qr-help{
-margin-top:10px;
-color:var(--muted);
-font-size:13px;
+  margin-top:10px;
+
+  color:var(--muted);
+
+  font-size:13px;
 }
 
 .bank-box{
-background:white;
-border:1px solid var(--border);
-border-radius:12px;
-padding:20px;
+  background:white;
+
+  border:1px solid var(--border);
+  border-radius:12px;
+
+  padding:20px;
+
+  margin-top:20px;
 }
 
 .bank-row{
-margin:12px 0;
+  margin:12px 0;
 }
 
 .bank-row span{
-display:block;
-color:var(--muted);
-font-size:12px;
+  display:block;
+
+  color:var(--muted);
+
+  font-size:12px;
 }
 
 .bank-row strong{
-color:var(--chocolate);
-font-size:16px;
-overflow-wrap:anywhere;
+  color:var(--chocolate);
+
+  font-size:16px;
+
+  overflow-wrap:anywhere;
 }
 
 .warning{
-margin-top:15px;
-color:var(--muted);
-font-size:13px;
+  margin-top:15px;
+
+  color:var(--muted);
+
+  font-size:13px;
 }
 
-/* FOOTER */
+
+/* =====================================================
+   FOOTER
+===================================================== */
 
 footer{
-background:var(--chocolate);
-color:#d9cbc1;
-text-align:center;
-padding:50px 20px;
-font-size:13px;
+  background:var(--chocolate);
+
+  color:#d9cbc1;
+
+  text-align:center;
+
+  padding:50px 20px;
+
+  font-size:13px;
 }
 
 .footer-logos{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:20px;
-margin-bottom:20px;
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  gap:20px;
+
+  margin-bottom:20px;
 }
 
 .footer-logos img{
-width:65px;
-height:65px;
-object-fit:contain;
-background:white;
-border-radius:50%;
-padding:4px;
+  width:65px;
+  height:65px;
+
+  object-fit:contain;
+
+  background:white;
+
+  border-radius:50%;
+
+  padding:4px;
 }
 
 .footer-title{
-color:white;
-font-size:16px;
-font-weight:750;
-margin-bottom:5px;
+  color:white;
+
+  font-size:16px;
+  font-weight:750;
+
+  margin-bottom:5px;
 }
 
+
+/* =====================================================
+   TABLETTE
+===================================================== */
+
 @media(max-width:950px){
-.category-products{
-grid-template-columns:repeat(3,1fr);
+
+  .category-products{
+    grid-template-columns:repeat(3,1fr);
+  }
+
 }
-}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:620px){
 
-.navbar{
-padding:16px 18px;
-}
+  .navbar{
+    padding:16px 18px;
+  }
 
-.nav-logo img{
-width:58px;
-height:58px;
-}
+  .nav-logo img{
+    width:58px;
+    height:58px;
+  }
 
-.hero-logo{
-width:125px;
-height:125px;
-}
+  .nav-link{
+    font-size:12px;
+    padding:8px 13px;
+  }
 
-.category-products{
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
+  .hero{
+    min-height:90vh;
+    padding-top:120px;
+  }
 
-.product-content{
-padding:13px;
-}
+  .hero-logo{
+    width:125px;
+    height:125px;
+  }
 
-.product-bottom{
-display:block;
-}
+  .hero h1{
+    letter-spacing:-1px;
+  }
 
-.quantity{
-margin-top:12px;
-justify-content:space-between;
-}
+  .project{
+    padding:75px 20px;
+  }
 
-.form-grid{
-grid-template-columns:1fr;
-}
+  .shop{
+    padding:75px 12px 45px;
+  }
 
-.full{
-grid-column:auto;
-}
+  .shop-header{
+    margin-bottom:50px;
+  }
 
-.checkout-wrapper{
-padding:70px 13px;
-}
+  .chocolate-category{
+    margin-bottom:60px;
+  }
+
+  .category-header h3{
+    font-size:1.4rem;
+  }
+
+  .category-count{
+    display:none;
+  }
+
+  .category-products{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .product{
+    border-radius:14px;
+  }
+
+  .product-content{
+    padding:13px;
+  }
+
+  .product h4{
+    font-size:14px;
+  }
+
+  .product-description{
+    font-size:11px;
+  }
+
+  .product-bottom{
+    display:block;
+  }
+
+  .quantity{
+    margin-top:12px;
+    justify-content:space-between;
+  }
+
+  .checkout-wrapper{
+    padding:70px 13px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+  .payment{
+    padding:20px;
+  }
 
 }
 
@@ -736,12 +1025,22 @@ padding:70px 13px;
 
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
 <nav class="navbar">
 
 <a href="#" class="nav-logo">
-<img src="images/logo-magnee.png" alt="Les Scouts de Magnée">
+
+<img
+src="images/logo-magnee.png"
+alt="Les Scouts de Magnée">
+
 </a>
 
 <a href="#boutique" class="nav-link">
@@ -750,6 +1049,10 @@ Commander
 
 </nav>
 
+
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
@@ -770,8 +1073,12 @@ une aventure.
 </h1>
 
 <p class="hero-description">
-Soutenez le projet de camp des Pionniers de Magnée
-tout en vous faisant plaisir avec nos œufs en chocolat.
+
+Soutenez le projet de camp
+des Pionniers de Magnée
+tout en vous faisant plaisir
+avec nos œufs en chocolat.
+
 </p>
 
 <div class="hero-info">
@@ -799,6 +1106,10 @@ Découvrir nos saveurs
 </section>
 
 
+<!-- =====================================================
+     PROJET
+===================================================== -->
+
 <section class="project">
 
 <div class="project-content">
@@ -813,19 +1124,22 @@ Une aventure qui se construit ensemble
 
 <p class="project-text">
 
-Cette année, les Pionniers de Magnée se lancent
-dans un nouveau projet de camp.
+Cette année, les Pionniers de Magnée
+se lancent dans un nouveau projet de camp.
 
 Notre objectif est de vivre une expérience unique,
-de découvrir de nouveaux horizons et de construire
-ensemble une aventure dont nous nous souviendrons longtemps.
+de découvrir de nouveaux horizons
+et de construire ensemble une aventure
+dont nous nous souviendrons longtemps.
 
 <br><br>
 
 En achetant nos œufs en chocolat,
-vous participez directement au financement de ce projet.
+vous participez directement
+au financement de ce projet.
 
-Chaque commande nous rapproche un peu plus de notre objectif.
+Chaque commande nous rapproche
+un peu plus de notre objectif.
 
 <span class="project-thanks">
 Merci pour votre soutien.
@@ -837,6 +1151,10 @@ Merci pour votre soutien.
 
 </section>
 
+
+<!-- =====================================================
+     BOUTIQUE
+===================================================== -->
 
 <section class="shop" id="boutique">
 
@@ -851,8 +1169,11 @@ Choisissez vos saveurs
 </h2>
 
 <p>
-Blanc, lait ou noir. Découvrez nos 15 saveurs
+
+Blanc, lait ou noir.
+Découvrez nos 15 saveurs
 et composez votre commande.
+
 </p>
 
 </div>
@@ -861,6 +1182,10 @@ et composez votre commande.
 
 </section>
 
+
+<!-- =====================================================
+     COMMANDE
+===================================================== -->
 
 <section class="checkout-wrapper">
 
@@ -881,13 +1206,19 @@ Votre commande
 
 <div class="summary">
 
-<div id="summaryProducts" class="summary-empty">
+<div
+id="summaryProducts"
+class="summary-empty">
+
 Aucun sachet sélectionné.
+
 </div>
 
 <div class="total">
 
-<span>Total</span>
+<span>
+Total
+</span>
 
 <span id="totalPrice">
 0 €
@@ -998,6 +1329,8 @@ placeholder="Une précision concernant votre commande ?"></textarea>
 </div>
 
 
+<!-- CONFIDENTIALITÉ -->
+
 <div class="privacy-box">
 
 <strong>
@@ -1007,12 +1340,12 @@ Protection de vos données
 Les informations renseignées sont utilisées uniquement
 par les Pionniers de Magnée afin de gérer votre commande,
 votre paiement, la remise de vos œufs et, si nécessaire,
-vous contacter à propos de votre commande.
+vous contacter au sujet de votre commande.
 
 Elles ne sont pas utilisées à des fins commerciales
 et ne sont pas transmises à des tiers à des fins commerciales.
-Elles seront conservées uniquement pendant la durée nécessaire
-à la gestion et au suivi de cette vente.
+Elles sont conservées uniquement pendant la durée nécessaire
+à l'organisation et au suivi de cette vente.
 
 </div>
 
@@ -1035,22 +1368,42 @@ class="form-message">
 </form>
 
 
-<div class="payment" id="payment">
+<!-- =====================================================
+     PAIEMENT
+===================================================== -->
+
+<div
+class="payment"
+id="payment">
+
 
 <div class="success">
 ✓ Commande transmise
 </div>
 
+
 <h3>
 Finalisez votre paiement
 </h3>
 
+
 <p class="payment-intro">
 
-Effectuez maintenant un virement
+Effectuez maintenant votre virement
 avec les informations ci-dessous.
 
 </p>
+
+
+<div class="order-reference-box">
+
+<span>
+Référence de votre commande
+</span>
+
+<strong id="orderReference"></strong>
+
+</div>
 
 
 <div class="qr-area">
@@ -1058,7 +1411,7 @@ avec les informations ci-dessous.
 <div id="qrcode"></div>
 
 <div class="qr-help">
-Vous pouvez essayer de scanner ce QR avec votre application bancaire.
+Scannez avec votre application bancaire si elle prend en charge ce QR.
 </div>
 
 </div>
@@ -1066,25 +1419,52 @@ Vous pouvez essayer de scanner ce QR avec votre application bancaire.
 
 <div class="bank-box">
 
-<div class="bank-row">
-<span>Bénéficiaire</span>
-<strong>Pionniers de Magnée</strong>
-</div>
 
 <div class="bank-row">
-<span>IBAN</span>
+
+<span>
+Bénéficiaire
+</span>
+
+<strong>
+Pionniers de Magnée
+</strong>
+
+</div>
+
+
+<div class="bank-row">
+
+<span>
+IBAN
+</span>
+
 <strong id="ibanDisplay"></strong>
+
 </div>
 
+
 <div class="bank-row">
-<span>Montant</span>
+
+<span>
+Montant
+</span>
+
 <strong id="paymentAmount"></strong>
+
 </div>
 
+
 <div class="bank-row">
-<span>Communication</span>
+
+<span>
+Communication
+</span>
+
 <strong id="communication"></strong>
+
 </div>
+
 
 </div>
 
@@ -1092,9 +1472,11 @@ Vous pouvez essayer de scanner ce QR avec votre application bancaire.
 <p class="warning">
 
 Important : indiquez exactement la communication ci-dessus
-afin que nous puissions associer votre paiement à votre commande.
+afin que nous puissions associer votre paiement
+à votre commande.
 
 </p>
+
 
 </div>
 
@@ -1102,6 +1484,10 @@ afin que nous puissions associer votre paiement à votre commande.
 
 </section>
 
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
@@ -1128,6 +1514,10 @@ Merci pour votre soutien
 </footer>
 
 
+<!-- =====================================================
+     QR CODE
+===================================================== -->
+
 <script
 src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
 </script>
@@ -1135,47 +1525,131 @@ src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
 
 <script>
 
-/* CONFIGURATION */
+/* =====================================================
+   CONFIGURATION
+===================================================== */
 
 const CONFIG = {
 
-prixSachet:5,
+  prixSachet:5,
 
-nombreOeufs:10,
+  nombreOeufs:10,
 
-googleScriptURL:
-"https://script.google.com/macros/s/AKfycbyfC1iJWBKKj0ezK1Qo70iw2mywUKLMk3misQVvaXKxqvc80Os5p56Wluifp_QBWOym/exec",
+  googleScriptURL:
+  "https://script.google.com/macros/s/AKfycbyfC1iJWBKKj0ezK1Qo70iw2mywUKLMk3misQVvaXKxqvc80Os5p56Wluifp_QBWOym/exec",
 
-iban:"BE60082938809470",
+  iban:
+  "BE60082938809470",
 
-ibanAffiche:"BE60 0829 3880 9470",
+  ibanAffiche:
+  "BE60 0829 3880 9470",
 
-nomCompte:"Pionniers de Magnée"
+  nomCompte:
+  "Pionniers de Magnée"
 
 };
 
 
-/* PRODUITS */
+/* =====================================================
+   PRODUITS
+===================================================== */
 
 const products = [
 
-{type:"Blanc",nom:"Nature",image:"images/blanc-nature.jpg"},
-{type:"Blanc",nom:"Praliné",image:"images/blanc-praline.jpg"},
-{type:"Blanc",nom:"Manon",image:"images/blanc-manon.jpg"},
-{type:"Blanc",nom:"Pistache",image:"images/blanc-pistache.jpg"},
-{type:"Blanc",nom:"Croquant",image:"images/blanc-croquant.jpg"},
+  {
+    type:"Blanc",
+    nom:"Nature",
+    image:"images/blanc-nature.jpg"
+  },
 
-{type:"Lait",nom:"Praliné",image:"images/lait-praline.jpg"},
-{type:"Lait",nom:"Nature",image:"images/lait-nature.jpg"},
-{type:"Lait",nom:"Croquant",image:"images/lait-croquant.jpg"},
-{type:"Lait",nom:"Coco",image:"images/lait-coco.jpg"},
-{type:"Lait",nom:"Pétillant",image:"images/lait-petillant.jpg",badge:"NEW"},
+  {
+    type:"Blanc",
+    nom:"Praliné",
+    image:"images/blanc-praline.jpg"
+  },
 
-{type:"Noir",nom:"Praliné",image:"images/noir-praline.jpg"},
-{type:"Noir",nom:"Croquant",image:"images/noir-croquant.jpg",badge:"NEW"},
-{type:"Noir",nom:"Framboise",image:"images/noir-framboise.jpg",badge:"RENEW"},
-{type:"Noir",nom:"Vanille Stracciatella",image:"images/noir-vanille-stracciatella.jpg"},
-{type:"Noir",nom:"Pistache",image:"images/noir-pistache.jpg"}
+  {
+    type:"Blanc",
+    nom:"Manon",
+    image:"images/blanc-manon.jpg"
+  },
+
+  {
+    type:"Blanc",
+    nom:"Pistache",
+    image:"images/blanc-pistache.jpg"
+  },
+
+  {
+    type:"Blanc",
+    nom:"Croquant",
+    image:"images/blanc-croquant.jpg"
+  },
+
+
+  {
+    type:"Lait",
+    nom:"Praliné",
+    image:"images/lait-praline.jpg"
+  },
+
+  {
+    type:"Lait",
+    nom:"Nature",
+    image:"images/lait-nature.jpg"
+  },
+
+  {
+    type:"Lait",
+    nom:"Croquant",
+    image:"images/lait-croquant.jpg"
+  },
+
+  {
+    type:"Lait",
+    nom:"Coco",
+    image:"images/lait-coco.jpg"
+  },
+
+  {
+    type:"Lait",
+    nom:"Pétillant",
+    image:"images/lait-petillant.jpg",
+    badge:"NEW"
+  },
+
+
+  {
+    type:"Noir",
+    nom:"Praliné",
+    image:"images/noir-praline.jpg"
+  },
+
+  {
+    type:"Noir",
+    nom:"Croquant",
+    image:"images/noir-croquant.jpg",
+    badge:"NEW"
+  },
+
+  {
+    type:"Noir",
+    nom:"Framboise",
+    image:"images/noir-framboise.jpg",
+    badge:"RENEW"
+  },
+
+  {
+    type:"Noir",
+    nom:"Vanille Stracciatella",
+    image:"images/noir-vanille-stracciatella.jpg"
+  },
+
+  {
+    type:"Noir",
+    nom:"Pistache",
+    image:"images/noir-pistache.jpg"
+  }
 
 ];
 
@@ -1186,579 +1660,916 @@ new Array(products.length).fill(0);
 
 const categories = [
 
-{type:"Blanc",titre:"Chocolat blanc"},
-{type:"Lait",titre:"Chocolat au lait"},
-{type:"Noir",titre:"Chocolat noir"}
+  {
+    type:"Blanc",
+    titre:"Chocolat blanc"
+  },
+
+  {
+    type:"Lait",
+    titre:"Chocolat au lait"
+  },
+
+  {
+    type:"Noir",
+    titre:"Chocolat noir"
+  }
 
 ];
 
 
-/* AFFICHAGE PRODUITS */
+/*
+  Cette variable permet de conserver la même
+  référence pendant toute la tentative de commande.
+*/
+
+let currentOrderReference = null;
+
+let orderInProgress = false;
+
+
+/* =====================================================
+   CRÉATION DES PRODUITS
+===================================================== */
 
 function createProducts(){
 
-const container =
-document.getElementById("products");
+  const container =
+  document.getElementById("products");
 
-container.innerHTML="";
-
-
-categories.forEach(function(category){
-
-const categoryProducts =
-products.filter(function(product){
-return product.type === category.type;
-});
+  container.innerHTML="";
 
 
-const section =
-document.createElement("div");
-
-section.className =
-"chocolate-category";
+  categories.forEach(function(category){
 
 
-section.innerHTML = `
+    const categoryProducts =
+    products.filter(function(product){
 
-<div class="category-header">
+      return product.type === category.type;
 
-<div>
-
-<div class="category-label">
-Collection
-</div>
-
-<h3>
-${category.titre}
-</h3>
-
-</div>
-
-<div class="category-count">
-${categoryProducts.length} saveurs
-</div>
-
-</div>
-
-<div class="category-products"></div>
-
-`;
+    });
 
 
-const grid =
-section.querySelector(".category-products");
+    const section =
+    document.createElement("div");
 
 
-products.forEach(function(product,index){
+    section.className =
+    "chocolate-category";
 
-if(product.type !== category.type){
-return;
+
+    const header =
+    document.createElement("div");
+
+
+    header.className =
+    "category-header";
+
+
+    header.innerHTML = `
+
+      <div>
+
+        <div class="category-label">
+          Collection
+        </div>
+
+        <h3>
+          ${category.titre}
+        </h3>
+
+      </div>
+
+      <div class="category-count">
+
+        ${categoryProducts.length}
+        saveurs
+
+      </div>
+
+    `;
+
+
+    const grid =
+    document.createElement("div");
+
+
+    grid.className =
+    "category-products";
+
+
+    products.forEach(function(product,index){
+
+
+      if(product.type !== category.type){
+
+        return;
+
+      }
+
+
+      const card =
+      document.createElement("article");
+
+
+      card.className =
+      "product";
+
+
+      const badgeHTML =
+      product.badge
+      ?
+      `
+      <div class="flavour-badge">
+        ${product.badge}
+      </div>
+      `
+      :
+      "";
+
+
+      card.innerHTML = `
+
+        ${badgeHTML}
+
+        <div class="product-image">
+
+          <div class="image-placeholder">
+
+            <div class="placeholder-icon">
+              ◇
+            </div>
+
+            Photo à ajouter
+
+          </div>
+
+          <img
+          src="${product.image}"
+          alt="${product.nom}"
+          loading="lazy"
+          onerror="this.style.display='none'">
+
+        </div>
+
+
+        <div class="product-content">
+
+          <div class="chocolate-type">
+
+            Chocolat
+            ${product.type.toLowerCase()}
+
+          </div>
+
+          <h4>
+            ${product.nom}
+          </h4>
+
+          <div class="product-description">
+
+            ${CONFIG.nombreOeufs}
+            œufs par sachet
+
+          </div>
+
+
+          <div class="product-bottom">
+
+            <div class="price">
+              ${CONFIG.prixSachet} €
+            </div>
+
+            <div class="quantity">
+
+              <button
+              type="button"
+              class="minus-button"
+              data-index="${index}">
+                −
+              </button>
+
+              <span id="qty-${index}">
+                0
+              </span>
+
+              <button
+              type="button"
+              class="plus-button"
+              data-index="${index}">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      grid.appendChild(card);
+
+    });
+
+
+    section.appendChild(header);
+
+    section.appendChild(grid);
+
+    container.appendChild(section);
+
+  });
+
+
+  document
+  .querySelectorAll(".plus-button")
+  .forEach(function(button){
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        changeQuantity(
+          Number(this.dataset.index),
+          1
+        );
+
+      }
+    );
+
+  });
+
+
+  document
+  .querySelectorAll(".minus-button")
+  .forEach(function(button){
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        changeQuantity(
+          Number(this.dataset.index),
+          -1
+        );
+
+      }
+    );
+
+  });
+
 }
 
 
-const card =
-document.createElement("article");
-
-card.className="product";
-
-
-const badge =
-product.badge
-?
-`<div class="flavour-badge">${product.badge}</div>`
-:
-"";
-
-
-card.innerHTML = `
-
-${badge}
-
-<div class="product-image">
-
-<div class="image-placeholder">
-
-<div class="placeholder-icon">
-◇
-</div>
-
-Photo à ajouter
-
-</div>
-
-<img
-src="${product.image}"
-alt="${product.nom}"
-loading="lazy"
-onerror="this.style.display='none'">
-
-</div>
-
-
-<div class="product-content">
-
-<div class="chocolate-type">
-Chocolat ${product.type.toLowerCase()}
-</div>
-
-<h4>
-${product.nom}
-</h4>
-
-<div class="product-description">
-${CONFIG.nombreOeufs} œufs par sachet
-</div>
-
-<div class="product-bottom">
-
-<div class="price">
-${CONFIG.prixSachet} €
-</div>
-
-<div class="quantity">
-
-<button
-type="button"
-class="minus-button"
-data-index="${index}">
-−
-</button>
-
-<span id="qty-${index}">
-0
-</span>
-
-<button
-type="button"
-class="plus-button"
-data-index="${index}">
-+
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-grid.appendChild(card);
-
-});
-
-
-container.appendChild(section);
-
-});
-
-
-document.querySelectorAll(".plus-button")
-.forEach(function(button){
-
-button.addEventListener("click",function(){
-
-changeQuantity(
-Number(this.dataset.index),
-1
-);
-
-});
-
-});
-
-
-document.querySelectorAll(".minus-button")
-.forEach(function(button){
-
-button.addEventListener("click",function(){
-
-changeQuantity(
-Number(this.dataset.index),
--1
-);
-
-});
-
-});
-
-}
-
-
-/* QUANTITÉS */
+/* =====================================================
+   QUANTITÉS
+===================================================== */
 
 function changeQuantity(index,change){
 
-quantities[index] += change;
+  if(orderInProgress){
+    return;
+  }
 
-if(quantities[index] < 0){
-quantities[index]=0;
+  quantities[index] += change;
+
+
+  if(quantities[index] < 0){
+
+    quantities[index] = 0;
+
+  }
+
+
+  document
+  .getElementById(
+    "qty-" + index
+  )
+  .textContent =
+  quantities[index];
+
+
+  updateSummary();
+
 }
 
-document.getElementById(
-"qty-"+index
-).textContent =
-quantities[index];
 
-updateSummary();
-
-}
-
-
-/* RÉSUMÉ */
+/* =====================================================
+   RÉSUMÉ
+===================================================== */
 
 function updateSummary(){
 
-const container =
-document.getElementById("summaryProducts");
+  const container =
+  document.getElementById(
+    "summaryProducts"
+  );
 
-let html="";
-let totalSachets=0;
+
+  let html="";
+
+  let totalSachets=0;
 
 
-products.forEach(function(product,index){
+  products.forEach(function(product,index){
 
-const quantity =
-quantities[index];
 
-if(quantity === 0){
-return;
+    const quantity =
+    quantities[index];
+
+
+    if(quantity === 0){
+
+      return;
+
+    }
+
+
+    const subtotal =
+    quantity *
+    CONFIG.prixSachet;
+
+
+    html += `
+
+      <div class="summary-line">
+
+        <div class="summary-product">
+
+          <strong>
+            ${product.nom}
+          </strong>
+
+          <small>
+
+            Chocolat
+            ${product.type.toLowerCase()}
+            •
+            ${quantity}
+            sachet${quantity > 1 ? "s" : ""}
+
+          </small>
+
+        </div>
+
+        <strong>
+          ${subtotal} €
+        </strong>
+
+      </div>
+
+    `;
+
+
+    totalSachets += quantity;
+
+  });
+
+
+  if(totalSachets === 0){
+
+    container.className =
+    "summary-empty";
+
+    container.textContent =
+    "Aucun sachet sélectionné.";
+
+  }
+
+  else{
+
+    container.className="";
+
+    container.innerHTML =
+    html;
+
+  }
+
+
+  document
+  .getElementById(
+    "totalPrice"
+  )
+  .textContent =
+
+  (
+    totalSachets *
+    CONFIG.prixSachet
+  )
+  +
+  " €";
+
 }
 
-const subtotal =
-quantity * CONFIG.prixSachet;
 
-
-html += `
-
-<div class="summary-line">
-
-<div class="summary-product">
-
-<strong>
-${product.nom}
-</strong>
-
-<small>
-
-Chocolat ${product.type.toLowerCase()}
-•
-${quantity} sachet${quantity > 1 ? "s" : ""}
-
-</small>
-
-</div>
-
-<strong>
-${subtotal} €
-</strong>
-
-</div>
-
-`;
-
-totalSachets += quantity;
-
-});
-
-
-if(totalSachets === 0){
-
-container.className =
-"summary-empty";
-
-container.textContent =
-"Aucun sachet sélectionné.";
-
-}
-
-else{
-
-container.className="";
-
-container.innerHTML=html;
-
-}
-
-
-document.getElementById(
-"totalPrice"
-).textContent =
-
-(totalSachets * CONFIG.prixSachet)
-+ " €";
-
-}
-
-
-/* RÉFÉRENCE UNIQUE */
+/* =====================================================
+   RÉFÉRENCE DE COMMANDE
+===================================================== */
 
 function generateOrderReference(){
 
-const now = new Date();
+  const now =
+  new Date();
 
-const yy =
-String(now.getFullYear()).slice(-2);
 
-const mm =
-String(now.getMonth()+1).padStart(2,"0");
+  const yy =
+  String(
+    now.getFullYear()
+  )
+  .slice(-2);
 
-const dd =
-String(now.getDate()).padStart(2,"0");
 
-const random =
-Math.floor(
-100000 +
-Math.random()*900000
+  const mm =
+  String(
+    now.getMonth()+1
+  )
+  .padStart(2,"0");
+
+
+  const dd =
+  String(
+    now.getDate()
+  )
+  .padStart(2,"0");
+
+
+  let random;
+
+
+  if(
+    window.crypto &&
+    window.crypto.getRandomValues
+  ){
+
+    const values =
+    new Uint32Array(1);
+
+    window.crypto.getRandomValues(
+      values
+    );
+
+    random =
+    100000 +
+    (
+      values[0] %
+      900000
+    );
+
+  }
+
+  else{
+
+    random =
+    Math.floor(
+      100000 +
+      Math.random() *
+      900000
+    );
+
+  }
+
+
+  return (
+    "PIO-" +
+    yy +
+    mm +
+    dd +
+    "-" +
+    random
+  );
+
+}
+
+
+/* =====================================================
+   QR DE PAIEMENT
+===================================================== */
+
+function generatePaymentQR(
+  amount,
+  reference
+){
+
+  const container =
+  document.getElementById(
+    "qrcode"
+  );
+
+
+  container.innerHTML="";
+
+
+  const payload = [
+
+    "BCD",
+    "002",
+    "1",
+    "SCT",
+    "",
+    CONFIG.nomCompte,
+    CONFIG.iban,
+    "EUR" +
+    Number(amount).toFixed(2),
+    "",
+    "",
+    reference,
+    ""
+
+  ].join("\n");
+
+
+  new QRCode(
+    container,
+    {
+
+      text:payload,
+
+      width:210,
+
+      height:210,
+
+      correctLevel:
+      QRCode.CorrectLevel.M
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   ENVOI GOOGLE SHEETS
+===================================================== */
+
+function sendOrder(order){
+
+  const body =
+  new URLSearchParams();
+
+
+  body.append(
+    "payload",
+    JSON.stringify(order)
+  );
+
+
+  /*
+    IMPORTANT :
+
+    Apps Script reçoit correctement la commande,
+    mais sa réponse ne peut pas être lue normalement
+    depuis GitHub Pages avec cette méthode.
+
+    On déclenche donc l'envoi sans essayer
+    de lire la réponse du serveur.
+  */
+
+  fetch(
+    CONFIG.googleScriptURL,
+    {
+
+      method:"POST",
+
+      mode:"no-cors",
+
+      body:body
+
+    }
+  )
+  .catch(function(error){
+
+    /*
+      On journalise uniquement l'erreur.
+
+      On n'affiche pas une fausse erreur au client
+      alors que Google Sheets peut avoir reçu
+      correctement la commande.
+    */
+
+    console.error(
+      "Erreur réseau lors de l'envoi :",
+      error
+    );
+
+  });
+
+}
+
+
+/* =====================================================
+   VALIDATION COMMANDE
+===================================================== */
+
+document
+.getElementById("orderForm")
+.addEventListener(
+  "submit",
+  function(event){
+
+
+    event.preventDefault();
+
+
+    if(orderInProgress){
+
+      return;
+
+    }
+
+
+    const totalSachets =
+    quantities.reduce(
+      function(total,quantity){
+
+        return total + quantity;
+
+      },
+      0
+    );
+
+
+    if(totalSachets === 0){
+
+      alert(
+        "Veuillez sélectionner au moins un sachet."
+      );
+
+      return;
+
+    }
+
+
+    /*
+      Création de la référence une seule fois.
+    */
+
+    if(!currentOrderReference){
+
+      currentOrderReference =
+      generateOrderReference();
+
+    }
+
+
+    const orderedProducts=[];
+
+
+    products.forEach(
+      function(product,index){
+
+
+        if(quantities[index] > 0){
+
+          orderedProducts.push({
+
+            type:
+            product.type,
+
+            nom:
+            product.nom,
+
+            quantite:
+            quantities[index]
+
+          });
+
+        }
+
+      }
+    );
+
+
+    const order = {
+
+      reference:
+      currentOrderReference,
+
+      prenom:
+      document
+      .getElementById("firstname")
+      .value
+      .trim(),
+
+      nom:
+      document
+      .getElementById("lastname")
+      .value
+      .trim(),
+
+      telephone:
+      document
+      .getElementById("phone")
+      .value
+      .trim(),
+
+      adresse:
+      document
+      .getElementById("address")
+      .value
+      .trim(),
+
+      vendeur:
+      document
+      .getElementById("seller")
+      .value
+      .trim(),
+
+      commentaire:
+      document
+      .getElementById("comment")
+      .value
+      .trim(),
+
+      produits:
+      orderedProducts
+
+    };
+
+
+    const button =
+    document.getElementById(
+      "orderButton"
+    );
+
+
+    const message =
+    document.getElementById(
+      "formMessage"
+    );
+
+
+    /*
+      Bloque le double clic.
+    */
+
+    orderInProgress=true;
+
+
+    button.disabled=true;
+
+
+    button.textContent =
+    "Envoi de la commande...";
+
+
+    message.className =
+    "form-message";
+
+
+    message.textContent="";
+
+
+    /*
+      Envoi
+    */
+
+    sendOrder(order);
+
+
+    /*
+      On attend un court instant uniquement
+      pour éviter une transition visuelle brutale.
+    */
+
+    setTimeout(
+      function(){
+
+
+        const total =
+        totalSachets *
+        CONFIG.prixSachet;
+
+
+        /*
+          Message
+        */
+
+        message.className =
+        "form-message success-message";
+
+
+        message.textContent =
+        "Votre commande a été transmise. Vous pouvez maintenant effectuer le paiement.";
+
+
+        /*
+          Référence
+        */
+
+        document
+        .getElementById(
+          "orderReference"
+        )
+        .textContent =
+        currentOrderReference;
+
+
+        /*
+          Montant
+        */
+
+        document
+        .getElementById(
+          "paymentAmount"
+        )
+        .textContent =
+
+        total
+        .toFixed(2)
+        .replace(".",",")
+
+        +
+
+        " €";
+
+
+        /*
+          IBAN
+        */
+
+        document
+        .getElementById(
+          "ibanDisplay"
+        )
+        .textContent =
+        CONFIG.ibanAffiche;
+
+
+        /*
+          Communication
+        */
+
+        document
+        .getElementById(
+          "communication"
+        )
+        .textContent =
+        currentOrderReference;
+
+
+        /*
+          QR
+        */
+
+        generatePaymentQR(
+          total,
+          currentOrderReference
+        );
+
+
+        /*
+          Affichage paiement
+        */
+
+        const payment =
+        document.getElementById(
+          "payment"
+        );
+
+
+        payment.style.display =
+        "block";
+
+
+        payment.scrollIntoView({
+
+          behavior:"smooth",
+
+          block:"center"
+
+        });
+
+
+        /*
+          Bouton
+        */
+
+        button.textContent =
+        "Commande transmise";
+
+
+      },
+      500
+    );
+
+
+  }
 );
 
-return `PIO-${yy}${mm}${dd}-${random}`;
 
-}
-
-
-/* QR PAIEMENT */
-
-function generatePaymentQR(amount,reference){
-
-const container =
-document.getElementById("qrcode");
-
-container.innerHTML="";
-
-
-const payload = [
-"BCD",
-"002",
-"1",
-"SCT",
-"",
-CONFIG.nomCompte,
-CONFIG.iban,
-"EUR" + Number(amount).toFixed(2),
-"",
-"",
-reference,
-""
-].join("\n");
-
-
-new QRCode(
-container,
-{
-text:payload,
-width:210,
-height:210,
-correctLevel:QRCode.CorrectLevel.M
-}
-);
-
-}
-
-
-/* ENVOI */
-
-async function sendOrder(order){
-
-const body =
-new URLSearchParams();
-
-body.append(
-"payload",
-JSON.stringify(order)
-);
-
-
-await fetch(
-CONFIG.googleScriptURL,
-{
-method:"POST",
-mode:"no-cors",
-headers:{
-"Content-Type":
-"application/x-www-form-urlencoded;charset=UTF-8"
-},
-body:body.toString()
-}
-);
-
-}
-
-
-/* VALIDATION */
-
-document.getElementById("orderForm")
-.addEventListener("submit",async function(event){
-
-event.preventDefault();
-
-
-const totalSachets =
-quantities.reduce(function(total,quantity){
-return total + quantity;
-},0);
-
-
-if(totalSachets === 0){
-
-alert(
-"Veuillez sélectionner au moins un sachet."
-);
-
-return;
-
-}
-
-
-const reference =
-generateOrderReference();
-
-
-const orderedProducts=[];
-
-
-products.forEach(function(product,index){
-
-if(quantities[index] > 0){
-
-orderedProducts.push({
-
-type:product.type,
-
-nom:product.nom,
-
-quantite:quantities[index]
-
-});
-
-}
-
-});
-
-
-const order = {
-
-reference:reference,
-
-prenom:
-document.getElementById("firstname").value.trim(),
-
-nom:
-document.getElementById("lastname").value.trim(),
-
-telephone:
-document.getElementById("phone").value.trim(),
-
-adresse:
-document.getElementById("address").value.trim(),
-
-vendeur:
-document.getElementById("seller").value.trim(),
-
-commentaire:
-document.getElementById("comment").value.trim(),
-
-produits:
-orderedProducts
-
-};
-
-
-const button =
-document.getElementById("orderButton");
-
-const message =
-document.getElementById("formMessage");
-
-
-button.disabled=true;
-
-button.textContent =
-"Envoi de la commande...";
-
-
-try{
-
-await sendOrder(order);
-
-
-const total =
-totalSachets *
-CONFIG.prixSachet;
-
-
-message.className =
-"form-message success-message";
-
-message.textContent =
-"Votre commande a été transmise. Vous pouvez maintenant effectuer le paiement.";
-
-
-document.getElementById(
-"paymentAmount"
-).textContent =
-total.toFixed(2).replace(".",",") + " €";
-
-
-document.getElementById(
-"ibanDisplay"
-).textContent =
-CONFIG.ibanAffiche;
-
-
-document.getElementById(
-"communication"
-).textContent =
-reference;
-
-
-generatePaymentQR(
-total,
-reference
-);
-
-
-const payment =
-document.getElementById("payment");
-
-payment.style.display="block";
-
-
-payment.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
-
-button.textContent =
-"Commande transmise";
-
-}
-
-catch(error){
-
-console.error(error);
-
-message.className =
-"form-message error-message";
-
-message.textContent =
-"Impossible d'envoyer la commande. Vérifiez votre connexion et réessayez.";
-
-button.disabled=false;
-
-button.textContent =
-"Valider ma commande";
-
-}
-
-});
-
+/* =====================================================
+   DÉMARRAGE
+===================================================== */
 
 createProducts();
+
 updateSummary();
 
 </script>
 
 </body>
+
 </html>
