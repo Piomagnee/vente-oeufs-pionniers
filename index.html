@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
 
 <meta charset="UTF-8">
@@ -37,6 +39,7 @@ Vente d'œufs en chocolat | Pionniers de Magnée
   --border:#e8e0d7;
 
   --success:#487257;
+  --error:#a53d3d;
 
 }
 
@@ -105,8 +108,6 @@ textarea{
 }
 
 
-/* LOGO MAGNÉE */
-
 .nav-logo{
 
   display:flex;
@@ -116,6 +117,7 @@ textarea{
   text-decoration:none;
 
 }
+
 
 .nav-logo img{
 
@@ -136,8 +138,6 @@ textarea{
 
 }
 
-
-/* BOUTON NAV */
 
 .nav-link{
 
@@ -161,6 +161,7 @@ textarea{
   transition:.2s;
 
 }
+
 
 .nav-link:hover{
 
@@ -210,16 +211,12 @@ textarea{
 }
 
 
-/* CONTENU */
-
 .hero-content{
 
   max-width:850px;
 
 }
 
-
-/* LOGO PIONNIERS */
 
 .hero-logo{
 
@@ -240,8 +237,6 @@ textarea{
 }
 
 
-/* PETIT TITRE */
-
 .hero-small{
 
   text-transform:uppercase;
@@ -258,8 +253,6 @@ textarea{
 
 }
 
-
-/* TITRE */
 
 .hero h1{
 
@@ -279,8 +272,6 @@ textarea{
 }
 
 
-/* DESCRIPTION */
-
 .hero-description{
 
   max-width:650px;
@@ -295,8 +286,6 @@ textarea{
 
 }
 
-
-/* INFOS */
 
 .hero-info{
 
@@ -332,8 +321,6 @@ textarea{
 }
 
 
-/* BOUTON PRINCIPAL */
-
 .main-button{
 
   display:inline-block;
@@ -354,6 +341,7 @@ textarea{
   transition:.2s;
 
 }
+
 
 .main-button:hover{
 
@@ -655,8 +643,6 @@ textarea{
 }
 
 
-/* PLACEHOLDER */
-
 .image-placeholder{
 
   position:absolute;
@@ -868,14 +854,6 @@ textarea{
     var(--chocolate);
 
   color:white;
-
-}
-
-
-.quantity button:active{
-
-  transform:
-    scale(.9);
 
 }
 
@@ -1131,6 +1109,64 @@ textarea{
 
   background:
     var(--chocolate-light);
+
+}
+
+
+.order-button:disabled{
+
+  opacity:.6;
+
+  cursor:not-allowed;
+
+}
+
+
+/* =====================================================
+   MESSAGE ENVOI
+===================================================== */
+
+.form-message{
+
+  display:none;
+
+  margin-top:15px;
+
+  padding:14px 16px;
+
+  border-radius:10px;
+
+  font-size:14px;
+
+}
+
+
+.form-message.success-message{
+
+  display:block;
+
+  background:#edf5ef;
+
+  color:var(--success);
+
+  border:
+    1px solid
+    #cfe2d4;
+
+}
+
+
+.form-message.error-message{
+
+  display:block;
+
+  background:#fff0f0;
+
+  color:var(--error);
+
+  border:
+    1px solid
+    #efd0d0;
 
 }
 
@@ -1531,15 +1567,6 @@ footer{
   }
 
 
-  .quantity button{
-
-    width:34px;
-
-    height:34px;
-
-  }
-
-
   .checkout-wrapper{
 
     padding:
@@ -1585,24 +1612,24 @@ footer{
 
 <nav class="navbar">
 
-  <a
-    href="#"
-    class="nav-logo">
+<a
+  href="#"
+  class="nav-logo">
 
-    <img
-      src="images/logo-magnee.png"
-      alt="Les Scouts de Magnée">
+<img
+  src="images/logo-magnee.png"
+  alt="Les Scouts de Magnée">
 
-  </a>
+</a>
 
 
-  <a
-    href="#boutique"
-    class="nav-link">
+<a
+  href="#boutique"
+  class="nav-link">
 
-    Commander
+Commander
 
-  </a>
+</a>
 
 </nav>
 
@@ -1614,75 +1641,64 @@ footer{
 
 <section class="hero">
 
-
 <div class="hero-content">
 
 
-  <img
-    src="images/logo-pionniers.png"
-    alt="Pionniers de Magnée"
-    class="hero-logo">
+<img
+  src="images/logo-pionniers.png"
+  alt="Pionniers de Magnée"
+  class="hero-logo">
 
 
-  <div class="hero-small">
+<div class="hero-small">
 
-    Vente d'œufs en chocolat
+Vente d'œufs en chocolat
 
-  </div>
-
-
-  <h1>
-
-    Des œufs pour<br>
-    une aventure.
-
-  </h1>
+</div>
 
 
-  <p class="hero-description">
+<h1>
 
-    Soutenez le projet de camp
-    des Pionniers de Magnée
-    tout en vous faisant plaisir
-    avec nos œufs en chocolat.
+Des œufs pour<br>
+une aventure.
 
-  </p>
+</h1>
 
 
-  <div class="hero-info">
+<p class="hero-description">
+
+Soutenez le projet de camp
+des Pionniers de Magnée
+tout en vous faisant plaisir
+avec nos œufs en chocolat.
+
+</p>
 
 
-    <div class="hero-badge">
+<div class="hero-info">
 
-      10 œufs par sachet
+<div class="hero-badge">
+10 œufs par sachet
+</div>
 
-    </div>
+<div class="hero-badge">
+5 € le sachet
+</div>
 
+<div class="hero-badge">
+15 saveurs
+</div>
 
-    <div class="hero-badge">
-
-      5 € le sachet
-
-    </div>
-
-
-    <div class="hero-badge">
-
-      15 saveurs
-
-    </div>
+</div>
 
 
-  </div>
+<a
+  href="#boutique"
+  class="main-button">
 
+Découvrir nos saveurs
 
-  <a
-    href="#boutique"
-    class="main-button">
-
-    Découvrir nos saveurs
-
-  </a>
+</a>
 
 
 </div>
@@ -1697,52 +1713,50 @@ footer{
 
 <section class="project">
 
-
 <div class="project-content">
 
 
-  <div class="section-label">
+<div class="section-label">
 
-    Notre projet
+Notre projet
 
-  </div>
-
-
-  <h2 class="section-title">
-
-    Une aventure qui se construit ensemble
-
-  </h2>
+</div>
 
 
-  <p class="project-text">
+<h2 class="section-title">
 
-    Cette année, les Pionniers de Magnée
-    se lancent dans un nouveau projet de camp.
+Une aventure qui se construit ensemble
 
-    Notre objectif est de vivre une expérience unique,
-    de découvrir de nouveaux horizons
-    et de construire ensemble une aventure
-    dont nous nous souviendrons longtemps.
-
-    <br><br>
-
-    En achetant nos œufs en chocolat,
-    vous participez directement
-    au financement de ce projet.
-
-    Chaque commande nous rapproche
-    un peu plus de notre objectif.
+</h2>
 
 
-    <span class="project-thanks">
+<p class="project-text">
 
-      Merci pour votre soutien.
+Cette année, les Pionniers de Magnée
+se lancent dans un nouveau projet de camp.
 
-    </span>
+Notre objectif est de vivre une expérience unique,
+de découvrir de nouveaux horizons
+et de construire ensemble une aventure
+dont nous nous souviendrons longtemps.
+
+<br><br>
+
+En achetant nos œufs en chocolat,
+vous participez directement
+au financement de ce projet.
+
+Chaque commande nous rapproche
+un peu plus de notre objectif.
 
 
-  </p>
+<span class="project-thanks">
+
+Merci pour votre soutien.
+
+</span>
+
+</p>
 
 
 </div>
@@ -1763,27 +1777,27 @@ footer{
 <div class="shop-header">
 
 
-  <div class="section-label">
+<div class="section-label">
 
-    La collection
+La collection
 
-  </div>
-
-
-  <h2 class="section-title">
-
-    Choisissez vos saveurs
-
-  </h2>
+</div>
 
 
-  <p>
+<h2 class="section-title">
 
-    Blanc, lait ou noir.
-    Découvrez nos 15 saveurs
-    et composez votre commande.
+Choisissez vos saveurs
 
-  </p>
+</h2>
+
+
+<p>
+
+Blanc, lait ou noir.
+Découvrez nos 15 saveurs
+et composez votre commande.
+
+</p>
 
 
 </div>
@@ -1802,26 +1816,23 @@ footer{
 
 <section class="checkout-wrapper">
 
-
 <div class="checkout">
 
 
 <div class="checkout-header">
 
+<div class="section-label">
 
-  <div class="section-label">
+Finaliser
 
-    Finaliser
-
-  </div>
+</div>
 
 
-  <h2 class="section-title">
+<h2 class="section-title">
 
-    Votre commande
+Votre commande
 
-  </h2>
-
+</h2>
 
 </div>
 
@@ -1829,33 +1840,26 @@ footer{
 
 <div class="summary">
 
+<div
+  id="summaryProducts"
+  class="summary-empty">
 
-  <div
-    id="summaryProducts"
-    class="summary-empty">
+Aucun sachet sélectionné.
 
-    Aucun sachet sélectionné.
-
-  </div>
-
-
-  <div class="total">
+</div>
 
 
-    <span>
-      Total
-    </span>
+<div class="total">
 
+<span>
+Total
+</span>
 
-    <span id="totalPrice">
+<span id="totalPrice">
+0 €
+</span>
 
-      0 €
-
-    </span>
-
-
-  </div>
-
+</div>
 
 </div>
 
@@ -1867,100 +1871,98 @@ footer{
 <div class="form-grid">
 
 
-  <div>
+<div>
 
-    <label for="firstname">
+<label for="firstname">
+Prénom *
+</label>
 
-      Prénom *
+<input
+  id="firstname"
+  type="text"
+  maxlength="80"
+  autocomplete="given-name"
+  required>
 
-    </label>
-
-    <input
-      id="firstname"
-      type="text"
-      required>
-
-  </div>
-
-
-  <div>
-
-    <label for="lastname">
-
-      Nom *
-
-    </label>
-
-    <input
-      id="lastname"
-      type="text"
-      required>
-
-  </div>
+</div>
 
 
-  <div>
+<div>
 
-    <label for="phone">
+<label for="lastname">
+Nom *
+</label>
 
-      Téléphone *
+<input
+  id="lastname"
+  type="text"
+  maxlength="80"
+  autocomplete="family-name"
+  required>
 
-    </label>
-
-    <input
-      id="phone"
-      type="tel"
-      required>
-
-  </div>
-
-
-  <div>
-
-    <label for="seller">
-
-      Pionnier vendeur
-
-    </label>
-
-    <input
-      id="seller"
-      type="text"
-      placeholder="Nom du Pionnier">
-
-  </div>
+</div>
 
 
-  <div class="full">
+<div>
 
-    <label for="address">
+<label for="phone">
+Téléphone *
+</label>
 
-      Adresse complète *
+<input
+  id="phone"
+  type="tel"
+  maxlength="40"
+  autocomplete="tel"
+  required>
 
-    </label>
-
-    <input
-      id="address"
-      type="text"
-      placeholder="Rue, numéro, code postal, localité"
-      required>
-
-  </div>
+</div>
 
 
-  <div class="full">
+<div>
 
-    <label for="comment">
+<label for="seller">
+Pionnier vendeur
+</label>
 
-      Commentaire
+<input
+  id="seller"
+  type="text"
+  maxlength="100"
+  placeholder="Nom du Pionnier">
 
-    </label>
+</div>
 
-    <textarea
-      id="comment"
-      placeholder="Une précision concernant votre commande ?"></textarea>
 
-  </div>
+<div class="full">
+
+<label for="address">
+Adresse complète *
+</label>
+
+<input
+  id="address"
+  type="text"
+  maxlength="300"
+  autocomplete="street-address"
+  placeholder="Rue, numéro, code postal, localité"
+  required>
+
+</div>
+
+
+<div class="full">
+
+<label for="comment">
+Commentaire
+</label>
+
+<textarea
+  id="comment"
+  maxlength="500"
+  placeholder="Une précision concernant votre commande ?"></textarea>
+
+</div>
 
 
 </div>
@@ -1968,11 +1970,18 @@ footer{
 
 <button
   type="submit"
-  class="order-button">
+  class="order-button"
+  id="orderButton">
 
-  Continuer vers le paiement
+Valider ma commande
 
 </button>
+
+
+<div
+  id="formMessage"
+  class="form-message">
+</div>
 
 
 </form>
@@ -1990,77 +1999,73 @@ footer{
 
 <div class="success">
 
-  ✓ Commande préparée
+✓ Commande envoyée
 
 </div>
 
 
 <h3>
 
-  Finalisez votre paiement
+Finalisez votre paiement
 
 </h3>
 
 
 <p class="payment-intro">
 
-  Scannez le QR code avec votre application bancaire
-  ou effectuez le virement manuellement.
+Votre commande a été transmise.
+Vous pouvez maintenant effectuer votre paiement.
 
 </p>
 
 
 <div class="qr-area">
 
+<div id="qrcode"></div>
 
-  <div id="qrcode"></div>
+<div class="qr-help">
 
-
-  <div class="qr-help">
-
-    Scannez avec votre application bancaire
-
-  </div>
-
+Scannez avec votre application bancaire
 
 </div>
 
+</div>
 
 
 <div class="bank-box">
 
 
-  <div class="bank-row">
+<div class="bank-row">
 
-    <span>
-      Montant
-    </span>
+<span>
+Montant
+</span>
 
-    <strong id="paymentAmount"></strong>
+<strong id="paymentAmount"></strong>
 
-  </div>
-
-
-  <div class="bank-row">
-
-    <span>
-      IBAN
-    </span>
-
-    <strong id="ibanDisplay"></strong>
-
-  </div>
+</div>
 
 
-  <div class="bank-row">
+<div class="bank-row">
 
-    <span>
-      Communication
-    </span>
+<span>
+IBAN
+</span>
 
-    <strong id="communication"></strong>
+<strong id="ibanDisplay"></strong>
 
-  </div>
+</div>
+
+
+<div class="bank-row">
+
+<span>
+Communication
+</span>
+
+<strong id="communication"></strong>
+
+</div>
 
 
 </div>
@@ -2068,8 +2073,8 @@ footer{
 
 <p class="warning">
 
-  Utilisez la communication indiquée
-  afin que nous puissions identifier votre paiement.
+Utilisez la communication indiquée
+afin que nous puissions identifier votre paiement.
 
 </p>
 
@@ -2092,23 +2097,22 @@ footer{
 
 <div class="footer-logos">
 
-  <img
-    src="images/logo-magnee.png"
-    alt="Les Scouts de Magnée">
+<img
+  src="images/logo-magnee.png"
+  alt="Les Scouts de Magnée">
 
-  <img
-    src="images/logo-pionniers.png"
-    alt="Pionniers de Magnée">
+<img
+  src="images/logo-pionniers.png"
+  alt="Pionniers de Magnée">
 
 </div>
 
 
 <div class="footer-title">
 
-  Pionniers de Magnée
+Pionniers de Magnée
 
 </div>
-
 
 Vente d'œufs en chocolat
 <br>
@@ -2118,10 +2122,6 @@ Merci pour votre soutien
 </footer>
 
 
-
-<!-- =====================================================
-     QR CODE
-===================================================== -->
 
 <script
 src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
@@ -2137,15 +2137,16 @@ src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
 
 const CONFIG = {
 
-  prixSachet:5,
+prixSachet:5,
 
-  nombreOeufs:10,
+nombreOeufs:10,
 
-  iban:"IBAN_A_AJOUTER",
+googleScriptURL:
+"https://script.google.com/macros/s/AKfycbyfC1iJWBKKj0ezK1Qo70iw2mywUKLMk3misQVvaXKxqvc80Os5p56Wluifp_QBWOym/exec",
 
-  nomCompte:"Pionniers de Magnée",
+iban:"IBAN_A_AJOUTER",
 
-  destinationCamp:"DESTINATION_A_AJOUTER"
+nomCompte:"Pionniers de Magnée"
 
 };
 
@@ -2157,136 +2158,125 @@ const CONFIG = {
 
 const products = [
 
-
-/* BLANC */
-
 {
-  type:"Blanc",
-  nom:"Nature",
-  image:"images/blanc-nature.jpg"
+type:"Blanc",
+nom:"Nature",
+image:"images/blanc-nature.jpg"
 },
 
 {
-  type:"Blanc",
-  nom:"Praliné",
-  image:"images/blanc-praline.jpg"
+type:"Blanc",
+nom:"Praliné",
+image:"images/blanc-praline.jpg"
 },
 
 {
-  type:"Blanc",
-  nom:"Manon",
-  image:"images/blanc-manon.jpg"
+type:"Blanc",
+nom:"Manon",
+image:"images/blanc-manon.jpg"
 },
 
 {
-  type:"Blanc",
-  nom:"Pistache",
-  image:"images/blanc-pistache.jpg"
+type:"Blanc",
+nom:"Pistache",
+image:"images/blanc-pistache.jpg"
 },
 
 {
-  type:"Blanc",
-  nom:"Croquant",
-  image:"images/blanc-croquant.jpg"
+type:"Blanc",
+nom:"Croquant",
+image:"images/blanc-croquant.jpg"
 },
 
 
-/* LAIT */
-
 {
-  type:"Lait",
-  nom:"Praliné",
-  image:"images/lait-praline.jpg"
+type:"Lait",
+nom:"Praliné",
+image:"images/lait-praline.jpg"
 },
 
 {
-  type:"Lait",
-  nom:"Nature",
-  image:"images/lait-nature.jpg"
+type:"Lait",
+nom:"Nature",
+image:"images/lait-nature.jpg"
 },
 
 {
-  type:"Lait",
-  nom:"Croquant",
-  image:"images/lait-croquant.jpg"
+type:"Lait",
+nom:"Croquant",
+image:"images/lait-croquant.jpg"
 },
 
 {
-  type:"Lait",
-  nom:"Coco",
-  image:"images/lait-coco.jpg"
+type:"Lait",
+nom:"Coco",
+image:"images/lait-coco.jpg"
 },
 
 {
-  type:"Lait",
-  nom:"Pétillant",
-  image:"images/lait-petillant.jpg",
-  badge:"NEW"
+type:"Lait",
+nom:"Pétillant",
+image:"images/lait-petillant.jpg",
+badge:"NEW"
 },
 
 
-/* NOIR */
-
 {
-  type:"Noir",
-  nom:"Praliné",
-  image:"images/noir-praline.jpg"
+type:"Noir",
+nom:"Praliné",
+image:"images/noir-praline.jpg"
 },
 
 {
-  type:"Noir",
-  nom:"Croquant",
-  image:"images/noir-croquant.jpg",
-  badge:"NEW"
+type:"Noir",
+nom:"Croquant",
+image:"images/noir-croquant.jpg",
+badge:"NEW"
 },
 
 {
-  type:"Noir",
-  nom:"Framboise",
-  image:"images/noir-framboise.jpg",
-  badge:"RENEW"
+type:"Noir",
+nom:"Framboise",
+image:"images/noir-framboise.jpg",
+badge:"RENEW"
 },
 
 {
-  type:"Noir",
-  nom:"Vanille Stracciatella",
-  image:"images/noir-vanille-stracciatella.jpg"
+type:"Noir",
+nom:"Vanille Stracciatella",
+image:"images/noir-vanille-stracciatella.jpg"
 },
 
 {
-  type:"Noir",
-  nom:"Pistache",
-  image:"images/noir-pistache.jpg"
+type:"Noir",
+nom:"Pistache",
+image:"images/noir-pistache.jpg"
 }
 
 ];
 
 
-
 const quantities =
-new Array(products.length).fill(0);
+new Array(products.length)
+.fill(0);
 
 
-
-/* =====================================================
-   CATÉGORIES
-===================================================== */
 
 const categories = [
 
 {
-  type:"Blanc",
-  titre:"Chocolat blanc"
+type:"Blanc",
+titre:"Chocolat blanc"
 },
 
 {
-  type:"Lait",
-  titre:"Chocolat au lait"
+type:"Lait",
+titre:"Chocolat au lait"
 },
 
 {
-  type:"Noir",
-  titre:"Chocolat noir"
+type:"Noir",
+titre:"Chocolat noir"
 }
 
 ];
@@ -2294,32 +2284,42 @@ const categories = [
 
 
 /* =====================================================
-   CRÉATION PRODUITS
+   PRODUITS HTML
 ===================================================== */
 
 function createProducts(){
 
 
 const container =
-document.getElementById("products");
+document.getElementById(
+"products"
+);
 
 
 container.innerHTML="";
 
 
-categories.forEach(function(category){
+categories.forEach(
+function(category){
 
 
 const categoryProducts =
-products.filter(function(product){
+products.filter(
+function(product){
 
-  return product.type === category.type;
+return (
+product.type ===
+category.type
+);
 
-});
+}
+);
 
 
 const section =
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 
 section.className =
@@ -2327,7 +2327,9 @@ section.className =
 
 
 const header =
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 
 header.className =
@@ -2338,25 +2340,21 @@ header.innerHTML = `
 
 <div>
 
-  <div class="category-label">
+<div class="category-label">
+Collection
+</div>
 
-    Collection
-
-  </div>
-
-  <h3>
-
-    ${category.titre}
-
-  </h3>
+<h3>
+${category.titre}
+</h3>
 
 </div>
 
 
 <div class="category-count">
 
-  ${categoryProducts.length}
-  saveurs
+${categoryProducts.length}
+saveurs
 
 </div>
 
@@ -2364,49 +2362,49 @@ header.innerHTML = `
 
 
 const grid =
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 
 grid.className =
 "category-products";
 
 
-
 products.forEach(
 function(product,index){
 
 
-if(product.type !== category.type){
+if(
+product.type !==
+category.type
+){
 
-  return;
+return;
 
 }
 
 
 const card =
-document.createElement("article");
+document.createElement(
+"article"
+);
 
 
 card.className =
 "product";
 
 
-let badgeHTML="";
-
-
-if(product.badge){
-
-badgeHTML = `
-
+const badgeHTML =
+product.badge
+?
+`
 <div class="flavour-badge">
-
-  ${product.badge}
-
+${product.badge}
 </div>
-
-`;
-
-}
+`
+:
+"";
 
 
 card.innerHTML = `
@@ -2417,22 +2415,22 @@ ${badgeHTML}
 <div class="product-image">
 
 
-  <div class="image-placeholder">
+<div class="image-placeholder">
 
-    <div class="placeholder-icon">
-      ◇
-    </div>
+<div class="placeholder-icon">
+◇
+</div>
 
-    Photo à ajouter
+Photo à ajouter
 
-  </div>
+</div>
 
 
-  <img
-    src="${product.image}"
-    alt="Œufs chocolat ${product.type.toLowerCase()} ${product.nom}"
-    loading="lazy"
-    onerror="this.style.display='none'">
+<img
+src="${product.image}"
+alt="${product.nom}"
+loading="lazy"
+onerror="this.style.display='none'">
 
 </div>
 
@@ -2440,73 +2438,71 @@ ${badgeHTML}
 <div class="product-content">
 
 
-  <div class="chocolate-type">
+<div class="chocolate-type">
 
-    Chocolat
-    ${product.type.toLowerCase()}
+Chocolat
+${product.type.toLowerCase()}
 
-  </div>
-
-
-  <h4>
-
-    ${product.nom}
-
-  </h4>
+</div>
 
 
-  <div class="product-description">
+<h4>
 
-    ${CONFIG.nombreOeufs}
-    œufs par sachet
+${product.nom}
 
-  </div>
-
-
-  <div class="product-bottom">
+</h4>
 
 
-    <div class="price">
+<div class="product-description">
 
-      ${CONFIG.prixSachet} €
+${CONFIG.nombreOeufs}
+œufs par sachet
 
-    </div>
-
-
-    <div class="quantity">
+</div>
 
 
-      <button
-        type="button"
-        class="minus-button"
-        data-index="${index}">
-
-        −
-
-      </button>
+<div class="product-bottom">
 
 
-      <span id="qty-${index}">
+<div class="price">
 
-        0
+${CONFIG.prixSachet} €
 
-      </span>
-
-
-      <button
-        type="button"
-        class="plus-button"
-        data-index="${index}">
-
-        +
-
-      </button>
+</div>
 
 
-    </div>
+<div class="quantity">
 
 
-  </div>
+<button
+type="button"
+class="minus-button"
+data-index="${index}">
+
+−
+
+</button>
+
+
+<span id="qty-${index}">
+0
+</span>
+
+
+<button
+type="button"
+class="plus-button"
+data-index="${index}">
+
++
+
+</button>
+
+
+</div>
+
+
+</div>
 
 
 </div>
@@ -2520,11 +2516,17 @@ grid.appendChild(card);
 });
 
 
-section.appendChild(header);
+section.appendChild(
+header
+);
 
-section.appendChild(grid);
+section.appendChild(
+grid
+);
 
-container.appendChild(section);
+container.appendChild(
+section
+);
 
 
 });
@@ -2532,42 +2534,54 @@ container.appendChild(section);
 
 
 document
-.querySelectorAll(".plus-button")
-.forEach(function(button){
+.querySelectorAll(
+".plus-button"
+)
+.forEach(
+function(button){
 
 button.addEventListener(
 "click",
 function(){
 
 changeQuantity(
-Number(this.dataset.index),
+Number(
+this.dataset.index
+),
 1
 );
 
 }
 );
 
-});
+}
+);
 
 
 
 document
-.querySelectorAll(".minus-button")
-.forEach(function(button){
+.querySelectorAll(
+".minus-button"
+)
+.forEach(
+function(button){
 
 button.addEventListener(
 "click",
 function(){
 
 changeQuantity(
-Number(this.dataset.index),
+Number(
+this.dataset.index
+),
 -1
 );
 
 }
 );
 
-});
+}
+);
 
 
 }
@@ -2583,19 +2597,25 @@ index,
 change
 ){
 
-quantities[index] += change;
+
+quantities[index] +=
+change;
 
 
-if(quantities[index] < 0){
+if(
+quantities[index] < 0
+){
 
 quantities[index] = 0;
 
 }
 
 
-document.getElementById(
+document
+.getElementById(
 "qty-" + index
-).textContent =
+)
+.textContent =
 quantities[index];
 
 
@@ -2606,7 +2626,7 @@ updateSummary();
 
 
 /* =====================================================
-   PANIER
+   RÉSUMÉ
 ===================================================== */
 
 function updateSummary(){
@@ -2621,7 +2641,6 @@ document.getElementById(
 let html="";
 
 let totalSachets=0;
-
 
 
 products.forEach(
@@ -2648,50 +2667,46 @@ html += `
 
 <div class="summary-line">
 
+<div class="summary-product">
 
-  <div class="summary-product">
+<strong>
+${product.nom}
+</strong>
 
+<small>
 
-    <strong>
+Chocolat
+${product.type.toLowerCase()}
+•
+${quantity}
+sachet${quantity > 1 ? "s" : ""}
 
-      ${product.nom}
+</small>
 
-    </strong>
-
-
-    <small>
-
-      Chocolat
-      ${product.type.toLowerCase()}
-      •
-      ${quantity}
-      sachet${quantity > 1 ? "s" : ""}
-
-    </small>
+</div>
 
 
-  </div>
+<strong>
 
+${subtotal} €
 
-  <strong>
-
-    ${subtotal} €
-
-  </strong>
-
+</strong>
 
 </div>
 
 `;
 
 
-totalSachets += quantity;
+totalSachets +=
+quantity;
 
 
 });
 
 
-if(totalSachets === 0){
+if(
+totalSachets === 0
+){
 
 container.className =
 "summary-empty";
@@ -2705,20 +2720,24 @@ else{
 
 container.className="";
 
-container.innerHTML=html;
+container.innerHTML =
+html;
 
 }
 
 
-const total =
-totalSachets *
-CONFIG.prixSachet;
-
-
-document.getElementById(
+document
+.getElementById(
 "totalPrice"
-).textContent =
-total + " €";
+)
+.textContent =
+
+(
+totalSachets *
+CONFIG.prixSachet
+)
++
+" €";
 
 
 }
@@ -2726,58 +2745,42 @@ total + " €";
 
 
 /* =====================================================
-   NUMÉRO DE COMMANDE
+   NUMÉRO TEMPORAIRE POUR COMMUNICATION
 ===================================================== */
 
-function generateOrderNumber(){
+function generateLocalReference(){
 
 
 const now =
 new Date();
 
 
-const year =
-String(now.getFullYear())
-.slice(-2);
-
-
-const month =
-String(
-now.getMonth()+1
-).padStart(2,"0");
-
-
-const day =
-String(
-now.getDate()
-).padStart(2,"0");
+const timestamp =
+now.getTime()
+.toString()
+.slice(-8);
 
 
 const random =
 Math.floor(
-1000 +
-Math.random()*9000
+100 +
+Math.random()*900
 );
 
 
-return(
-
+return (
 "PIO-" +
-year +
-month +
-day +
+timestamp +
 "-" +
 random
-
 );
-
 
 }
 
 
 
 /* =====================================================
-   QR PAIEMENT
+   QR CODE
 ===================================================== */
 
 function generatePaymentQR(
@@ -2863,14 +2866,60 @@ QRCode.CorrectLevel.M
 
 
 /* =====================================================
+   ENVOI GOOGLE SHEETS
+===================================================== */
+
+async function sendOrder(
+order
+){
+
+
+const body =
+new URLSearchParams();
+
+
+body.append(
+"payload",
+JSON.stringify(order)
+);
+
+
+await fetch(
+CONFIG.googleScriptURL,
+{
+
+method:"POST",
+
+mode:"no-cors",
+
+headers:{
+
+"Content-Type":
+"application/x-www-form-urlencoded;charset=UTF-8"
+
+},
+
+body:
+body.toString()
+
+}
+);
+
+}
+
+
+
+/* =====================================================
    VALIDATION COMMANDE
 ===================================================== */
 
 document
-.getElementById("orderForm")
+.getElementById(
+"orderForm"
+)
 .addEventListener(
 "submit",
-function(event){
+async function(event){
 
 
 event.preventDefault();
@@ -2887,7 +2936,9 @@ return total + quantity;
 );
 
 
-if(totalSachets === 0){
+if(
+totalSachets === 0
+){
 
 alert(
 "Veuillez sélectionner au moins un sachet."
@@ -2898,62 +2949,182 @@ return;
 }
 
 
-const total =
-totalSachets *
-CONFIG.prixSachet;
-
 
 const firstname =
 document
-.getElementById("firstname")
+.getElementById(
+"firstname"
+)
 .value
 .trim();
 
 
 const lastname =
 document
-.getElementById("lastname")
+.getElementById(
+"lastname"
+)
 .value
 .trim();
 
 
-const orderNumber =
-generateOrderNumber();
+const orderedProducts =
+[];
 
 
-const communication =
-orderNumber +
-" - " +
-firstname +
-" " +
-lastname;
+products.forEach(
+function(product,index){
+
+
+if(
+quantities[index] > 0
+){
+
+orderedProducts.push({
+
+type:
+product.type,
+
+nom:
+product.nom,
+
+quantite:
+quantities[index]
+
+});
+
+}
+
+
+});
 
 
 
+const order = {
+
+prenom:
+firstname,
+
+nom:
+lastname,
+
+telephone:
+document
+.getElementById(
+"phone"
+)
+.value
+.trim(),
+
+adresse:
+document
+.getElementById(
+"address"
+)
+.value
+.trim(),
+
+vendeur:
+document
+.getElementById(
+"seller"
+)
+.value
+.trim(),
+
+commentaire:
+document
+.getElementById(
+"comment"
+)
+.value
+.trim(),
+
+produits:
+orderedProducts
+
+};
+
+
+
+const button =
 document.getElementById(
+"orderButton"
+);
+
+
+const message =
+document.getElementById(
+"formMessage"
+);
+
+
+button.disabled=true;
+
+button.textContent =
+"Envoi de la commande...";
+
+
+message.className =
+"form-message";
+
+message.textContent="";
+
+
+try{
+
+
+await sendOrder(
+order
+);
+
+
+const total =
+totalSachets *
+CONFIG.prixSachet;
+
+
+const reference =
+generateLocalReference();
+
+
+message.className =
+"form-message success-message";
+
+
+message.textContent =
+"Commande transmise. Vérifiez maintenant qu'elle apparaît bien dans notre système.";
+
+
+
+document
+.getElementById(
 "paymentAmount"
-).textContent =
+)
+.textContent =
 total + " €";
 
 
-document.getElementById(
+document
+.getElementById(
 "ibanDisplay"
-).textContent =
+)
+.textContent =
 CONFIG.iban;
 
 
-document.getElementById(
+document
+.getElementById(
 "communication"
-).textContent =
-communication;
-
+)
+.textContent =
+reference;
 
 
 generatePaymentQR(
 total,
-orderNumber
+reference
 );
-
 
 
 const payment =
@@ -2975,93 +3146,34 @@ block:"center"
 });
 
 
+button.textContent =
+"Commande envoyée";
 
-const orderedProducts=[];
-
-
-products.forEach(
-function(product,index){
-
-
-if(quantities[index] > 0){
-
-orderedProducts.push({
-
-type:
-product.type,
-
-nom:
-product.nom,
-
-quantite:
-quantities[index]
-
-});
 
 }
 
-
-});
-
-
-const order = {
-
-numero:
-orderNumber,
-
-date:
-new Date()
-.toLocaleString("fr-BE"),
-
-prenom:
-firstname,
-
-nom:
-lastname,
-
-telephone:
-document
-.getElementById("phone")
-.value
-.trim(),
-
-adresse:
-document
-.getElementById("address")
-.value
-.trim(),
-
-vendeur:
-document
-.getElementById("seller")
-.value
-.trim(),
-
-commentaire:
-document
-.getElementById("comment")
-.value
-.trim(),
-
-produits:
-orderedProducts,
-
-nombreSachets:
-totalSachets,
-
-total:
-total,
-
-paiement:
-"En attente"
-
-};
+catch(error){
 
 
-console.log(
-"Commande :",
-order
-);
+console.error(error);
+
+
+message.className =
+"form-message error-message";
+
+
+message.textContent =
+"Impossible d'envoyer la commande. Vérifiez votre connexion et réessayez.";
+
+
+button.disabled=false;
+
+
+button.textContent =
+"Valider ma commande";
+
+
+}
 
 
 }
@@ -3081,4 +3193,5 @@ updateSummary();
 
 
 </body>
+
 </html>
