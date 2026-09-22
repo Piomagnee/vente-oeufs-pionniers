@@ -49,9 +49,7 @@ textarea{
 }
 
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
+/* NAVIGATION */
 
 .navbar{
   position:absolute;
@@ -63,12 +61,6 @@ textarea{
   align-items:center;
   justify-content:space-between;
   padding:22px 5%;
-}
-
-.nav-logo{
-  display:flex;
-  align-items:center;
-  text-decoration:none;
 }
 
 .nav-logo img{
@@ -89,42 +81,21 @@ textarea{
   border:1px solid rgba(255,255,255,.35);
   padding:10px 19px;
   border-radius:50px;
-  transition:.2s;
-}
-
-.nav-link:hover{
-  background:white;
-  color:var(--chocolate);
 }
 
 
-/* =====================================================
-   HERO
-===================================================== */
+/* HERO */
 
 .hero{
   min-height:94vh;
-
   background:
-    radial-gradient(
-      circle at 50% 40%,
-      rgba(255,255,255,.06),
-      transparent 40%
-    ),
-    linear-gradient(
-      135deg,
-      #321c16,
-      var(--chocolate-light)
-    );
-
+    radial-gradient(circle at 50% 40%,rgba(255,255,255,.06),transparent 40%),
+    linear-gradient(135deg,#321c16,var(--chocolate-light));
   color:white;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   text-align:center;
-
   padding:130px 20px 70px;
 }
 
@@ -137,11 +108,6 @@ textarea{
   height:155px;
   object-fit:contain;
   margin-bottom:24px;
-
-  filter:
-    drop-shadow(
-      0 8px 18px rgba(0,0,0,.15)
-    );
 }
 
 .hero-small{
@@ -191,17 +157,10 @@ textarea{
   padding:15px 28px;
   border-radius:50px;
   font-weight:750;
-  transition:.2s;
-}
-
-.main-button:hover{
-  transform:translateY(-2px);
 }
 
 
-/* =====================================================
-   TITRES
-===================================================== */
+/* SECTIONS */
 
 .section-label{
   color:var(--gold);
@@ -219,9 +178,7 @@ textarea{
 }
 
 
-/* =====================================================
-   PROJET
-===================================================== */
+/* PROJET */
 
 .project{
   background:white;
@@ -247,9 +204,7 @@ textarea{
 }
 
 
-/* =====================================================
-   BOUTIQUE
-===================================================== */
+/* BOUTIQUE */
 
 .shop{
   max-width:1200px;
@@ -266,11 +221,6 @@ textarea{
 .shop-header p{
   color:var(--muted);
 }
-
-
-/* =====================================================
-   CATÉGORIES
-===================================================== */
 
 .chocolate-category{
   margin-bottom:80px;
@@ -296,7 +246,6 @@ textarea{
 .category-header h3{
   color:var(--chocolate);
   font-size:1.7rem;
-  line-height:1.2;
 }
 
 .category-count{
@@ -311,9 +260,7 @@ textarea{
 }
 
 
-/* =====================================================
-   PRODUITS
-===================================================== */
+/* PRODUITS */
 
 .product{
   position:relative;
@@ -321,22 +268,7 @@ textarea{
   background:white;
   border:1px solid var(--border);
   border-radius:18px;
-
-  box-shadow:
-    0 8px 30px
-    rgba(63,37,29,.055);
-
-  transition:
-    transform .2s,
-    box-shadow .2s;
-}
-
-.product:hover{
-  transform:translateY(-4px);
-
-  box-shadow:
-    0 12px 35px
-    rgba(63,37,29,.10);
+  box-shadow:0 8px 30px rgba(63,37,29,.055);
 }
 
 .product-image{
@@ -344,13 +276,7 @@ textarea{
   width:100%;
   aspect-ratio:1/1;
   overflow:hidden;
-
-  background:
-    linear-gradient(
-      135deg,
-      #f2ece5,
-      #e8ded4
-    );
+  background:linear-gradient(135deg,#f2ece5,#e8ded4);
 }
 
 .product-image img{
@@ -358,40 +284,16 @@ textarea{
   height:100%;
   object-fit:cover;
   display:block;
-  transition:transform .35s;
-}
-
-.product:hover .product-image img{
-  transform:scale(1.035);
 }
 
 .image-placeholder{
   position:absolute;
   inset:0;
-
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
-
   color:#a4968c;
-  text-align:center;
   font-size:12px;
-}
-
-.placeholder-icon{
-  width:44px;
-  height:44px;
-
-  border:1px solid #cfc2b8;
-  border-radius:50%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  margin-bottom:9px;
-  font-size:18px;
 }
 
 .flavour-badge{
@@ -399,17 +301,12 @@ textarea{
   top:12px;
   right:12px;
   z-index:2;
-
   background:var(--chocolate);
   color:white;
-
   padding:5px 10px;
-
   border-radius:50px;
-
   font-size:9px;
   font-weight:800;
-  letter-spacing:1px;
 }
 
 .product-content{
@@ -421,13 +318,11 @@ textarea{
   text-transform:uppercase;
   font-size:9px;
   font-weight:800;
-  letter-spacing:1.4px;
 }
 
 .product h4{
   color:var(--chocolate);
   font-size:1.05rem;
-  margin:3px 0 4px;
 }
 
 .product-description{
@@ -448,11 +343,6 @@ textarea{
   font-size:17px;
 }
 
-
-/* =====================================================
-   QUANTITÉS
-===================================================== */
-
 .quantity{
   display:flex;
   align-items:center;
@@ -462,40 +352,21 @@ textarea{
 .quantity button{
   width:31px;
   height:31px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
   border:1px solid var(--border);
   border-radius:50%;
-
   background:var(--cream);
-  color:var(--chocolate);
-
-  font-size:18px;
   cursor:pointer;
-
-  transition:.15s;
-}
-
-.quantity button:hover{
-  background:var(--chocolate);
-  border-color:var(--chocolate);
-  color:white;
+  font-size:18px;
 }
 
 .quantity span{
   min-width:17px;
   text-align:center;
-  font-size:14px;
   font-weight:750;
 }
 
 
-/* =====================================================
-   COMMANDE
-===================================================== */
+/* CHECKOUT */
 
 .checkout-wrapper{
   background:white;
@@ -527,13 +398,7 @@ textarea{
 .summary-line{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  gap:15px;
   margin:11px 0;
-}
-
-.summary-product strong{
-  color:var(--chocolate);
 }
 
 .summary-product small{
@@ -544,22 +409,15 @@ textarea{
 .total{
   display:flex;
   justify-content:space-between;
-
   border-top:1px solid var(--border);
-
   margin-top:18px;
   padding-top:18px;
-
   font-size:1.3rem;
   font-weight:800;
-
-  color:var(--chocolate);
 }
 
 
-/* =====================================================
-   FORMULAIRE
-===================================================== */
+/* FORMULAIRE */
 
 .form-grid{
   display:grid;
@@ -574,9 +432,7 @@ textarea{
 label{
   display:block;
   margin-bottom:6px;
-
   color:var(--chocolate);
-
   font-size:13px;
   font-weight:700;
 }
@@ -584,147 +440,72 @@ label{
 input,
 textarea{
   width:100%;
-
   border:1px solid var(--border);
   border-radius:10px;
-
-  background:white;
-
   padding:13px 14px;
-
-  color:var(--text);
-
   font-size:16px;
-}
-
-input:focus,
-textarea:focus{
-  outline:none;
-  border-color:var(--gold);
-
-  box-shadow:
-    0 0 0 3px
-    rgba(177,138,87,.1);
 }
 
 textarea{
   min-height:90px;
-  resize:vertical;
 }
-
-
-/* =====================================================
-   CONFIDENTIALITÉ
-===================================================== */
 
 .privacy-box{
   margin-top:22px;
   padding:18px;
-
   background:#faf8f5;
-
   border:1px solid var(--border);
   border-radius:12px;
-
   color:var(--muted);
-
   font-size:12px;
-  line-height:1.6;
 }
 
 .privacy-box strong{
   display:block;
-
   color:var(--chocolate);
-
-  font-size:13px;
-
-  margin-bottom:5px;
 }
-
-
-/* =====================================================
-   BOUTON
-===================================================== */
 
 .order-button{
   width:100%;
-
   margin-top:24px;
-
   padding:17px;
-
   border:none;
   border-radius:11px;
-
   background:var(--chocolate);
   color:white;
-
   font-size:16px;
   font-weight:750;
-
   cursor:pointer;
-
-  transition:.2s;
-}
-
-.order-button:hover{
-  background:var(--chocolate-light);
 }
 
 .order-button:disabled{
   opacity:.65;
-  cursor:not-allowed;
 }
 
 
-/* =====================================================
-   MESSAGES
-===================================================== */
+/* MESSAGE */
 
 .form-message{
   display:none;
-
   margin-top:15px;
-
-  padding:14px 16px;
-
+  padding:14px;
   border-radius:10px;
-
-  font-size:14px;
 }
 
-.form-message.success-message{
+.success-message{
   display:block;
-
   background:#edf5ef;
   color:var(--success);
-
-  border:1px solid #cfe2d4;
-}
-
-.form-message.error-message{
-  display:block;
-
-  background:#fff0f0;
-  color:var(--error);
-
-  border:1px solid #efd0d0;
 }
 
 
-/* =====================================================
-   PAIEMENT
-===================================================== */
+/* PAIEMENT */
 
 .payment{
   display:none;
-
   margin-top:35px;
   padding:30px;
-
   background:var(--cream);
-
   border:1px solid var(--border);
   border-radius:16px;
 }
@@ -732,57 +513,32 @@ textarea{
 .success{
   color:var(--success);
   font-weight:750;
-  margin-bottom:8px;
 }
 
 .payment h3{
   color:var(--chocolate);
   font-size:1.5rem;
-  margin-bottom:7px;
-}
-
-.payment-intro{
-  color:var(--muted);
 }
 
 .order-reference-box{
   margin-top:18px;
-
-  padding:15px 18px;
-
+  padding:15px;
   background:white;
-
   border:1px solid var(--border);
   border-radius:10px;
-
   text-align:center;
 }
 
 .order-reference-box span{
   display:block;
-
   color:var(--muted);
-
   font-size:11px;
-
-  text-transform:uppercase;
-  letter-spacing:1px;
 }
 
 .order-reference-box strong{
-  display:block;
-
-  margin-top:3px;
-
-  color:var(--chocolate);
-
   font-size:17px;
-
-  overflow-wrap:anywhere;
+  color:var(--chocolate);
 }
-
-
-/* QR */
 
 .qr-area{
   text-align:center;
@@ -790,39 +546,28 @@ textarea{
 }
 
 #qrcode{
-  display:inline-block;
-
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   background:white;
-
   padding:15px;
-
   border:1px solid var(--border);
   border-radius:14px;
-
-  min-width:220px;
-  min-height:80px;
+  min-width:240px;
+  min-height:240px;
 }
 
 .qr-help{
   margin-top:10px;
-
   color:var(--muted);
-
   font-size:13px;
 }
 
-
-/* COORDONNÉES BANCAIRES */
-
 .bank-box{
   background:white;
-
   border:1px solid var(--border);
   border-radius:12px;
-
   padding:20px;
-
-  margin-top:20px;
 }
 
 .bank-row{
@@ -831,82 +576,49 @@ textarea{
 
 .bank-row span{
   display:block;
-
   color:var(--muted);
-
   font-size:12px;
 }
 
 .bank-row strong{
   color:var(--chocolate);
-
-  font-size:16px;
-
   overflow-wrap:anywhere;
 }
 
 .warning{
   margin-top:15px;
-
   color:var(--muted);
-
   font-size:13px;
 }
 
 
-/* =====================================================
-   FOOTER
-===================================================== */
+/* FOOTER */
 
 footer{
   background:var(--chocolate);
-
   color:#d9cbc1;
-
   text-align:center;
-
   padding:50px 20px;
-
-  font-size:13px;
 }
 
 .footer-logos{
   display:flex;
-
   justify-content:center;
-  align-items:center;
-
   gap:20px;
-
   margin-bottom:20px;
 }
 
 .footer-logos img{
   width:65px;
   height:65px;
-
   object-fit:contain;
-
   background:white;
-
   border-radius:50%;
-
   padding:4px;
 }
 
-.footer-title{
-  color:white;
 
-  font-size:16px;
-  font-weight:750;
-
-  margin-bottom:5px;
-}
-
-
-/* =====================================================
-   TABLETTE
-===================================================== */
+/* RESPONSIVE */
 
 @media(max-width:950px){
 
@@ -916,97 +628,11 @@ footer{
 
 }
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
 @media(max-width:620px){
-
-  .navbar{
-    padding:16px 18px;
-  }
-
-  .nav-logo img{
-    width:58px;
-    height:58px;
-  }
-
-  .nav-link{
-    font-size:12px;
-    padding:8px 13px;
-  }
-
-  .hero{
-    min-height:90vh;
-    padding-top:120px;
-  }
-
-  .hero-logo{
-    width:125px;
-    height:125px;
-  }
-
-  .hero h1{
-    letter-spacing:-1px;
-  }
-
-  .project{
-    padding:75px 20px;
-  }
-
-  .shop{
-    padding:75px 12px 45px;
-  }
-
-  .shop-header{
-    margin-bottom:50px;
-  }
-
-  .chocolate-category{
-    margin-bottom:60px;
-  }
-
-  .category-header h3{
-    font-size:1.4rem;
-  }
-
-  .category-count{
-    display:none;
-  }
 
   .category-products{
     grid-template-columns:repeat(2,1fr);
     gap:10px;
-  }
-
-  .product{
-    border-radius:14px;
-  }
-
-  .product-content{
-    padding:13px;
-  }
-
-  .product h4{
-    font-size:14px;
-  }
-
-  .product-description{
-    font-size:11px;
-  }
-
-  .product-bottom{
-    display:block;
-  }
-
-  .quantity{
-    margin-top:12px;
-    justify-content:space-between;
-  }
-
-  .checkout-wrapper{
-    padding:70px 13px;
   }
 
   .form-grid{
@@ -1017,8 +643,9 @@ footer{
     grid-column:auto;
   }
 
-  .payment{
-    padding:20px;
+  .shop{
+    padding-left:12px;
+    padding-right:12px;
   }
 
 }
@@ -1027,13 +654,8 @@ footer{
 
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
 
 <nav class="navbar">
 
@@ -1041,7 +663,7 @@ footer{
 
 <img
 src="images/logo-magnee.png"
-alt="Les Scouts de Magnée">
+alt="Scouts de Magnée">
 
 </a>
 
@@ -1052,18 +674,14 @@ Commander
 </nav>
 
 
-<!-- =====================================================
-     HERO
-===================================================== -->
-
 <section class="hero">
 
 <div class="hero-content">
 
 <img
 src="images/logo-pionniers.png"
-alt="Pionniers de Magnée"
-class="hero-logo">
+class="hero-logo"
+alt="Pionniers de Magnée">
 
 <div class="hero-small">
 Vente d'œufs en chocolat
@@ -1075,10 +693,8 @@ une aventure.
 </h1>
 
 <p class="hero-description">
-
 Soutenez le projet de camp des Pionniers de Magnée
 tout en vous faisant plaisir avec nos œufs en chocolat.
-
 </p>
 
 <div class="hero-info">
@@ -1106,10 +722,6 @@ Découvrir nos saveurs
 </section>
 
 
-<!-- =====================================================
-     PROJET
-===================================================== -->
-
 <section class="project">
 
 <div class="project-content">
@@ -1124,22 +736,9 @@ Une aventure qui se construit ensemble
 
 <p class="project-text">
 
-Cette année, les Pionniers de Magnée
-se lancent dans un nouveau projet de camp.
-
-Notre objectif est de vivre une expérience unique,
-de découvrir de nouveaux horizons
-et de construire ensemble une aventure
-dont nous nous souviendrons longtemps.
-
-<br><br>
-
 En achetant nos œufs en chocolat,
-vous participez directement
-au financement de ce projet.
-
-Chaque commande nous rapproche
-un peu plus de notre objectif.
+vous participez directement au financement
+du projet de camp des Pionniers de Magnée.
 
 <span class="project-thanks">
 Merci pour votre soutien.
@@ -1152,11 +751,9 @@ Merci pour votre soutien.
 </section>
 
 
-<!-- =====================================================
-     BOUTIQUE
-===================================================== -->
-
-<section class="shop" id="boutique">
+<section
+class="shop"
+id="boutique">
 
 <div class="shop-header">
 
@@ -1170,8 +767,7 @@ Choisissez vos saveurs
 
 <p>
 Blanc, lait ou noir.
-Découvrez nos 15 saveurs
-et composez votre commande.
+Découvrez nos 15 saveurs.
 </p>
 
 </div>
@@ -1180,10 +776,6 @@ et composez votre commande.
 
 </section>
 
-
-<!-- =====================================================
-     COMMANDE
-===================================================== -->
 
 <section class="checkout-wrapper">
 
@@ -1214,9 +806,7 @@ Aucun sachet sélectionné.
 
 <div class="total">
 
-<span>
-Total
-</span>
+<span>Total</span>
 
 <span id="totalPrice">
 0 €
@@ -1231,107 +821,66 @@ Total
 
 <div class="form-grid">
 
-
 <div>
 
-<label for="firstname">
-Prénom *
-</label>
+<label>Prénom *</label>
 
 <input
 id="firstname"
-type="text"
-maxlength="80"
-autocomplete="given-name"
 required>
 
 </div>
 
-
 <div>
 
-<label for="lastname">
-Nom *
-</label>
+<label>Nom *</label>
 
 <input
 id="lastname"
-type="text"
-maxlength="80"
-autocomplete="family-name"
 required>
 
 </div>
 
-
 <div>
 
-<label for="phone">
-Téléphone *
-</label>
+<label>Téléphone *</label>
 
 <input
 id="phone"
 type="tel"
-maxlength="40"
-autocomplete="tel"
 required>
 
 </div>
-
 
 <div>
 
-<label for="seller">
-Pionnier vendeur
-</label>
+<label>Pionnier vendeur</label>
 
 <input
-id="seller"
-type="text"
-maxlength="100"
-placeholder="Nom du Pionnier">
+id="seller">
 
 </div>
 
-
 <div class="full">
 
-<label for="address">
-Adresse complète *
-</label>
+<label>Adresse complète *</label>
 
 <input
 id="address"
-type="text"
-maxlength="300"
-autocomplete="street-address"
-placeholder="Rue, numéro, code postal, localité"
 required>
 
 </div>
 
-
 <div class="full">
 
-<label for="comment">
-Commentaire
-</label>
+<label>Commentaire</label>
 
-<textarea
-id="comment"
-maxlength="500"
-placeholder="Une précision concernant votre commande ?"></textarea>
+<textarea id="comment"></textarea>
 
 </div>
 
-
 </div>
 
-
-<!-- =====================================================
-     CONFIDENTIALITÉ
-===================================================== -->
 
 <div class="privacy-box">
 
@@ -1341,21 +890,15 @@ Protection de vos données
 
 Les informations renseignées sont utilisées uniquement
 par les Pionniers de Magnée afin de gérer votre commande,
-votre paiement, la remise de vos œufs et, si nécessaire,
-vous contacter au sujet de votre commande.
-
-Elles ne sont pas utilisées à des fins commerciales
-et ne sont pas transmises à des tiers à des fins commerciales.
-Elles sont conservées uniquement pendant la durée nécessaire
-à l'organisation et au suivi de cette vente.
+votre paiement et la remise de vos œufs.
 
 </div>
 
 
 <button
-type="submit"
+id="orderButton"
 class="order-button"
-id="orderButton">
+type="submit">
 
 Valider ma commande
 
@@ -1367,47 +910,28 @@ id="formMessage"
 class="form-message">
 </div>
 
-
 </form>
 
 
-<!-- =====================================================
-     PAIEMENT
-===================================================== -->
-
 <div
-class="payment"
-id="payment">
-
+id="payment"
+class="payment">
 
 <div class="success">
 ✓ Commande transmise
 </div>
 
-
 <h3>
 Finalisez votre paiement
 </h3>
 
-
-<p class="payment-intro">
-
-Votre commande a été transmise.
-Effectuez maintenant votre virement
-avec les informations ci-dessous.
-
-</p>
-
-
 <div class="order-reference-box">
 
 <span>
-Référence de votre commande
+Référence de commande
 </span>
 
-<strong id="orderReference">
-—
-</strong>
+<strong id="orderReference"></strong>
 
 </div>
 
@@ -1415,19 +939,11 @@ Référence de votre commande
 <div class="qr-area">
 
 <div id="qrcode">
-
-<div style="
-padding:20px;
-color:#817770;
-font-size:13px;
-">
-Préparation du QR...
-</div>
-
+QR en préparation...
 </div>
 
 <div class="qr-help">
-Scannez le QR avec votre application bancaire si elle le prend en charge.
+Scannez avec votre application bancaire.
 </div>
 
 </div>
@@ -1435,12 +951,9 @@ Scannez le QR avec votre application bancaire si elle le prend en charge.
 
 <div class="bank-box">
 
-
 <div class="bank-row">
 
-<span>
-Bénéficiaire
-</span>
+<span>Bénéficiaire</span>
 
 <strong>
 Pionniers de Magnée
@@ -1448,57 +961,39 @@ Pionniers de Magnée
 
 </div>
 
-
 <div class="bank-row">
 
-<span>
-IBAN
-</span>
+<span>IBAN</span>
 
-<strong id="ibanDisplay">
-—
-</strong>
+<strong id="ibanDisplay"></strong>
 
 </div>
 
-
 <div class="bank-row">
 
-<span>
-Montant
-</span>
+<span>Montant</span>
 
-<strong id="paymentAmount">
-—
-</strong>
+<strong id="paymentAmount"></strong>
 
 </div>
 
-
 <div class="bank-row">
 
-<span>
-Communication
-</span>
+<span>Communication</span>
 
-<strong id="communication">
-—
-</strong>
+<strong id="communication"></strong>
 
 </div>
-
 
 </div>
 
 
 <p class="warning">
 
-Important : indiquez exactement la communication ci-dessus
-afin que nous puissions associer votre paiement
-à votre commande.
+Indiquez exactement la communication
+afin que nous puissions identifier votre paiement.
 
 </p>
-
 
 </div>
 
@@ -1507,49 +1002,26 @@ afin que nous puissions associer votre paiement
 </section>
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
 <footer>
 
 <div class="footer-logos">
 
 <img
-src="images/logo-magnee.png"
-alt="Les Scouts de Magnée">
+src="images/logo-magnee.png">
 
 <img
-src="images/logo-pionniers.png"
-alt="Pionniers de Magnée">
+src="images/logo-pionniers.png">
 
 </div>
 
-<div class="footer-title">
 Pionniers de Magnée
-</div>
-
-Vente d'œufs en chocolat
 <br>
 Merci pour votre soutien
 
 </footer>
 
 
-<!-- =====================================================
-     LIBRAIRIE QR
-===================================================== -->
-
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
-</script>
-
-
 <script>
-
-/* =====================================================
-   CONFIGURATION
-===================================================== */
 
 const CONFIG = {
 
@@ -1567,1184 +1039,801 @@ const CONFIG = {
   "BE60 0829 3880 9470",
 
   nomCompte:
-  "Pionniers de Magnée"
+  "Pionniers de Magnee"
 
 };
 
 
-/* =====================================================
-   PRODUITS
-===================================================== */
-
 const products = [
 
-  {
-    type:"Blanc",
-    nom:"Nature",
-    image:"images/blanc-nature.jpg"
-  },
+["Blanc","Nature","blanc-nature.jpg"],
+["Blanc","Praliné","blanc-praline.jpg"],
+["Blanc","Manon","blanc-manon.jpg"],
+["Blanc","Pistache","blanc-pistache.jpg"],
+["Blanc","Croquant","blanc-croquant.jpg"],
 
-  {
-    type:"Blanc",
-    nom:"Praliné",
-    image:"images/blanc-praline.jpg"
-  },
+["Lait","Praliné","lait-praline.jpg"],
+["Lait","Nature","lait-nature.jpg"],
+["Lait","Croquant","lait-croquant.jpg"],
+["Lait","Coco","lait-coco.jpg"],
+["Lait","Pétillant","lait-petillant.jpg","NEW"],
 
-  {
-    type:"Blanc",
-    nom:"Manon",
-    image:"images/blanc-manon.jpg"
-  },
+["Noir","Praliné","noir-praline.jpg"],
+["Noir","Croquant","noir-croquant.jpg","NEW"],
+["Noir","Framboise","noir-framboise.jpg","RENEW"],
+["Noir","Vanille Stracciatella","noir-vanille-stracciatella.jpg"],
+["Noir","Pistache","noir-pistache.jpg"]
 
-  {
-    type:"Blanc",
-    nom:"Pistache",
-    image:"images/blanc-pistache.jpg"
-  },
+].map(function(p){
 
-  {
-    type:"Blanc",
-    nom:"Croquant",
-    image:"images/blanc-croquant.jpg"
-  },
+return{
+type:p[0],
+nom:p[1],
+image:"images/"+p[2],
+badge:p[3] || ""
+};
 
-
-  {
-    type:"Lait",
-    nom:"Praliné",
-    image:"images/lait-praline.jpg"
-  },
-
-  {
-    type:"Lait",
-    nom:"Nature",
-    image:"images/lait-nature.jpg"
-  },
-
-  {
-    type:"Lait",
-    nom:"Croquant",
-    image:"images/lait-croquant.jpg"
-  },
-
-  {
-    type:"Lait",
-    nom:"Coco",
-    image:"images/lait-coco.jpg"
-  },
-
-  {
-    type:"Lait",
-    nom:"Pétillant",
-    image:"images/lait-petillant.jpg",
-    badge:"NEW"
-  },
-
-
-  {
-    type:"Noir",
-    nom:"Praliné",
-    image:"images/noir-praline.jpg"
-  },
-
-  {
-    type:"Noir",
-    nom:"Croquant",
-    image:"images/noir-croquant.jpg",
-    badge:"NEW"
-  },
-
-  {
-    type:"Noir",
-    nom:"Framboise",
-    image:"images/noir-framboise.jpg",
-    badge:"RENEW"
-  },
-
-  {
-    type:"Noir",
-    nom:"Vanille Stracciatella",
-    image:"images/noir-vanille-stracciatella.jpg"
-  },
-
-  {
-    type:"Noir",
-    nom:"Pistache",
-    image:"images/noir-pistache.jpg"
-  }
-
-];
+});
 
 
 const quantities =
-new Array(products.length).fill(0);
+new Array(
+products.length
+).fill(0);
 
 
-const categories = [
+let currentOrderReference=null;
 
-  {
-    type:"Blanc",
-    titre:"Chocolat blanc"
-  },
-
-  {
-    type:"Lait",
-    titre:"Chocolat au lait"
-  },
-
-  {
-    type:"Noir",
-    titre:"Chocolat noir"
-  }
-
-];
+let orderInProgress=false;
 
 
-let currentOrderReference = null;
-
-let orderInProgress = false;
-
-
-/* =====================================================
-   CRÉATION DES PRODUITS
-===================================================== */
+/* PRODUITS */
 
 function createProducts(){
 
-  const container =
-  document.getElementById("products");
+const container=
+document.getElementById("products");
 
+["Blanc","Lait","Noir"]
+.forEach(function(type){
 
-  container.innerHTML="";
+const section=
+document.createElement("div");
 
+section.className=
+"chocolate-category";
 
-  categories.forEach(function(category){
+const typeProducts=
+products.filter(
+p=>p.type===type
+);
 
+section.innerHTML=`
 
-    const categoryProducts =
-    products.filter(function(product){
+<div class="category-header">
 
-      return product.type === category.type;
+<div>
 
-    });
+<div class="category-label">
+Collection
+</div>
 
+<h3>
+Chocolat ${
+type==="Lait"
+?
+"au lait"
+:
+type.toLowerCase()
+}
+</h3>
 
-    const section =
-    document.createElement("div");
+</div>
 
+<div class="category-count">
+${typeProducts.length} saveurs
+</div>
 
-    section.className =
-    "chocolate-category";
+</div>
 
+`;
 
-    const header =
-    document.createElement("div");
 
+const grid=
+document.createElement("div");
 
-    header.className =
-    "category-header";
+grid.className=
+"category-products";
 
 
-    header.innerHTML = `
+products.forEach(
+function(product,index){
 
-      <div>
+if(product.type!==type){
+return;
+}
 
-        <div class="category-label">
-          Collection
-        </div>
+const card=
+document.createElement("article");
 
-        <h3>
-          ${category.titre}
-        </h3>
+card.className="product";
 
-      </div>
 
-      <div class="category-count">
+card.innerHTML=`
 
-        ${categoryProducts.length}
-        saveurs
+${product.badge
+?
+`<div class="flavour-badge">${product.badge}</div>`
+:
+""}
 
-      </div>
+<div class="product-image">
 
-    `;
+<div class="image-placeholder">
+Photo à ajouter
+</div>
 
+<img
+src="${product.image}"
+alt="${product.nom}"
+onerror="this.style.display='none'">
 
-    const grid =
-    document.createElement("div");
+</div>
 
+<div class="product-content">
 
-    grid.className =
-    "category-products";
+<div class="chocolate-type">
+Chocolat ${product.type.toLowerCase()}
+</div>
 
+<h4>
+${product.nom}
+</h4>
 
-    products.forEach(function(product,index){
+<div class="product-description">
+10 œufs par sachet
+</div>
 
+<div class="product-bottom">
 
-      if(product.type !== category.type){
+<div class="price">
+5 €
+</div>
 
-        return;
+<div class="quantity">
 
-      }
+<button
+type="button"
+onclick="changeQuantity(${index},-1)">
+−
+</button>
 
+<span id="qty-${index}">
+0
+</span>
 
-      const card =
-      document.createElement("article");
+<button
+type="button"
+onclick="changeQuantity(${index},1)">
++
+</button>
 
+</div>
 
-      card.className =
-      "product";
+</div>
 
+</div>
 
-      const badgeHTML =
-      product.badge
-      ?
-      `
-      <div class="flavour-badge">
-        ${product.badge}
-      </div>
-      `
-      :
-      "";
+`;
 
+grid.appendChild(card);
 
-      card.innerHTML = `
+});
 
-        ${badgeHTML}
 
-        <div class="product-image">
+section.appendChild(grid);
 
-          <div class="image-placeholder">
+container.appendChild(section);
 
-            <div class="placeholder-icon">
-              ◇
-            </div>
-
-            Photo à ajouter
-
-          </div>
-
-          <img
-          src="${product.image}"
-          alt="${product.nom}"
-          loading="lazy"
-          onerror="this.style.display='none'">
-
-        </div>
-
-
-        <div class="product-content">
-
-          <div class="chocolate-type">
-
-            Chocolat
-            ${product.type.toLowerCase()}
-
-          </div>
-
-          <h4>
-            ${product.nom}
-          </h4>
-
-          <div class="product-description">
-
-            ${CONFIG.nombreOeufs}
-            œufs par sachet
-
-          </div>
-
-
-          <div class="product-bottom">
-
-            <div class="price">
-              ${CONFIG.prixSachet} €
-            </div>
-
-            <div class="quantity">
-
-              <button
-              type="button"
-              class="minus-button"
-              data-index="${index}">
-                −
-              </button>
-
-              <span id="qty-${index}">
-                0
-              </span>
-
-              <button
-              type="button"
-              class="plus-button"
-              data-index="${index}">
-                +
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-
-      grid.appendChild(card);
-
-    });
-
-
-    section.appendChild(header);
-
-    section.appendChild(grid);
-
-    container.appendChild(section);
-
-  });
-
-
-  document
-  .querySelectorAll(".plus-button")
-  .forEach(function(button){
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        changeQuantity(
-          Number(this.dataset.index),
-          1
-        );
-
-      }
-    );
-
-  });
-
-
-  document
-  .querySelectorAll(".minus-button")
-  .forEach(function(button){
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        changeQuantity(
-          Number(this.dataset.index),
-          -1
-        );
-
-      }
-    );
-
-  });
+});
 
 }
 
 
-/* =====================================================
-   QUANTITÉS
-===================================================== */
+/* QUANTITÉ */
 
-function changeQuantity(index,change){
+function changeQuantity(
+index,
+change
+){
 
-  if(orderInProgress){
+if(orderInProgress){
+return;
+}
 
-    return;
+quantities[index]+=
+change;
 
-  }
+if(quantities[index]<0){
+quantities[index]=0;
+}
 
+document
+.getElementById(
+"qty-"+index
+)
+.textContent=
+quantities[index];
 
-  quantities[index] += change;
-
-
-  if(quantities[index] < 0){
-
-    quantities[index] = 0;
-
-  }
-
-
-  document
-  .getElementById(
-    "qty-" + index
-  )
-  .textContent =
-  quantities[index];
-
-
-  updateSummary();
+updateSummary();
 
 }
 
 
-/* =====================================================
-   RÉSUMÉ
-===================================================== */
+/* RÉSUMÉ */
 
 function updateSummary(){
 
-  const container =
-  document.getElementById(
-    "summaryProducts"
-  );
+const container=
+document.getElementById(
+"summaryProducts"
+);
+
+let html="";
+
+let total=0;
 
 
-  let html="";
+products.forEach(
+function(product,index){
 
-  let totalSachets=0;
+const q=
+quantities[index];
 
+if(!q){
+return;
+}
 
-  products.forEach(
-    function(product,index){
+total+=q;
 
+html+=`
 
-      const quantity =
-      quantities[index];
+<div class="summary-line">
 
+<div class="summary-product">
 
-      if(quantity === 0){
+<strong>
+${product.nom}
+</strong>
 
-        return;
+<small>
+Chocolat ${product.type.toLowerCase()}
+• ${q} sachet${q>1?"s":""}
+</small>
 
-      }
+</div>
 
+<strong>
+${q*5} €
+</strong>
 
-      const subtotal =
-      quantity *
-      CONFIG.prixSachet;
+</div>
 
+`;
 
-      html += `
-
-        <div class="summary-line">
-
-          <div class="summary-product">
-
-            <strong>
-              ${product.nom}
-            </strong>
-
-            <small>
-
-              Chocolat
-              ${product.type.toLowerCase()}
-              •
-              ${quantity}
-              sachet${quantity > 1 ? "s" : ""}
-
-            </small>
-
-          </div>
-
-          <strong>
-            ${subtotal} €
-          </strong>
-
-        </div>
-
-      `;
+});
 
 
-      totalSachets += quantity;
+if(total===0){
 
-    }
-  );
+container.className=
+"summary-empty";
 
+container.textContent=
+"Aucun sachet sélectionné.";
 
-  if(totalSachets === 0){
+}
 
-    container.className =
-    "summary-empty";
+else{
 
-    container.textContent =
-    "Aucun sachet sélectionné.";
+container.className="";
 
-  }
+container.innerHTML=
+html;
 
-  else{
-
-    container.className="";
-
-    container.innerHTML =
-    html;
-
-  }
+}
 
 
-  document
-  .getElementById(
-    "totalPrice"
-  )
-  .textContent =
+document
+.getElementById(
+"totalPrice"
+)
+.textContent=
+(total*5)+" €";
 
-  (
-    totalSachets *
-    CONFIG.prixSachet
-  )
-  +
-  " €";
+}
+
+
+/* RÉFÉRENCE */
+
+function generateReference(){
+
+const d=
+new Date();
+
+const date=
+String(
+d.getFullYear()
+)
+.slice(-2)
++
+String(
+d.getMonth()+1
+)
+.padStart(2,"0")
++
+String(
+d.getDate()
+)
+.padStart(2,"0");
+
+
+const random=
+Math.floor(
+100000+
+Math.random()*900000
+);
+
+
+return(
+"PIO-"+
+date+
+"-"+
+random
+);
 
 }
 
 
 /* =====================================================
-   RÉFÉRENCE DE COMMANDE
+   CHARGEMENT QR
 ===================================================== */
 
-function generateOrderReference(){
+function loadScript(url){
 
-  const now =
-  new Date();
+return new Promise(
+function(resolve,reject){
 
+const script=
+document.createElement(
+"script"
+);
 
-  const yy =
-  String(
-    now.getFullYear()
-  )
-  .slice(-2);
+script.src=url;
 
+script.onload=
+resolve;
 
-  const mm =
-  String(
-    now.getMonth()+1
-  )
-  .padStart(2,"0");
+script.onerror=
+reject;
 
+document.head
+.appendChild(script);
 
-  const dd =
-  String(
-    now.getDate()
-  )
-  .padStart(2,"0");
-
-
-  let random;
-
-
-  if(
-    window.crypto &&
-    window.crypto.getRandomValues
-  ){
-
-    const values =
-    new Uint32Array(1);
-
-
-    window.crypto.getRandomValues(
-      values
-    );
-
-
-    random =
-    100000 +
-    (
-      values[0] %
-      900000
-    );
-
-  }
-
-  else{
-
-    random =
-    Math.floor(
-      100000 +
-      Math.random() *
-      900000
-    );
-
-  }
-
-
-  return (
-    "PIO-" +
-    yy +
-    mm +
-    dd +
-    "-" +
-    random
-  );
+});
 
 }
 
 
-/* =====================================================
-   QR PAIEMENT
-===================================================== */
+async function ensureQRCodeLibrary(){
 
-function generatePaymentQR(
-  amount,
-  reference
+if(
+typeof QRCode!=="undefined"
 ){
 
-  const container =
-  document.getElementById(
-    "qrcode"
-  );
+return true;
+
+}
 
 
-  container.innerHTML="";
+try{
+
+await loadScript(
+"https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+);
+
+}
+
+catch(error){
+
+console.warn(
+"Premier CDN QR indisponible."
+);
+
+}
 
 
-  /*
-    Si la librairie QR ne s'est pas chargée,
-    on affiche simplement un message.
-    Cela n'empêche PAS le paiement.
-  */
+if(
+typeof QRCode!=="undefined"
+){
 
-  if(typeof QRCode === "undefined"){
+return true;
 
-    container.innerHTML = `
-
-      <div style="
-        padding:20px;
-        max-width:240px;
-        color:#817770;
-        font-size:13px;
-        text-align:center;
-      ">
-
-        QR indisponible.
-        <br>
-        Utilisez les coordonnées bancaires ci-dessous.
-
-      </div>
-
-    `;
-
-    return;
-
-  }
+}
 
 
-  try{
+try{
+
+await loadScript(
+"https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"
+);
+
+}
+
+catch(error){
+
+console.warn(
+"Second CDN QR indisponible."
+);
+
+}
 
 
-    const payload = [
-
-      "BCD",
-
-      "002",
-
-      "1",
-
-      "SCT",
-
-      "",
-
-      CONFIG.nomCompte,
-
-      CONFIG.iban,
-
-      "EUR" +
-      Number(amount).toFixed(2),
-
-      "",
-
-      "",
-
-      reference,
-
-      ""
-
-    ].join("\n");
-
-
-    new QRCode(
-      container,
-      {
-
-        text:
-        payload,
-
-        width:
-        210,
-
-        height:
-        210,
-
-        correctLevel:
-        QRCode.CorrectLevel.M
-
-      }
-    );
-
-
-  }
-
-  catch(error){
-
-
-    console.error(
-      "Impossible de générer le QR :",
-      error
-    );
-
-
-    container.innerHTML = `
-
-      <div style="
-        padding:20px;
-        max-width:240px;
-        color:#817770;
-        font-size:13px;
-        text-align:center;
-      ">
-
-        QR indisponible.
-        <br>
-        Utilisez les coordonnées bancaires ci-dessous.
-
-      </div>
-
-    `;
-
-  }
+return(
+typeof QRCode!=="undefined"
+);
 
 }
 
 
 /* =====================================================
-   ENVOI GOOGLE SHEETS
+   QR EPC
+===================================================== */
+
+async function generatePaymentQR(
+amount,
+reference
+){
+
+const container=
+document.getElementById(
+"qrcode"
+);
+
+
+container.innerHTML=
+"Préparation du QR...";
+
+
+const loaded=
+await ensureQRCodeLibrary();
+
+
+if(!loaded){
+
+container.innerHTML=
+`
+<div style="
+max-width:220px;
+font-size:13px;
+color:#817770;
+">
+QR indisponible.<br>
+Utilisez les coordonnées bancaires ci-dessous.
+</div>
+`;
+
+return;
+
+}
+
+
+/*
+  EPC QR V2
+
+  1 = UTF-8
+*/
+
+const payload=[
+
+"BCD",
+
+"002",
+
+"1",
+
+"SCT",
+
+"",
+
+CONFIG.nomCompte,
+
+CONFIG.iban,
+
+"EUR"+
+Number(amount)
+.toFixed(2),
+
+"",
+
+"",
+
+reference
+
+].join("\n");
+
+
+try{
+
+container.innerHTML="";
+
+
+new QRCode(
+container,
+{
+
+text:payload,
+
+width:210,
+
+height:210,
+
+correctLevel:
+QRCode.CorrectLevel.M
+
+}
+);
+
+}
+
+catch(error){
+
+console.error(
+"Erreur QR",
+error
+);
+
+container.innerHTML=
+"QR indisponible.";
+
+}
+
+}
+
+
+/* =====================================================
+   ENVOI
 ===================================================== */
 
 function sendOrder(order){
 
-  const body =
-  new URLSearchParams();
-
-
-  body.append(
-    "payload",
-    JSON.stringify(order)
-  );
-
-
-  /*
-    On utilise no-cors.
-
-    Google Apps Script reçoit la commande,
-    mais le navigateur ne peut pas lire
-    directement sa réponse.
-
-    On ne bloque donc pas l'interface
-    en attendant cette réponse.
-  */
-
-  fetch(
-    CONFIG.googleScriptURL,
-    {
-
-      method:
-      "POST",
-
-      mode:
-      "no-cors",
-
-      body:
-      body
-
-    }
-  )
-  .catch(function(error){
-
-    console.error(
-      "Erreur lors de l'envoi de la commande :",
-      error
-    );
-
-  });
-
-}
-
-
-/* =====================================================
-   AFFICHAGE DU PAIEMENT
-===================================================== */
-
-function showPayment(
-  total,
-  reference
-){
-
-  /*
-    1.
-    On remplit d'abord TOUTES
-    les informations essentielles.
-  */
-
-
-  document
-  .getElementById(
-    "orderReference"
-  )
-  .textContent =
-  reference;
-
-
-  document
-  .getElementById(
-    "paymentAmount"
-  )
-  .textContent =
-
-  Number(total)
-  .toFixed(2)
-  .replace(".",",")
-
-  +
-
-  " €";
-
-
-  document
-  .getElementById(
-    "ibanDisplay"
-  )
-  .textContent =
-  CONFIG.ibanAffiche;
-
-
-  document
-  .getElementById(
-    "communication"
-  )
-  .textContent =
-  reference;
-
-
-  /*
-    2.
-    On affiche le paiement AVANT
-    de toucher au QR.
-  */
-
-
-  const payment =
-  document.getElementById(
-    "payment"
-  );
-
-
-  payment.style.display =
-  "block";
-
-
-  /*
-    3.
-    Ensuite seulement,
-    on tente de générer le QR.
-  */
-
-
-  try{
-
-    generatePaymentQR(
-      total,
-      reference
-    );
-
-  }
-
-  catch(error){
-
-    console.error(
-      "Erreur QR :",
-      error
-    );
-
-  }
-
-
-  /*
-    4.
-    Scroll vers le paiement.
-  */
-
-
-  setTimeout(
-    function(){
-
-      payment.scrollIntoView({
-
-        behavior:
-        "smooth",
-
-        block:
-        "start"
-
-      });
-
-    },
-    100
-  );
-
-}
-
-
-/* =====================================================
-   VALIDATION DU FORMULAIRE
-===================================================== */
-
-document
-.getElementById("orderForm")
-.addEventListener(
-  "submit",
-  function(event){
-
-
-    event.preventDefault();
-
-
-    /*
-      Protection double clic.
-    */
-
-
-    if(orderInProgress){
-
-      return;
-
-    }
-
-
-    /*
-      Nombre total de sachets.
-    */
-
-
-    const totalSachets =
-    quantities.reduce(
-      function(total,quantity){
-
-        return total + quantity;
-
-      },
-      0
-    );
-
-
-    /*
-      Au moins un sachet.
-    */
-
-
-    if(totalSachets === 0){
-
-      alert(
-        "Veuillez sélectionner au moins un sachet."
-      );
-
-      return;
-
-    }
-
-
-    /*
-      Référence unique.
-    */
-
-
-    if(!currentOrderReference){
-
-      currentOrderReference =
-      generateOrderReference();
-
-    }
-
-
-    /*
-      Produits commandés.
-    */
-
-
-    const orderedProducts=[];
-
-
-    products.forEach(
-      function(product,index){
-
-
-        if(quantities[index] > 0){
-
-          orderedProducts.push({
-
-            type:
-            product.type,
-
-            nom:
-            product.nom,
-
-            quantite:
-            quantities[index]
-
-          });
-
-        }
-
-      }
-    );
-
-
-    /*
-      Objet envoyé à Apps Script.
-    */
-
-
-    const order = {
-
-      reference:
-      currentOrderReference,
-
-      prenom:
-      document
-      .getElementById("firstname")
-      .value
-      .trim(),
-
-      nom:
-      document
-      .getElementById("lastname")
-      .value
-      .trim(),
-
-      telephone:
-      document
-      .getElementById("phone")
-      .value
-      .trim(),
-
-      adresse:
-      document
-      .getElementById("address")
-      .value
-      .trim(),
-
-      vendeur:
-      document
-      .getElementById("seller")
-      .value
-      .trim(),
-
-      commentaire:
-      document
-      .getElementById("comment")
-      .value
-      .trim(),
-
-      produits:
-      orderedProducts
-
-    };
-
-
-    /*
-      Éléments interface.
-    */
-
-
-    const button =
-    document.getElementById(
-      "orderButton"
-    );
-
-
-    const message =
-    document.getElementById(
-      "formMessage"
-    );
-
-
-    /*
-      Verrouillage.
-    */
-
-
-    orderInProgress =
-    true;
-
-
-    button.disabled =
-    true;
-
-
-    button.textContent =
-    "Envoi de la commande...";
-
-
-    message.className =
-    "form-message";
-
-
-    message.textContent =
-    "";
-
-
-    /*
-      Envoi vers Google Sheets.
-    */
-
-
-    sendOrder(order);
-
-
-    /*
-      Calcul du montant.
-    */
-
-
-    const total =
-    totalSachets *
-    CONFIG.prixSachet;
-
-
-    /*
-      IMPORTANT :
-
-      On affiche le paiement directement.
-
-      Le QR ne peut donc plus empêcher
-      l'affichage des coordonnées bancaires.
-    */
-
-
-    showPayment(
-      total,
-      currentOrderReference
-    );
-
-
-    /*
-      Message de confirmation.
-    */
-
-
-    message.className =
-    "form-message success-message";
-
-
-    message.textContent =
-    "Votre commande a été transmise. Vous pouvez maintenant effectuer le paiement.";
-
-
-    /*
-      Le bouton est mis à jour
-      immédiatement.
-    */
-
-
-    button.textContent =
-    "Commande transmise";
-
-
-  }
+const body=
+new URLSearchParams();
+
+body.append(
+"payload",
+JSON.stringify(order)
 );
 
 
+fetch(
+CONFIG.googleScriptURL,
+{
+
+method:"POST",
+
+mode:"no-cors",
+
+body:body
+
+}
+)
+.catch(
+console.error
+);
+
+}
+
+
 /* =====================================================
-   DÉMARRAGE
+   FORMULAIRE
 ===================================================== */
+
+document
+.getElementById(
+"orderForm"
+)
+.addEventListener(
+"submit",
+function(event){
+
+event.preventDefault();
+
+
+if(orderInProgress){
+return;
+}
+
+
+const totalSachets=
+quantities.reduce(
+(a,b)=>a+b,
+0
+);
+
+
+if(totalSachets===0){
+
+alert(
+"Veuillez sélectionner au moins un sachet."
+);
+
+return;
+
+}
+
+
+currentOrderReference=
+generateReference();
+
+
+const orderedProducts=[];
+
+
+products.forEach(
+function(product,index){
+
+if(
+quantities[index]>0
+){
+
+orderedProducts.push({
+
+type:
+product.type,
+
+nom:
+product.nom,
+
+quantite:
+quantities[index]
+
+});
+
+}
+
+});
+
+
+const order={
+
+reference:
+currentOrderReference,
+
+prenom:
+firstname.value.trim(),
+
+nom:
+lastname.value.trim(),
+
+telephone:
+phone.value.trim(),
+
+adresse:
+address.value.trim(),
+
+vendeur:
+seller.value.trim(),
+
+commentaire:
+comment.value.trim(),
+
+produits:
+orderedProducts
+
+};
+
+
+orderInProgress=true;
+
+
+const button=
+document.getElementById(
+"orderButton"
+);
+
+
+button.disabled=true;
+
+button.textContent=
+"Envoi de la commande...";
+
+
+sendOrder(order);
+
+
+const total=
+totalSachets*5;
+
+
+/*
+  INFORMATIONS PAIEMENT
+*/
+
+orderReference.textContent=
+currentOrderReference;
+
+
+ibanDisplay.textContent=
+CONFIG.ibanAffiche;
+
+
+paymentAmount.textContent=
+total
+.toFixed(2)
+.replace(".",",")
++
+" €";
+
+
+communication.textContent=
+currentOrderReference;
+
+
+/*
+  AFFICHAGE IMMÉDIAT
+*/
+
+payment.style.display=
+"block";
+
+
+button.textContent=
+"Commande transmise";
+
+
+formMessage.className=
+"form-message success-message";
+
+
+formMessage.textContent=
+"Votre commande a été transmise. Vous pouvez maintenant effectuer le paiement.";
+
+
+/*
+  QR EN SECOND PLAN
+*/
+
+generatePaymentQR(
+total,
+currentOrderReference
+);
+
+
+/*
+  SCROLL
+*/
+
+setTimeout(
+function(){
+
+payment.scrollIntoView({
+
+behavior:"smooth",
+
+block:"start"
+
+});
+
+},
+100
+);
+
+}
+);
+
+
+/* DÉMARRAGE */
 
 createProducts();
 
