@@ -537,6 +537,29 @@ textarea{
   font-size:1.5rem;
 }
 
+
+/* =====================================================
+   MESSAGE ATTENTE PAIEMENT
+===================================================== */
+
+.payment-status-message{
+  margin-top:18px;
+  padding:16px 18px;
+  background:#fff8e7;
+  border:1px solid #ead8aa;
+  border-radius:10px;
+  color:#725c28;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.payment-status-message strong{
+  display:block;
+  margin-bottom:3px;
+  color:#5d491c;
+}
+
+
 .order-reference-box{
   margin-top:18px;
   padding:15px;
@@ -705,6 +728,10 @@ footer{
   .shop{
     padding-left:12px;
     padding-right:12px;
+  }
+
+  .payment{
+    padding:22px 16px;
   }
 
 }
@@ -1041,6 +1068,21 @@ Finalisez votre paiement
 </h3>
 
 
+<!-- MESSAGE ATTENTE PAIEMENT -->
+
+<div class="payment-status-message">
+
+<strong>
+Votre commande est actuellement en attente de paiement.
+</strong>
+
+Elle sera confirmée dès que nous aurons reçu et vérifié votre paiement.
+
+</div>
+
+
+<!-- RÉFÉRENCE -->
+
 <div class="order-reference-box">
 
 <span>
@@ -1206,34 +1248,21 @@ const CONFIG = {
 
 const products = [
 
-  ["Blanc","Plein","blanc_plein.png"],
-
+  ["Blanc","Nature","blanc_plein.png"],
   ["Blanc","Praliné","blanc_praline.png"],
-
   ["Blanc","Manon","blanc_manon.png"],
-
   ["Blanc","Pistache","blanc_pistache.png"],
-
   ["Blanc","Croquant","blanc_croquant.png"],
 
-
   ["Lait","Praliné","lait_praline.png"],
-
   ["Lait","Croquant","lait_croquant.png"],
-
   ["Lait","Coco","lait_coco.png"],
-
   ["Lait","Pétillant","lait_petillant_NEW.png","NEW"],
 
-
   ["Noir","Praliné","noir_praline.png"],
-
-  ["Noir","Praliné Croquant","noir_praline_croquant_NEW.png","NEW"],
-
+  ["Noir","Croquant","noir_praline_croquant_NEW.png","NEW"],
   ["Noir","Framboise","noir_framboise.png","RENEW"],
-
   ["Noir","Vanille Stracciatella","noir_vanille_stracciatella.png"],
-
   ["Noir","Pistache","noir_pistache.png"]
 
 ].map(function(p){
@@ -1241,11 +1270,8 @@ const products = [
   return {
 
     type:p[0],
-
     nom:p[1],
-
     image:"images/" + p[2],
-
     badge:p[3] || ""
 
   };
@@ -1254,13 +1280,10 @@ const products = [
 
 
 const quantities =
-  new Array(
-    products.length
-  ).fill(0);
+  new Array(products.length).fill(0);
 
 
 let currentOrderReference = null;
-
 let orderInProgress = false;
 
 
@@ -1271,58 +1294,148 @@ let orderInProgress = false;
 function createProducts(){
 
   const container =
-    document.getElementById(
-      "products"
-    );
+    document.getElementById("products");
 
 
-  ["Blanc","Lait","Noir"]
-    .forEach(function(type){
+  ["Blanc","Lait","Noir"].forEach(function(type){
 
 
-      const section =
-        document.createElement(
-          "div"
-        );
+    const section =
+      document.createElement("div");
 
 
-      section.className =
-        "chocolate-category";
+    section.className =
+      "chocolate-category";
 
 
-      const typeProducts =
-        products.filter(
-          p => p.type === type
-        );
+    const typeProducts =
+      products.filter(
+        p => p.type === type
+      );
 
 
-      section.innerHTML = `
+    section.innerHTML = `
 
-        <div class="category-header">
+      <div class="category-header">
 
-          <div>
+        <div>
 
-            <div class="category-label">
-              Collection
-            </div>
+          <div class="category-label">
+            Collection
+          </div>
 
-            <h3>
+          <h3>
+            Chocolat ${
+              type === "Lait"
+              ? "au lait"
+              : type.toLowerCase()
+            }
+          </h3>
 
-              Chocolat ${
-                type === "Lait"
-                ? "au lait"
-                : type.toLowerCase()
-              }
+        </div>
 
-            </h3>
+        <div class="category-count">
+
+          ${typeProducts.length}
+          saveur${typeProducts.length > 1 ? "s" : ""}
+
+        </div>
+
+      </div>
+
+    `;
+
+
+    const grid =
+      document.createElement("div");
+
+
+    grid.className =
+      "category-products";
+
+
+    products.forEach(function(product,index){
+
+
+      if(product.type !== type){
+        return;
+      }
+
+
+      const card =
+        document.createElement("article");
+
+
+      card.className =
+        "product";
+
+
+      card.innerHTML = `
+
+        ${
+          product.badge
+          ?
+          `<div class="flavour-badge">
+            ${product.badge}
+          </div>`
+          :
+          ""
+        }
+
+        <div class="product-image">
+
+          <img
+            src="${product.image}"
+            alt="${product.nom}"
+            onerror="this.style.display='none'">
+
+        </div>
+
+        <div class="product-content">
+
+          <div class="chocolate-type">
+
+            Chocolat
+            ${product.type.toLowerCase()}
 
           </div>
 
+          <h4>
+            ${product.nom}
+          </h4>
 
-          <div class="category-count">
+          <div class="product-description">
 
-            ${typeProducts.length}
-            saveur${typeProducts.length > 1 ? "s" : ""}
+            ${CONFIG.nombreOeufs}
+            œufs par sachet
+
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="price">
+              ${CONFIG.prixSachet} €
+            </div>
+
+            <div class="quantity">
+
+              <button
+                type="button"
+                onclick="changeQuantity(${index},-1)">
+                −
+              </button>
+
+              <span id="qty-${index}">
+                0
+              </span>
+
+              <button
+                type="button"
+                onclick="changeQuantity(${index},1)">
+                +
+              </button>
+
+            </div>
 
           </div>
 
@@ -1331,148 +1444,16 @@ function createProducts(){
       `;
 
 
-      const grid =
-        document.createElement(
-          "div"
-        );
-
-
-      grid.className =
-        "category-products";
-
-
-      products.forEach(
-        function(product,index){
-
-
-          if(
-            product.type !== type
-          ){
-
-            return;
-
-          }
-
-
-          const card =
-            document.createElement(
-              "article"
-            );
-
-
-          card.className =
-            "product";
-
-
-          card.innerHTML = `
-
-            ${
-              product.badge
-              ?
-              `<div class="flavour-badge">
-                ${product.badge}
-              </div>`
-              :
-              ""
-            }
-
-
-            <div class="product-image">
-
-              <img
-                src="${product.image}"
-                alt="${product.nom}"
-                onerror="this.style.display='none'">
-
-            </div>
-
-
-            <div class="product-content">
-
-              <div class="chocolate-type">
-
-                Chocolat
-                ${product.type.toLowerCase()}
-
-              </div>
-
-
-              <h4>
-                ${product.nom}
-              </h4>
-
-
-              <div class="product-description">
-
-                ${CONFIG.nombreOeufs}
-                œufs par sachet
-
-              </div>
-
-
-              <div class="product-bottom">
-
-
-                <div class="price">
-
-                  ${CONFIG.prixSachet} €
-
-                </div>
-
-
-                <div class="quantity">
-
-
-                  <button
-                    type="button"
-                    onclick="changeQuantity(${index},-1)">
-
-                    −
-
-                  </button>
-
-
-                  <span id="qty-${index}">
-                    0
-                  </span>
-
-
-                  <button
-                    type="button"
-                    onclick="changeQuantity(${index},1)">
-
-                    +
-
-                  </button>
-
-
-                </div>
-
-              </div>
-
-            </div>
-
-          `;
-
-
-          grid.appendChild(
-            card
-          );
-
-        }
-      );
-
-
-      section.appendChild(
-        grid
-      );
-
-
-      container.appendChild(
-        section
-      );
+      grid.appendChild(card);
 
     });
+
+
+    section.appendChild(grid);
+
+    container.appendChild(section);
+
+  });
 
 }
 
@@ -1481,40 +1462,28 @@ function createProducts(){
    QUANTITÉS
 ===================================================== */
 
-function changeQuantity(
-  index,
-  change
-){
+function changeQuantity(index,change){
 
   /*
-    Après validation d'une commande,
-    les quantités sont volontairement bloquées.
+    Une fois la commande validée,
+    les quantités sont bloquées.
   */
 
   if(orderInProgress){
-
     return;
-
   }
 
 
-  quantities[index] +=
-    change;
+  quantities[index] += change;
 
 
-  if(
-    quantities[index] < 0
-  ){
-
+  if(quantities[index] < 0){
     quantities[index] = 0;
-
   }
 
 
   document
-    .getElementById(
-      "qty-" + index
-    )
+    .getElementById("qty-" + index)
     .textContent =
       quantities[index];
 
@@ -1531,77 +1500,65 @@ function changeQuantity(
 function updateSummary(){
 
   const container =
-    document.getElementById(
-      "summaryProducts"
-    );
+    document.getElementById("summaryProducts");
 
 
   let html = "";
-
   let total = 0;
 
 
-  products.forEach(
-    function(product,index){
+  products.forEach(function(product,index){
 
 
-      const q =
-        quantities[index];
+    const q =
+      quantities[index];
 
 
-      if(!q){
-
-        return;
-
-      }
+    if(!q){
+      return;
+    }
 
 
-      total += q;
+    total += q;
 
 
-      html += `
+    html += `
 
-        <div class="summary-line">
+      <div class="summary-line">
 
-          <div class="summary-product">
-
-            <strong>
-              ${product.nom}
-            </strong>
-
-            <small>
-
-              Chocolat
-              ${product.type.toLowerCase()}
-              •
-              ${q}
-              sachet${q > 1 ? "s" : ""}
-
-            </small>
-
-          </div>
+        <div class="summary-product">
 
           <strong>
-
-            ${q * CONFIG.prixSachet} €
-
+            ${product.nom}
           </strong>
+
+          <small>
+
+            Chocolat
+            ${product.type.toLowerCase()}
+            •
+            ${q}
+            sachet${q > 1 ? "s" : ""}
+
+          </small>
 
         </div>
 
-      `;
+        <strong>
+          ${q * CONFIG.prixSachet} €
+        </strong>
 
-    }
-  );
+      </div>
+
+    `;
+
+  });
 
 
-  if(
-    total === 0
-  ){
+  if(total === 0){
 
     container.className =
       "summary-empty";
-
 
     container.textContent =
       "Aucun sachet sélectionné.";
@@ -1610,9 +1567,7 @@ function updateSummary(){
 
   else{
 
-    container.className =
-      "";
-
+    container.className = "";
 
     container.innerHTML =
       html;
@@ -1621,16 +1576,9 @@ function updateSummary(){
 
 
   document
-    .getElementById(
-      "totalPrice"
-    )
+    .getElementById("totalPrice")
     .textContent =
-      (
-        total *
-        CONFIG.prixSachet
-      )
-      +
-      " €";
+      (total * CONFIG.prixSachet) + " €";
 
 }
 
@@ -1647,27 +1595,17 @@ function generateReference(){
 
   const date =
 
-    String(
-      d.getFullYear()
-    ).slice(-2)
+    String(d.getFullYear()).slice(-2)
 
     +
 
-    String(
-      d.getMonth() + 1
-    ).padStart(
-      2,
-      "0"
-    )
+    String(d.getMonth() + 1)
+      .padStart(2,"0")
 
     +
 
-    String(
-      d.getDate()
-    ).padStart(
-      2,
-      "0"
-    );
+    String(d.getDate())
+      .padStart(2,"0");
 
 
   const random =
@@ -1694,48 +1632,28 @@ function generateReference(){
 
 function loadScript(url){
 
-  return new Promise(
-    function(resolve,reject){
+  return new Promise(function(resolve,reject){
 
+    const script =
+      document.createElement("script");
 
-      const script =
-        document.createElement(
-          "script"
-        );
+    script.src = url;
 
+    script.onload = resolve;
 
-      script.src =
-        url;
+    script.onerror = reject;
 
+    document.head.appendChild(script);
 
-      script.onload =
-        resolve;
-
-
-      script.onerror =
-        reject;
-
-
-      document.head
-        .appendChild(
-          script
-        );
-
-    }
-  );
+  });
 
 }
 
 
 async function ensureQRCodeLibrary(){
 
-  if(
-    typeof QRCode !==
-    "undefined"
-  ){
-
+  if(typeof QRCode !== "undefined"){
     return true;
-
   }
 
 
@@ -1756,13 +1674,8 @@ async function ensureQRCodeLibrary(){
   }
 
 
-  if(
-    typeof QRCode !==
-    "undefined"
-  ){
-
+  if(typeof QRCode !== "undefined"){
     return true;
-
   }
 
 
@@ -1783,10 +1696,7 @@ async function ensureQRCodeLibrary(){
   }
 
 
-  return (
-    typeof QRCode !==
-    "undefined"
-  );
+  return typeof QRCode !== "undefined";
 
 }
 
@@ -1795,15 +1705,10 @@ async function ensureQRCodeLibrary(){
    QR DE PAIEMENT
 ===================================================== */
 
-async function generatePaymentQR(
-  amount,
-  reference
-){
+async function generatePaymentQR(amount,reference){
 
   const container =
-    document.getElementById(
-      "qrcode"
-    );
+    document.getElementById("qrcode");
 
 
   container.innerHTML =
@@ -1844,27 +1749,15 @@ async function generatePaymentQR(
   const payload = [
 
     "BCD",
-
     "002",
-
     "1",
-
     "SCT",
-
     "",
-
     CONFIG.nomCompte,
-
     CONFIG.iban,
-
-    "EUR" +
-    Number(amount)
-      .toFixed(2),
-
+    "EUR" + Number(amount).toFixed(2),
     "",
-
     "",
-
     reference
 
   ].join("\n");
@@ -1872,26 +1765,17 @@ async function generatePaymentQR(
 
   try{
 
-
-    container.innerHTML =
-      "";
+    container.innerHTML = "";
 
 
     new QRCode(
       container,
       {
 
-        text:
-          payload,
-
-        width:
-          210,
-
-        height:
-          210,
-
-        correctLevel:
-          QRCode.CorrectLevel.M
+        text:payload,
+        width:210,
+        height:210,
+        correctLevel:QRCode.CorrectLevel.M
 
       }
     );
@@ -1900,12 +1784,10 @@ async function generatePaymentQR(
 
   catch(error){
 
-
     console.error(
       "Erreur QR",
       error
     );
-
 
     container.innerHTML =
       "QR indisponible.";
@@ -1927,9 +1809,7 @@ function sendOrder(order){
 
   body.append(
     "payload",
-    JSON.stringify(
-      order
-    )
+    JSON.stringify(order)
   );
 
 
@@ -1937,20 +1817,13 @@ function sendOrder(order){
     CONFIG.googleScriptURL,
     {
 
-      method:
-        "POST",
-
-      mode:
-        "no-cors",
-
-      body:
-        body
+      method:"POST",
+      mode:"no-cors",
+      body:body
 
     }
   )
-  .catch(
-    console.error
-  );
+  .catch(console.error);
 
 }
 
@@ -1960,9 +1833,7 @@ function sendOrder(order){
 ===================================================== */
 
 document
-  .getElementById(
-    "orderForm"
-  )
+  .getElementById("orderForm")
   .addEventListener(
     "submit",
     function(event){
@@ -1971,12 +1842,8 @@ document
       event.preventDefault();
 
 
-      if(
-        orderInProgress
-      ){
-
+      if(orderInProgress){
         return;
-
       }
 
 
@@ -1987,9 +1854,7 @@ document
         );
 
 
-      if(
-        totalSachets === 0
-      ){
+      if(totalSachets === 0){
 
         alert(
           "Veuillez sélectionner au moins un sachet."
@@ -2004,97 +1869,67 @@ document
         generateReference();
 
 
-      const orderedProducts =
-        [];
+      const orderedProducts = [];
 
 
-      products.forEach(
-        function(product,index){
+      products.forEach(function(product,index){
 
 
-          if(
-            quantities[index] > 0
-          ){
+        if(quantities[index] > 0){
 
-            orderedProducts.push({
+          orderedProducts.push({
 
-              type:
-                product.type,
+            type:product.type,
+            nom:product.nom,
+            quantite:quantities[index]
 
-              nom:
-                product.nom,
-
-              quantite:
-                quantities[index]
-
-            });
-
-          }
+          });
 
         }
-      );
+
+      });
 
 
       const order = {
 
-
         reference:
           currentOrderReference,
 
-
         prenom:
           document
-            .getElementById(
-              "firstname"
-            )
+            .getElementById("firstname")
             .value
             .trim(),
-
 
         nom:
           document
-            .getElementById(
-              "lastname"
-            )
+            .getElementById("lastname")
             .value
             .trim(),
-
 
         telephone:
           document
-            .getElementById(
-              "phone"
-            )
+            .getElementById("phone")
             .value
             .trim(),
-
 
         adresse:
           document
-            .getElementById(
-              "address"
-            )
+            .getElementById("address")
             .value
             .trim(),
-
 
         vendeur:
           document
-            .getElementById(
-              "seller"
-            )
+            .getElementById("seller")
             .value
             .trim(),
-
 
         commentaire:
           document
-            .getElementById(
-              "comment"
-            )
+            .getElementById("comment")
             .value
             .trim(),
-
 
         produits:
           orderedProducts
@@ -2102,27 +1937,20 @@ document
       };
 
 
-      orderInProgress =
-        true;
+      orderInProgress = true;
 
 
       const button =
-        document.getElementById(
-          "orderButton"
-        );
+        document.getElementById("orderButton");
 
 
-      button.disabled =
-        true;
-
+      button.disabled = true;
 
       button.textContent =
         "Envoi de la commande...";
 
 
-      sendOrder(
-        order
-      );
+      sendOrder(order);
 
 
       const total =
@@ -2131,48 +1959,35 @@ document
 
 
       document
-        .getElementById(
-          "orderReference"
-        )
+        .getElementById("orderReference")
         .textContent =
           currentOrderReference;
 
 
       document
-        .getElementById(
-          "ibanDisplay"
-        )
+        .getElementById("ibanDisplay")
         .textContent =
           CONFIG.ibanAffiche;
 
 
       document
-        .getElementById(
-          "paymentAmount"
-        )
+        .getElementById("paymentAmount")
         .textContent =
           total
             .toFixed(2)
-            .replace(
-              ".",
-              ","
-            )
+            .replace(".",",")
           +
           " €";
 
 
       document
-        .getElementById(
-          "communication"
-        )
+        .getElementById("communication")
         .textContent =
           currentOrderReference;
 
 
       const payment =
-        document.getElementById(
-          "payment"
-        );
+        document.getElementById("payment");
 
 
       payment.style.display =
@@ -2184,9 +1999,7 @@ document
 
 
       const formMessage =
-        document.getElementById(
-          "formMessage"
-        );
+        document.getElementById("formMessage");
 
 
       formMessage.className =
@@ -2203,22 +2016,16 @@ document
       );
 
 
-      setTimeout(
-        function(){
+      setTimeout(function(){
 
-          payment.scrollIntoView({
+        payment.scrollIntoView({
 
-            behavior:
-              "smooth",
+          behavior:"smooth",
+          block:"start"
 
-            block:
-              "start"
+        });
 
-          });
-
-        },
-        100
-      );
+      },100);
 
     }
   );
@@ -2231,7 +2038,6 @@ document
 createProducts();
 
 updateSummary();
-
 
 </script>
 
