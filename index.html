@@ -45,6 +45,8 @@ button,input,textarea{
   font-family:inherit;
 }
 
+/* NAVIGATION */
+
 .navbar{
   position:absolute;
   top:0;
@@ -76,6 +78,8 @@ button,input,textarea{
   padding:10px 19px;
   border-radius:50px;
 }
+
+/* HERO */
 
 .hero{
   min-height:94vh;
@@ -150,6 +154,8 @@ button,input,textarea{
   font-weight:750;
 }
 
+/* TITRES */
+
 .section-label{
   color:var(--gold);
   text-transform:uppercase;
@@ -164,6 +170,8 @@ button,input,textarea{
   margin:10px 0 20px;
   color:var(--chocolate);
 }
+
+/* PROJET */
 
 .project{
   background:white;
@@ -187,6 +195,8 @@ button,input,textarea{
   color:var(--chocolate);
   font-weight:700;
 }
+
+/* BOUTIQUE */
 
 .shop{
   max-width:1200px;
@@ -240,6 +250,8 @@ button,input,textarea{
   grid-template-columns:repeat(5,1fr);
   gap:18px;
 }
+
+/* PRODUITS */
 
 .product{
   position:relative;
@@ -334,6 +346,8 @@ button,input,textarea{
   font-weight:750;
 }
 
+/* COMMANDE */
+
 .checkout-wrapper{
   background:white;
   padding:90px 20px;
@@ -381,6 +395,8 @@ button,input,textarea{
   font-size:1.3rem;
   font-weight:800;
 }
+
+/* FORMULAIRE */
 
 .form-grid{
   display:grid;
@@ -444,6 +460,8 @@ textarea{
   opacity:.65;
 }
 
+/* PAIEMENT */
+
 .payment{
   display:none;
   margin-top:35px;
@@ -451,27 +469,6 @@ textarea{
   background:var(--cream);
   border:1px solid var(--border);
   border-radius:16px;
-}
-
-.payment-confirmation{
-  margin-bottom:26px;
-  padding:20px;
-  background:#edf5ef;
-  border:1px solid #c9dfcf;
-  border-radius:12px;
-  color:#3e674b;
-}
-
-.payment-confirmation strong{
-  display:block;
-  margin-bottom:6px;
-  color:#365d43;
-  font-size:17px;
-}
-
-.payment-confirmation p{
-  margin:0;
-  font-size:14px;
 }
 
 .payment h3{
@@ -499,6 +496,8 @@ textarea{
   color:var(--chocolate);
 }
 
+/* QR */
+
 .qr-area{
   text-align:center;
   margin:30px 0;
@@ -522,6 +521,8 @@ textarea{
   font-size:13px;
 }
 
+/* SÉPARATEUR */
+
 .payment-separator{
   display:flex;
   align-items:center;
@@ -540,6 +541,8 @@ textarea{
   height:1px;
   background:var(--border);
 }
+
+/* BANQUE */
 
 .bank-box{
   background:white;
@@ -569,6 +572,32 @@ textarea{
   font-size:13px;
 }
 
+/* CONFIRMATION APRÈS LES INFOS DE PAIEMENT */
+
+.payment-confirmation{
+  margin-top:28px;
+  padding:20px;
+  background:#edf5ef;
+  border:1px solid #c9dfcf;
+  border-radius:12px;
+  color:#3e674b;
+}
+
+.payment-confirmation strong{
+  display:block;
+  margin-bottom:7px;
+  color:#365d43;
+  font-size:17px;
+}
+
+.payment-confirmation p{
+  margin:0;
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* FOOTER */
+
 footer{
   background:var(--chocolate);
   color:#d9cbc1;
@@ -593,9 +622,11 @@ footer{
 }
 
 @media(max-width:950px){
+
   .category-products{
     grid-template-columns:repeat(3,1fr);
   }
+
 }
 
 @media(max-width:620px){
@@ -636,7 +667,9 @@ footer{
 <img src="images/logo-magnee.png" alt="Scouts de Magnée">
 </a>
 
-<a href="#boutique" class="nav-link">Commander</a>
+<a href="#boutique" class="nav-link">
+Commander
+</a>
 
 </nav>
 
@@ -645,14 +678,18 @@ footer{
 
 <div class="hero-content">
 
-<img src="images/logo-pionniers.png" class="hero-logo" alt="Pionniers de Magnée">
+<img
+  src="images/logo-pionniers.png"
+  class="hero-logo"
+  alt="Pionniers de Magnée">
 
 <div class="hero-small">
 Vente d'œufs en chocolat
 </div>
 
 <h1>
-Des œufs pour<br>une aventure.
+Des œufs pour<br>
+une aventure.
 </h1>
 
 <p class="hero-description">
@@ -661,9 +698,17 @@ Soutenez le projet de camp des Pionniers de Magnée tout en vous faisant plaisir
 
 <div class="hero-info">
 
-<div class="hero-badge">10 œufs par sachet</div>
-<div class="hero-badge">5 € le sachet</div>
-<div class="hero-badge">14 saveurs</div>
+<div class="hero-badge">
+10 œufs par sachet
+</div>
+
+<div class="hero-badge">
+5 € le sachet
+</div>
+
+<div class="hero-badge">
+14 saveurs
+</div>
 
 </div>
 
@@ -762,38 +807,96 @@ Aucun sachet sélectionné.
 <div class="form-grid">
 
 <div>
-<label>Prénom *</label>
-<input id="firstname" autocomplete="given-name" required>
+
+<label>
+Prénom *
+</label>
+
+<input
+  id="firstname"
+  autocomplete="given-name"
+  required>
+
 </div>
 
-<div>
-<label>Nom *</label>
-<input id="lastname" autocomplete="family-name" required>
-</div>
 
 <div>
-<label>Téléphone *</label>
-<input id="phone" type="tel" autocomplete="tel" required>
+
+<label>
+Nom *
+</label>
+
+<input
+  id="lastname"
+  autocomplete="family-name"
+  required>
+
 </div>
 
-<div>
-<label>Adresse e-mail *</label>
-<input id="email" type="email" autocomplete="email" required>
-</div>
 
 <div>
-<label>Pionnier vendeur</label>
+
+<label>
+Téléphone *
+</label>
+
+<input
+  id="phone"
+  type="tel"
+  autocomplete="tel"
+  required>
+
+</div>
+
+
+<div>
+
+<label>
+Adresse e-mail *
+</label>
+
+<input
+  id="email"
+  type="email"
+  autocomplete="email"
+  required>
+
+</div>
+
+
+<div>
+
+<label>
+Pionnier vendeur
+</label>
+
 <input id="seller">
+
 </div>
 
-<div class="full">
-<label>Adresse complète *</label>
-<input id="address" autocomplete="street-address" required>
-</div>
 
 <div class="full">
-<label>Commentaire</label>
+
+<label>
+Adresse complète *
+</label>
+
+<input
+  id="address"
+  autocomplete="street-address"
+  required>
+
+</div>
+
+
+<div class="full">
+
+<label>
+Commentaire
+</label>
+
 <textarea id="comment"></textarea>
+
 </div>
 
 </div>
@@ -810,27 +913,19 @@ Les informations renseignées sont utilisées uniquement par les Pionniers de Ma
 </div>
 
 
-<button id="orderButton" class="order-button" type="submit">
+<button
+  id="orderButton"
+  class="order-button"
+  type="submit">
+
 Valider ma commande
+
 </button>
 
 </form>
 
 
 <div id="payment" class="payment">
-
-<div class="payment-confirmation">
-
-<strong>
-✓ Nous avons bien reçu votre commande
-</strong>
-
-<p>
-Un e-mail récapitulatif vient de vous être envoyé. Votre paiement doit encore être vérifié manuellement. Vous recevrez un second e-mail dès que votre commande sera entièrement confirmée. Cette vérification peut prendre jusqu'à 24 heures.
-</p>
-
-</div>
-
 
 <h3>
 Effectuez votre paiement
@@ -869,23 +964,48 @@ Scannez avec votre application bancaire.
 <div class="bank-box">
 
 <div class="bank-row">
-<span>Bénéficiaire</span>
-<strong>Pionniers de Magnée</strong>
+
+<span>
+Bénéficiaire
+</span>
+
+<strong>
+Pionniers de Magnée
+</strong>
+
 </div>
 
+
 <div class="bank-row">
-<span>IBAN</span>
+
+<span>
+IBAN
+</span>
+
 <strong id="ibanDisplay"></strong>
+
 </div>
 
+
 <div class="bank-row">
-<span>Montant</span>
+
+<span>
+Montant
+</span>
+
 <strong id="paymentAmount"></strong>
+
 </div>
 
+
 <div class="bank-row">
-<span>Communication</span>
+
+<span>
+Communication
+</span>
+
 <strong id="communication"></strong>
+
 </div>
 
 </div>
@@ -894,6 +1014,19 @@ Scannez avec votre application bancaire.
 <p class="warning">
 Indiquez exactement la communication afin que nous puissions identifier votre paiement.
 </p>
+
+
+<div class="payment-confirmation">
+
+<strong>
+✓ Nous avons bien reçu votre commande
+</strong>
+
+<p>
+Un e-mail récapitulatif vient de vous être envoyé. Une fois votre virement effectué, son traitement et sa vérification peuvent prendre un certain temps. Vous recevrez un second e-mail dès que votre paiement aura été vérifié et que votre commande sera entièrement confirmée. Cette vérification peut prendre jusqu'à 24 heures.
+</p>
+
+</div>
 
 </div>
 
@@ -906,8 +1039,13 @@ Indiquez exactement la communication afin que nous puissions identifier votre pa
 
 <div class="footer-logos">
 
-<img src="images/logo-magnee.png" alt="Scouts de Magnée">
-<img src="images/logo-pionniers.png" alt="Pionniers de Magnée">
+<img
+  src="images/logo-magnee.png"
+  alt="Scouts de Magnée">
+
+<img
+  src="images/logo-pionniers.png"
+  alt="Pionniers de Magnée">
 
 </div>
 
@@ -929,11 +1067,14 @@ const CONFIG = {
   googleScriptURL:
   "https://script.google.com/macros/s/AKfycbyfC1iJWBKKj0ezK1Qo70iw2mywUKLMk3misQVvaXKxqvc80Os5p56Wluifp_QBWOym/exec",
 
-  iban:"BE60082938809470",
+  iban:
+  "BE60082938809470",
 
-  ibanAffiche:"BE60 0829 3880 9470",
+  ibanAffiche:
+  "BE60 0829 3880 9470",
 
-  nomCompte:"Pionniers de Magnee"
+  nomCompte:
+  "Pionniers de Magnee"
 
 };
 
@@ -977,6 +1118,8 @@ const quantities =
 let currentOrderReference = null;
 let orderInProgress = false;
 
+
+/* CRÉATION DES PRODUITS */
 
 function createProducts(){
 
@@ -1057,7 +1200,9 @@ function createProducts(){
         ${
           product.badge
           ?
-          `<div class="flavour-badge">${product.badge}</div>`
+          `<div class="flavour-badge">
+            ${product.badge}
+          </div>`
           :
           ""
         }
@@ -1132,32 +1277,41 @@ function createProducts(){
 }
 
 
+/* QUANTITÉS */
+
 function changeQuantity(index,change){
 
   if(orderInProgress){
     return;
   }
 
+
   quantities[index] += change;
+
 
   if(quantities[index] < 0){
     quantities[index] = 0;
   }
+
 
   document
     .getElementById("qty-" + index)
     .textContent =
       quantities[index];
 
+
   updateSummary();
 
 }
 
 
+/* RÉCAPITULATIF */
+
 function updateSummary(){
 
   const container =
     document.getElementById("summaryProducts");
+
 
   let html = "";
   let total = 0;
@@ -1168,9 +1322,11 @@ function updateSummary(){
     const q =
       quantities[index];
 
+
     if(!q){
       return;
     }
+
 
     total += q;
 
@@ -1211,7 +1367,9 @@ function updateSummary(){
     container.textContent =
       "Aucun sachet sélectionné.";
 
-  } else {
+  }
+
+  else{
 
     container.className = "";
 
@@ -1227,6 +1385,8 @@ function updateSummary(){
 
 }
 
+
+/* RÉFÉRENCE */
 
 function generateReference(){
 
@@ -1259,6 +1419,8 @@ function generateReference(){
 }
 
 
+/* CHARGEMENT QR */
+
 function loadScript(url){
 
   return new Promise(function(resolve,reject){
@@ -1266,11 +1428,13 @@ function loadScript(url){
     const script =
       document.createElement("script");
 
+
     script.src = url;
 
     script.onload = resolve;
 
     script.onerror = reject;
+
 
     document.head.appendChild(script);
 
@@ -1292,7 +1456,9 @@ async function ensureQRCodeLibrary(){
       "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
     );
 
-  } catch(error){
+  }
+
+  catch(error){
 
     console.warn(
       "Premier CDN QR indisponible."
@@ -1312,7 +1478,9 @@ async function ensureQRCodeLibrary(){
       "https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"
     );
 
-  } catch(error){
+  }
+
+  catch(error){
 
     console.warn(
       "Second CDN QR indisponible."
@@ -1325,6 +1493,8 @@ async function ensureQRCodeLibrary(){
 
 }
 
+
+/* QR DE PAIEMENT */
 
 async function generatePaymentQR(amount,reference){
 
@@ -1400,12 +1570,15 @@ async function generatePaymentQR(amount,reference){
 
     );
 
-  } catch(error){
+  }
+
+  catch(error){
 
     console.error(
       "Erreur QR",
       error
     );
+
 
     container.innerHTML =
       "QR indisponible.";
@@ -1414,6 +1587,8 @@ async function generatePaymentQR(amount,reference){
 
 }
 
+
+/* ENVOI COMMANDE */
 
 function sendOrder(order){
 
@@ -1443,6 +1618,8 @@ function sendOrder(order){
 
 }
 
+
+/* VALIDATION */
 
 document
   .getElementById("orderForm")
