@@ -47,10 +47,7 @@ textarea{
   font-family:inherit;
 }
 
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
+/* NAVIGATION */
 
 .navbar{
   position:absolute;
@@ -84,34 +81,18 @@ textarea{
   border-radius:50px;
 }
 
-
-/* =====================================================
-   HERO
-===================================================== */
+/* HERO */
 
 .hero{
   min-height:94vh;
-
   background:
-    radial-gradient(
-      circle at 50% 40%,
-      rgba(255,255,255,.06),
-      transparent 40%
-    ),
-    linear-gradient(
-      135deg,
-      #321c16,
-      var(--chocolate-light)
-    );
-
+    radial-gradient(circle at 50% 40%,rgba(255,255,255,.06),transparent 40%),
+    linear-gradient(135deg,#321c16,var(--chocolate-light));
   color:white;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   text-align:center;
-
   padding:130px 20px 70px;
 }
 
@@ -175,10 +156,7 @@ textarea{
   font-weight:750;
 }
 
-
-/* =====================================================
-   TITRES
-===================================================== */
+/* TITRES */
 
 .section-label{
   color:var(--gold);
@@ -195,10 +173,7 @@ textarea{
   color:var(--chocolate);
 }
 
-
-/* =====================================================
-   PROJET
-===================================================== */
+/* PROJET */
 
 .project{
   background:white;
@@ -223,10 +198,7 @@ textarea{
   font-weight:700;
 }
 
-
-/* =====================================================
-   BOUTIQUE
-===================================================== */
+/* BOUTIQUE */
 
 .shop{
   max-width:1200px;
@@ -281,10 +253,7 @@ textarea{
   gap:18px;
 }
 
-
-/* =====================================================
-   PRODUITS
-===================================================== */
+/* PRODUITS */
 
 .product{
   position:relative;
@@ -379,10 +348,7 @@ textarea{
   font-weight:750;
 }
 
-
-/* =====================================================
-   COMMANDE
-===================================================== */
+/* COMMANDE */
 
 .checkout-wrapper{
   background:white;
@@ -432,10 +398,7 @@ textarea{
   font-weight:800;
 }
 
-
-/* =====================================================
-   FORMULAIRE
-===================================================== */
+/* FORMULAIRE */
 
 .form-grid{
   display:grid;
@@ -513,10 +476,7 @@ textarea{
   color:var(--success);
 }
 
-
-/* =====================================================
-   PAIEMENT
-===================================================== */
+/* PAIEMENT */
 
 .payment{
   display:none;
@@ -537,11 +497,6 @@ textarea{
   font-size:1.5rem;
 }
 
-
-/* =====================================================
-   MESSAGE ATTENTE PAIEMENT
-===================================================== */
-
 .payment-status-message{
   margin-top:18px;
   padding:16px 18px;
@@ -558,7 +513,6 @@ textarea{
   margin-bottom:3px;
   color:#5d491c;
 }
-
 
 .order-reference-box{
   margin-top:18px;
@@ -580,10 +534,7 @@ textarea{
   color:var(--chocolate);
 }
 
-
-/* =====================================================
-   QR
-===================================================== */
+/* QR */
 
 .qr-area{
   text-align:center;
@@ -608,10 +559,7 @@ textarea{
   font-size:13px;
 }
 
-
-/* =====================================================
-   SÉPARATEUR OU
-===================================================== */
+/* OU */
 
 .payment-separator{
   display:flex;
@@ -632,14 +580,7 @@ textarea{
   background:var(--border);
 }
 
-.payment-separator span{
-  white-space:nowrap;
-}
-
-
-/* =====================================================
-   INFORMATIONS BANCAIRES
-===================================================== */
+/* BANQUE */
 
 .bank-box{
   background:white;
@@ -669,10 +610,7 @@ textarea{
   font-size:13px;
 }
 
-
-/* =====================================================
-   FOOTER
-===================================================== */
+/* FOOTER */
 
 footer{
   background:var(--chocolate);
@@ -696,11 +634,6 @@ footer{
   border-radius:50%;
   padding:4px;
 }
-
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
 
 @media(max-width:950px){
 
@@ -740,38 +673,19 @@ footer{
 
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
 
 <nav class="navbar">
 
 <a href="#" class="nav-logo">
-
-<img
-  src="images/logo-magnee.png"
-  alt="Scouts de Magnée">
-
+<img src="images/logo-magnee.png" alt="Scouts de Magnée">
 </a>
 
-<a
-  href="#boutique"
-  class="nav-link">
-
+<a href="#boutique" class="nav-link">
 Commander
-
 </a>
 
 </nav>
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
 
 <section class="hero">
 
@@ -792,10 +706,8 @@ une aventure.
 </h1>
 
 <p class="hero-description">
-
 Soutenez le projet de camp des Pionniers de Magnée
 tout en vous faisant plaisir avec nos œufs en chocolat.
-
 </p>
 
 <div class="hero-info">
@@ -814,22 +726,13 @@ tout en vous faisant plaisir avec nos œufs en chocolat.
 
 </div>
 
-<a
-  href="#boutique"
-  class="main-button">
-
+<a href="#boutique" class="main-button">
 Découvrir nos saveurs
-
 </a>
 
 </div>
 
 </section>
-
-
-<!-- =====================================================
-     PROJET
-===================================================== -->
 
 <section class="project">
 
@@ -859,14 +762,7 @@ Merci pour votre soutien.
 
 </section>
 
-
-<!-- =====================================================
-     BOUTIQUE
-===================================================== -->
-
-<section
-  class="shop"
-  id="boutique">
+<section class="shop" id="boutique">
 
 <div class="shop-header">
 
@@ -888,11 +784,6 @@ Blanc, lait ou noir. Découvrez nos 14 saveurs.
 
 </section>
 
-
-<!-- =====================================================
-     COMMANDE
-===================================================== -->
-
 <section class="checkout-wrapper">
 
 <div class="checkout">
@@ -909,36 +800,22 @@ Votre commande
 
 </div>
 
-
 <div class="summary">
 
-<div
-  id="summaryProducts"
-  class="summary-empty">
-
+<div id="summaryProducts" class="summary-empty">
 Aucun sachet sélectionné.
-
 </div>
 
 <div class="total">
-
-<span>
-Total
-</span>
-
-<span id="totalPrice">
-0 €
-</span>
-
+<span>Total</span>
+<span id="totalPrice">0 €</span>
 </div>
 
 </div>
-
 
 <form id="orderForm">
 
 <div class="form-grid">
-
 
 <div>
 
@@ -948,10 +825,10 @@ Prénom *
 
 <input
   id="firstname"
+  autocomplete="given-name"
   required>
 
 </div>
-
 
 <div>
 
@@ -961,10 +838,10 @@ Nom *
 
 <input
   id="lastname"
+  autocomplete="family-name"
   required>
 
 </div>
-
 
 <div>
 
@@ -975,10 +852,24 @@ Téléphone *
 <input
   id="phone"
   type="tel"
+  autocomplete="tel"
   required>
 
 </div>
 
+<div>
+
+<label>
+Adresse e-mail *
+</label>
+
+<input
+  id="email"
+  type="email"
+  autocomplete="email"
+  required>
+
+</div>
 
 <div>
 
@@ -990,7 +881,6 @@ Pionnier vendeur
 
 </div>
 
-
 <div class="full">
 
 <label>
@@ -999,10 +889,10 @@ Adresse complète *
 
 <input
   id="address"
+  autocomplete="street-address"
   required>
 
 </div>
-
 
 <div class="full">
 
@@ -1014,9 +904,7 @@ Commentaire
 
 </div>
 
-
 </div>
-
 
 <div class="privacy-box">
 
@@ -1026,10 +914,10 @@ Protection de vos données
 
 Les informations renseignées sont utilisées uniquement
 par les Pionniers de Magnée afin de gérer votre commande,
-votre paiement et la remise de vos œufs.
+votre paiement, les communications relatives à votre commande
+et la remise de vos œufs.
 
 </div>
-
 
 <button
   id="orderButton"
@@ -1040,7 +928,6 @@ Valider ma commande
 
 </button>
 
-
 <div
   id="formMessage"
   class="form-message">
@@ -1048,27 +935,17 @@ Valider ma commande
 
 </form>
 
-
-<!-- =====================================================
-     PAIEMENT
-===================================================== -->
-
 <div
   id="payment"
   class="payment">
 
-
 <div class="success">
-✓ Commande transmise
+✓ Commande enregistrée
 </div>
-
 
 <h3>
 Finalisez votre paiement
 </h3>
-
-
-<!-- MESSAGE ATTENTE PAIEMENT -->
 
 <div class="payment-status-message">
 
@@ -1080,9 +957,6 @@ Elle sera confirmée dès que nous aurons reçu et vérifié votre paiement.
 
 </div>
 
-
-<!-- RÉFÉRENCE -->
-
 <div class="order-reference-box">
 
 <span>
@@ -1092,9 +966,6 @@ Référence de commande
 <strong id="orderReference"></strong>
 
 </div>
-
-
-<!-- QR CODE -->
 
 <div class="qr-area">
 
@@ -1108,71 +979,33 @@ Scannez avec votre application bancaire.
 
 </div>
 
-
-<!-- SÉPARATEUR -->
-
 <div class="payment-separator">
-
-<span>
-OU
-</span>
-
+<span>OU</span>
 </div>
-
-
-<!-- PAIEMENT MANUEL -->
 
 <div class="bank-box">
 
-
 <div class="bank-row">
-
-<span>
-Bénéficiaire
-</span>
-
-<strong>
-Pionniers de Magnée
-</strong>
-
+<span>Bénéficiaire</span>
+<strong>Pionniers de Magnée</strong>
 </div>
 
-
 <div class="bank-row">
-
-<span>
-IBAN
-</span>
-
+<span>IBAN</span>
 <strong id="ibanDisplay"></strong>
-
 </div>
 
-
 <div class="bank-row">
-
-<span>
-Montant
-</span>
-
+<span>Montant</span>
 <strong id="paymentAmount"></strong>
-
 </div>
-
 
 <div class="bank-row">
-
-<span>
-Communication
-</span>
-
+<span>Communication</span>
 <strong id="communication"></strong>
-
 </div>
 
-
 </div>
-
 
 <p class="warning">
 
@@ -1181,17 +1014,11 @@ puissions identifier votre paiement.
 
 </p>
 
-
 </div>
 
 </div>
 
 </section>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer>
 
@@ -1213,13 +1040,7 @@ Merci pour votre soutien
 
 </footer>
 
-
 <script>
-
-
-/* =====================================================
-   CONFIGURATION
-===================================================== */
 
 const CONFIG = {
 
@@ -1240,11 +1061,6 @@ const CONFIG = {
   "Pionniers de Magnee"
 
 };
-
-
-/* =====================================================
-   PRODUITS
-===================================================== */
 
 const products = [
 
@@ -1268,51 +1084,37 @@ const products = [
 ].map(function(p){
 
   return {
-
     type:p[0],
     nom:p[1],
     image:"images/" + p[2],
     badge:p[3] || ""
-
   };
 
 });
 
-
 const quantities =
   new Array(products.length).fill(0);
 
-
 let currentOrderReference = null;
 let orderInProgress = false;
-
-
-/* =====================================================
-   CRÉATION DES PRODUITS
-===================================================== */
 
 function createProducts(){
 
   const container =
     document.getElementById("products");
 
-
   ["Blanc","Lait","Noir"].forEach(function(type){
-
 
     const section =
       document.createElement("div");
 
-
     section.className =
       "chocolate-category";
-
 
     const typeProducts =
       products.filter(
         p => p.type === type
       );
-
 
     section.innerHTML = `
 
@@ -1345,30 +1147,23 @@ function createProducts(){
 
     `;
 
-
     const grid =
       document.createElement("div");
-
 
     grid.className =
       "category-products";
 
-
     products.forEach(function(product,index){
-
 
       if(product.type !== type){
         return;
       }
 
-
       const card =
         document.createElement("article");
 
-
       card.className =
         "product";
-
 
       card.innerHTML = `
 
@@ -1394,10 +1189,7 @@ function createProducts(){
         <div class="product-content">
 
           <div class="chocolate-type">
-
-            Chocolat
-            ${product.type.toLowerCase()}
-
+            Chocolat ${product.type.toLowerCase()}
           </div>
 
           <h4>
@@ -1405,10 +1197,7 @@ function createProducts(){
           </h4>
 
           <div class="product-description">
-
-            ${CONFIG.nombreOeufs}
-            œufs par sachet
-
+            ${CONFIG.nombreOeufs} œufs par sachet
           </div>
 
           <div class="product-bottom">
@@ -1443,11 +1232,9 @@ function createProducts(){
 
       `;
 
-
       grid.appendChild(card);
 
     });
-
 
     section.appendChild(grid);
 
@@ -1457,70 +1244,45 @@ function createProducts(){
 
 }
 
-
-/* =====================================================
-   QUANTITÉS
-===================================================== */
-
 function changeQuantity(index,change){
-
-  /*
-    Une fois la commande validée,
-    les quantités sont bloquées.
-  */
 
   if(orderInProgress){
     return;
   }
 
-
   quantities[index] += change;
-
 
   if(quantities[index] < 0){
     quantities[index] = 0;
   }
-
 
   document
     .getElementById("qty-" + index)
     .textContent =
       quantities[index];
 
-
   updateSummary();
 
 }
-
-
-/* =====================================================
-   RÉSUMÉ
-===================================================== */
 
 function updateSummary(){
 
   const container =
     document.getElementById("summaryProducts");
 
-
   let html = "";
   let total = 0;
 
-
   products.forEach(function(product,index){
-
 
     const q =
       quantities[index];
-
 
     if(!q){
       return;
     }
 
-
     total += q;
-
 
     html += `
 
@@ -1533,13 +1295,8 @@ function updateSummary(){
           </strong>
 
           <small>
-
-            Chocolat
-            ${product.type.toLowerCase()}
-            •
-            ${q}
-            sachet${q > 1 ? "s" : ""}
-
+            Chocolat ${product.type.toLowerCase()}
+            • ${q} sachet${q > 1 ? "s" : ""}
           </small>
 
         </div>
@@ -1554,7 +1311,6 @@ function updateSummary(){
 
   });
 
-
   if(total === 0){
 
     container.className =
@@ -1563,17 +1319,12 @@ function updateSummary(){
     container.textContent =
       "Aucun sachet sélectionné.";
 
-  }
-
-  else{
+  } else {
 
     container.className = "";
-
-    container.innerHTML =
-      html;
+    container.innerHTML = html;
 
   }
-
 
   document
     .getElementById("totalPrice")
@@ -1582,31 +1333,17 @@ function updateSummary(){
 
 }
 
-
-/* =====================================================
-   RÉFÉRENCE COMMANDE
-===================================================== */
-
 function generateReference(){
 
   const d =
     new Date();
 
-
   const date =
-
     String(d.getFullYear()).slice(-2)
-
     +
-
-    String(d.getMonth() + 1)
-      .padStart(2,"0")
-
+    String(d.getMonth() + 1).padStart(2,"0")
     +
-
-    String(d.getDate())
-      .padStart(2,"0");
-
+    String(d.getDate()).padStart(2,"0");
 
   const random =
     Math.floor(
@@ -1614,7 +1351,6 @@ function generateReference(){
       Math.random() *
       900000
     );
-
 
   return (
     "PIO-" +
@@ -1625,11 +1361,6 @@ function generateReference(){
 
 }
 
-
-/* =====================================================
-   CHARGEMENT BIBLIOTHÈQUE QR
-===================================================== */
-
 function loadScript(url){
 
   return new Promise(function(resolve,reject){
@@ -1638,9 +1369,7 @@ function loadScript(url){
       document.createElement("script");
 
     script.src = url;
-
     script.onload = resolve;
-
     script.onerror = reject;
 
     document.head.appendChild(script);
@@ -1649,13 +1378,11 @@ function loadScript(url){
 
 }
 
-
 async function ensureQRCodeLibrary(){
 
   if(typeof QRCode !== "undefined"){
     return true;
   }
-
 
   try{
 
@@ -1663,9 +1390,7 @@ async function ensureQRCodeLibrary(){
       "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
     );
 
-  }
-
-  catch(error){
+  } catch(error){
 
     console.warn(
       "Premier CDN QR indisponible."
@@ -1673,11 +1398,9 @@ async function ensureQRCodeLibrary(){
 
   }
 
-
   if(typeof QRCode !== "undefined"){
     return true;
   }
-
 
   try{
 
@@ -1685,9 +1408,7 @@ async function ensureQRCodeLibrary(){
       "https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"
     );
 
-  }
-
-  catch(error){
+  } catch(error){
 
     console.warn(
       "Second CDN QR indisponible."
@@ -1695,47 +1416,34 @@ async function ensureQRCodeLibrary(){
 
   }
 
-
   return typeof QRCode !== "undefined";
 
 }
-
-
-/* =====================================================
-   QR DE PAIEMENT
-===================================================== */
 
 async function generatePaymentQR(amount,reference){
 
   const container =
     document.getElementById("qrcode");
 
-
   container.innerHTML =
     "Préparation du QR...";
 
-
   const loaded =
     await ensureQRCodeLibrary();
-
 
   if(!loaded){
 
     container.innerHTML = `
 
-      <div
-        style="
+      <div style="
         max-width:220px;
         font-size:13px;
         color:#817770;
-        ">
+      ">
 
         QR indisponible.
-
         <br>
-
-        Utilisez les coordonnées
-        bancaires ci-dessous.
+        Utilisez les coordonnées bancaires ci-dessous.
 
       </div>
 
@@ -1744,7 +1452,6 @@ async function generatePaymentQR(amount,reference){
     return;
 
   }
-
 
   const payload = [
 
@@ -1762,27 +1469,21 @@ async function generatePaymentQR(amount,reference){
 
   ].join("\n");
 
-
   try{
 
     container.innerHTML = "";
 
-
     new QRCode(
       container,
       {
-
         text:payload,
         width:210,
         height:210,
         correctLevel:QRCode.CorrectLevel.M
-
       }
     );
 
-  }
-
-  catch(error){
+  } catch(error){
 
     console.error(
       "Erreur QR",
@@ -1796,41 +1497,27 @@ async function generatePaymentQR(amount,reference){
 
 }
 
-
-/* =====================================================
-   ENVOI GOOGLE SHEETS
-===================================================== */
-
 function sendOrder(order){
 
   const body =
     new URLSearchParams();
-
 
   body.append(
     "payload",
     JSON.stringify(order)
   );
 
-
   fetch(
     CONFIG.googleScriptURL,
     {
-
       method:"POST",
       mode:"no-cors",
       body:body
-
     }
   )
   .catch(console.error);
 
 }
-
-
-/* =====================================================
-   VALIDATION COMMANDE
-===================================================== */
 
 document
   .getElementById("orderForm")
@@ -1838,21 +1525,17 @@ document
     "submit",
     function(event){
 
-
       event.preventDefault();
-
 
       if(orderInProgress){
         return;
       }
-
 
       const totalSachets =
         quantities.reduce(
           (a,b) => a + b,
           0
         );
-
 
       if(totalSachets === 0){
 
@@ -1864,16 +1547,12 @@ document
 
       }
 
-
       currentOrderReference =
         generateReference();
 
-
       const orderedProducts = [];
 
-
       products.forEach(function(product,index){
-
 
         if(quantities[index] > 0){
 
@@ -1888,7 +1567,6 @@ document
         }
 
       });
-
 
       const order = {
 
@@ -1910,6 +1588,12 @@ document
         telephone:
           document
             .getElementById("phone")
+            .value
+            .trim(),
+
+        email:
+          document
+            .getElementById("email")
             .value
             .trim(),
 
@@ -1936,39 +1620,31 @@ document
 
       };
 
-
       orderInProgress = true;
-
 
       const button =
         document.getElementById("orderButton");
-
 
       button.disabled = true;
 
       button.textContent =
         "Envoi de la commande...";
 
-
       sendOrder(order);
-
 
       const total =
         totalSachets *
         CONFIG.prixSachet;
-
 
       document
         .getElementById("orderReference")
         .textContent =
           currentOrderReference;
 
-
       document
         .getElementById("ibanDisplay")
         .textContent =
           CONFIG.ibanAffiche;
-
 
       document
         .getElementById("paymentAmount")
@@ -1979,50 +1655,39 @@ document
           +
           " €";
 
-
       document
         .getElementById("communication")
         .textContent =
           currentOrderReference;
 
-
       const payment =
         document.getElementById("payment");
-
 
       payment.style.display =
         "block";
 
-
       button.textContent =
-        "Commande transmise";
-
+        "Commande enregistrée";
 
       const formMessage =
         document.getElementById("formMessage");
 
-
       formMessage.className =
         "form-message success-message";
 
-
       formMessage.textContent =
-        "Votre commande a été transmise. Vous pouvez maintenant effectuer le paiement.";
-
+        "Votre commande a été transmise. Un e-mail récapitulatif va vous être envoyé.";
 
       generatePaymentQR(
         total,
         currentOrderReference
       );
 
-
       setTimeout(function(){
 
         payment.scrollIntoView({
-
           behavior:"smooth",
           block:"start"
-
         });
 
       },100);
@@ -2030,13 +1695,7 @@ document
     }
   );
 
-
-/* =====================================================
-   INITIALISATION
-===================================================== */
-
 createProducts();
-
 updateSummary();
 
 </script>
