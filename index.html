@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 
 <meta charset="UTF-8">
@@ -90,6 +91,7 @@ textarea{
 
 .hero{
   min-height:94vh;
+
   background:
     radial-gradient(
       circle at 50% 40%,
@@ -103,10 +105,13 @@ textarea{
     );
 
   color:white;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   text-align:center;
+
   padding:130px 20px 70px;
 }
 
@@ -303,16 +308,6 @@ textarea{
   height:100%;
   object-fit:cover;
   display:block;
-}
-
-.image-placeholder{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#a4968c;
-  font-size:12px;
 }
 
 .flavour-badge{
@@ -562,6 +557,11 @@ textarea{
   color:var(--chocolate);
 }
 
+
+/* =====================================================
+   QR
+===================================================== */
+
 .qr-area{
   text-align:center;
   margin:30px 0;
@@ -584,6 +584,39 @@ textarea{
   color:var(--muted);
   font-size:13px;
 }
+
+
+/* =====================================================
+   SÉPARATEUR OU
+===================================================== */
+
+.payment-separator{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin:28px 0;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+.payment-separator::before,
+.payment-separator::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:var(--border);
+}
+
+.payment-separator span{
+  white-space:nowrap;
+}
+
+
+/* =====================================================
+   INFORMATIONS BANCAIRES
+===================================================== */
 
 .bank-box{
   background:white;
@@ -680,6 +713,7 @@ footer{
 
 </head>
 
+
 <body>
 
 
@@ -690,15 +724,19 @@ footer{
 <nav class="navbar">
 
 <a href="#" class="nav-logo">
+
 <img
   src="images/logo-magnee.png"
   alt="Scouts de Magnée">
+
 </a>
 
 <a
   href="#boutique"
   class="nav-link">
+
 Commander
+
 </a>
 
 </nav>
@@ -727,8 +765,10 @@ une aventure.
 </h1>
 
 <p class="hero-description">
+
 Soutenez le projet de camp des Pionniers de Magnée
 tout en vous faisant plaisir avec nos œufs en chocolat.
+
 </p>
 
 <div class="hero-info">
@@ -750,7 +790,9 @@ tout en vous faisant plaisir avec nos œufs en chocolat.
 <a
   href="#boutique"
   class="main-button">
+
 Découvrir nos saveurs
+
 </a>
 
 </div>
@@ -792,7 +834,7 @@ Merci pour votre soutien.
 
 
 <!-- =====================================================
-     PRODUITS
+     BOUTIQUE
 ===================================================== -->
 
 <section
@@ -810,8 +852,7 @@ Choisissez vos saveurs
 </h2>
 
 <p>
-Blanc, lait ou noir.
-Découvrez nos 14 saveurs.
+Blanc, lait ou noir. Découvrez nos 14 saveurs.
 </p>
 
 </div>
@@ -854,7 +895,9 @@ Aucun sachet sélectionné.
 
 <div class="total">
 
-<span>Total</span>
+<span>
+Total
+</span>
 
 <span id="totalPrice">
 0 €
@@ -868,6 +911,7 @@ Aucun sachet sélectionné.
 <form id="orderForm">
 
 <div class="form-grid">
+
 
 <div>
 
@@ -943,6 +987,7 @@ Commentaire
 
 </div>
 
+
 </div>
 
 
@@ -985,9 +1030,11 @@ Valider ma commande
   id="payment"
   class="payment">
 
+
 <div class="success">
 ✓ Commande transmise
 </div>
+
 
 <h3>
 Finalisez votre paiement
@@ -1005,6 +1052,8 @@ Référence de commande
 </div>
 
 
+<!-- QR CODE -->
+
 <div class="qr-area">
 
 <div id="qrcode">
@@ -1018,7 +1067,21 @@ Scannez avec votre application bancaire.
 </div>
 
 
+<!-- SÉPARATEUR -->
+
+<div class="payment-separator">
+
+<span>
+OU
+</span>
+
+</div>
+
+
+<!-- PAIEMENT MANUEL -->
+
 <div class="bank-box">
+
 
 <div class="bank-row">
 
@@ -1065,13 +1128,17 @@ Communication
 
 </div>
 
+
 </div>
 
 
 <p class="warning">
+
 Indiquez exactement la communication afin que nous
 puissions identifier votre paiement.
+
 </p>
+
 
 </div>
 
@@ -1107,6 +1174,7 @@ Merci pour votre soutien
 
 <script>
 
+
 /* =====================================================
    CONFIGURATION
 ===================================================== */
@@ -1120,7 +1188,8 @@ const CONFIG = {
   googleScriptURL:
   "https://script.google.com/macros/s/AKfycbyfC1iJWBKKj0ezK1Qo70iw2mywUKLMk3misQVvaXKxqvc80Os5p56Wluifp_QBWOym/exec",
 
-  iban:"BE60082938809470",
+  iban:
+  "BE60082938809470",
 
   ibanAffiche:
   "BE60 0829 3880 9470",
@@ -1133,28 +1202,39 @@ const CONFIG = {
 
 /* =====================================================
    PRODUITS
-
-   LAIT NATURE A ÉTÉ SUPPRIMÉ
 ===================================================== */
 
 const products = [
 
-["Blanc","Nature","blanc_plein.png"],
-["Blanc","Praliné","blanc_praline.png"],
-["Blanc","Manon","blanc_manon.png"],
-["Blanc","Pistache","blanc_pistache.png"],
-["Blanc","Croquant","blanc_croquant.png"],
+  ["Blanc","Nature","blanc_plein.png"],
 
-["Lait","Praliné","lait_praline.png"],
-["Lait","Croquant","lait_croquant.png"],
-["Lait","Coco","lait_coco.png"],
-["Lait","Pétillant","lait_petillant_NEW.png","NEW"],
+  ["Blanc","Praliné","blanc_praline.png"],
 
-["Noir","Praliné","noir_praline.png"],
-["Noir","Croquant","noir_praline_croquant_NEW.png","NEW"],
-["Noir","Framboise","noir_framboise.png","RENEW"],
-["Noir","Vanille Stracciatella","noir_vanille_stracciatella.png"],
-["Noir","Pistache","noir_pistache.png"]
+  ["Blanc","Manon","blanc_manon.png"],
+
+  ["Blanc","Pistache","blanc_pistache.png"],
+
+  ["Blanc","Croquant","blanc_croquant.png"],
+
+
+  ["Lait","Praliné","lait_praline.png"],
+
+  ["Lait","Croquant","lait_croquant.png"],
+
+  ["Lait","Coco","lait_coco.png"],
+
+  ["Lait","Pétillant","lait_petillant_NEW.png","NEW"],
+
+
+  ["Noir","Praliné","noir_praline.png"],
+
+  ["Noir","Croquant","noir_praline_croquant_NEW.png","NEW"],
+
+  ["Noir","Framboise","noir_framboise.png","RENEW"],
+
+  ["Noir","Vanille Stracciatella","noir_vanille_stracciatella.png"],
+
+  ["Noir","Pistache","noir_pistache.png"]
 
 ].map(function(p){
 
@@ -1227,17 +1307,23 @@ function createProducts(){
             </div>
 
             <h3>
+
               Chocolat ${
                 type === "Lait"
                 ? "au lait"
                 : type.toLowerCase()
               }
+
             </h3>
 
           </div>
 
+
           <div class="category-count">
-            ${typeProducts.length} saveurs
+
+            ${typeProducts.length}
+            saveur${typeProducts.length > 1 ? "s" : ""}
+
           </div>
 
         </div>
@@ -1262,7 +1348,9 @@ function createProducts(){
           if(
             product.type !== type
           ){
+
             return;
+
           }
 
 
@@ -1288,6 +1376,7 @@ function createProducts(){
               ""
             }
 
+
             <div class="product-image">
 
               <img
@@ -1301,42 +1390,61 @@ function createProducts(){
             <div class="product-content">
 
               <div class="chocolate-type">
-                Chocolat ${product.type.toLowerCase()}
+
+                Chocolat
+                ${product.type.toLowerCase()}
+
               </div>
+
 
               <h4>
                 ${product.nom}
               </h4>
 
+
               <div class="product-description">
-                10 œufs par sachet
+
+                ${CONFIG.nombreOeufs}
+                œufs par sachet
+
               </div>
 
 
               <div class="product-bottom">
 
+
                 <div class="price">
-                  5 €
+
+                  ${CONFIG.prixSachet} €
+
                 </div>
 
 
                 <div class="quantity">
 
+
                   <button
                     type="button"
                     onclick="changeQuantity(${index},-1)">
+
                     −
+
                   </button>
+
 
                   <span id="qty-${index}">
                     0
                   </span>
 
+
                   <button
                     type="button"
                     onclick="changeQuantity(${index},1)">
+
                     +
+
                   </button>
+
 
                 </div>
 
@@ -1378,8 +1486,15 @@ function changeQuantity(
   change
 ){
 
+  /*
+    Après validation d'une commande,
+    les quantités sont volontairement bloquées.
+  */
+
   if(orderInProgress){
+
     return;
+
   }
 
 
@@ -1435,7 +1550,9 @@ function updateSummary(){
 
 
       if(!q){
+
         return;
+
       }
 
 
@@ -1453,15 +1570,21 @@ function updateSummary(){
             </strong>
 
             <small>
-              Chocolat ${product.type.toLowerCase()}
+
+              Chocolat
+              ${product.type.toLowerCase()}
               •
-              ${q} sachet${q > 1 ? "s" : ""}
+              ${q}
+              sachet${q > 1 ? "s" : ""}
+
             </small>
 
           </div>
 
           <strong>
+
             ${q * CONFIG.prixSachet} €
+
           </strong>
 
         </div>
@@ -1472,10 +1595,13 @@ function updateSummary(){
   );
 
 
-  if(total === 0){
+  if(
+    total === 0
+  ){
 
     container.className =
       "summary-empty";
+
 
     container.textContent =
       "Aucun sachet sélectionné.";
@@ -1484,7 +1610,9 @@ function updateSummary(){
 
   else{
 
-    container.className = "";
+    container.className =
+      "";
+
 
     container.innerHTML =
       html;
@@ -1500,7 +1628,8 @@ function updateSummary(){
       (
         total *
         CONFIG.prixSachet
-      ) +
+      )
+      +
       " €";
 
 }
@@ -1526,13 +1655,19 @@ function generateReference(){
 
     String(
       d.getMonth() + 1
-    ).padStart(2,"0")
+    ).padStart(
+      2,
+      "0"
+    )
 
     +
 
     String(
       d.getDate()
-    ).padStart(2,"0");
+    ).padStart(
+      2,
+      "0"
+    );
 
 
   const random =
@@ -1554,13 +1689,14 @@ function generateReference(){
 
 
 /* =====================================================
-   CHARGEMENT QR
+   CHARGEMENT BIBLIOTHÈQUE QR
 ===================================================== */
 
 function loadScript(url){
 
   return new Promise(
     function(resolve,reject){
+
 
       const script =
         document.createElement(
@@ -1690,8 +1826,11 @@ async function generatePaymentQR(
         ">
 
         QR indisponible.
+
         <br>
-        Utilisez les coordonnées bancaires ci-dessous.
+
+        Utilisez les coordonnées
+        bancaires ci-dessous.
 
       </div>
 
@@ -1719,7 +1858,8 @@ async function generatePaymentQR(
     CONFIG.iban,
 
     "EUR" +
-    Number(amount).toFixed(2),
+    Number(amount)
+      .toFixed(2),
 
     "",
 
@@ -1732,6 +1872,7 @@ async function generatePaymentQR(
 
   try{
 
+
     container.innerHTML =
       "";
 
@@ -1740,11 +1881,14 @@ async function generatePaymentQR(
       container,
       {
 
-        text:payload,
+        text:
+          payload,
 
-        width:210,
+        width:
+          210,
 
-        height:210,
+        height:
+          210,
 
         correctLevel:
           QRCode.CorrectLevel.M
@@ -1755,6 +1899,7 @@ async function generatePaymentQR(
   }
 
   catch(error){
+
 
     console.error(
       "Erreur QR",
@@ -1771,7 +1916,7 @@ async function generatePaymentQR(
 
 
 /* =====================================================
-   ENVOI À GOOGLE SHEETS
+   ENVOI GOOGLE SHEETS
 ===================================================== */
 
 function sendOrder(order){
@@ -1782,7 +1927,9 @@ function sendOrder(order){
 
   body.append(
     "payload",
-    JSON.stringify(order)
+    JSON.stringify(
+      order
+    )
   );
 
 
@@ -1790,11 +1937,14 @@ function sendOrder(order){
     CONFIG.googleScriptURL,
     {
 
-      method:"POST",
+      method:
+        "POST",
 
-      mode:"no-cors",
+      mode:
+        "no-cors",
 
-      body:body
+      body:
+        body
 
     }
   )
@@ -1821,8 +1971,12 @@ document
       event.preventDefault();
 
 
-      if(orderInProgress){
+      if(
+        orderInProgress
+      ){
+
         return;
+
       }
 
 
@@ -1883,8 +2037,10 @@ document
 
       const order = {
 
+
         reference:
           currentOrderReference,
+
 
         prenom:
           document
@@ -1894,6 +2050,7 @@ document
             .value
             .trim(),
 
+
         nom:
           document
             .getElementById(
@@ -1901,6 +2058,7 @@ document
             )
             .value
             .trim(),
+
 
         telephone:
           document
@@ -1910,6 +2068,7 @@ document
             .value
             .trim(),
 
+
         adresse:
           document
             .getElementById(
@@ -1917,6 +2076,7 @@ document
             )
             .value
             .trim(),
+
 
         vendeur:
           document
@@ -1926,6 +2086,7 @@ document
             .value
             .trim(),
 
+
         commentaire:
           document
             .getElementById(
@@ -1933,6 +2094,7 @@ document
             )
             .value
             .trim(),
+
 
         produits:
           orderedProducts
@@ -1958,7 +2120,9 @@ document
         "Envoi de la commande...";
 
 
-      sendOrder(order);
+      sendOrder(
+        order
+      );
 
 
       const total =
@@ -1989,7 +2153,10 @@ document
         .textContent =
           total
             .toFixed(2)
-            .replace(".",",")
+            .replace(
+              ".",
+              ","
+            )
           +
           " €";
 
@@ -2040,8 +2207,13 @@ document
         function(){
 
           payment.scrollIntoView({
-            behavior:"smooth",
-            block:"start"
+
+            behavior:
+              "smooth",
+
+            block:
+              "start"
+
           });
 
         },
@@ -2060,7 +2232,9 @@ createProducts();
 
 updateSummary();
 
+
 </script>
 
 </body>
+
 </html>
