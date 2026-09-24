@@ -778,7 +778,7 @@ Soutenez le projet de camp des Pionniers de Magnée tout en vous faisant plaisir
     14 saveurs
   </div>
 
-  <div class="hero-badge">
+  <div class="hero-badge" id="deadlineBadge">
     Commandes jusqu’au 15 mars 2027
   </div>
 
@@ -865,7 +865,7 @@ Blanc, lait ou noir. Découvrez nos 14 saveurs.
     Votre commande
   </h2>
 
-  <p style="color:var(--muted); margin-top:10px;">
+  <p id="checkoutStatusText" style="color:var(--muted); margin-top:10px;">
     Les commandes sont ouvertes jusqu’au
     <strong style="color:var(--chocolate);">15 mars 2027 inclus</strong>.
   </p>
@@ -1462,7 +1462,22 @@ async function sendOrder(order){
     throw new Error("Le serveur n'a pas pu enregistrer la commande.");
   }
 
-  const result = await response.json();
+  const raw = (await response.text()).trim();
+
+  // Le nouveau Code.gs renvoie du JSON. Cette compatibilité accepte aussi
+  // l'ancienne réponse texte "OK" afin de ne pas bloquer l'écran de paiement
+  // si le déploiement Apps Script n'a pas encore été actualisé.
+  if(raw === "OK"){
+    return {ok:true};
+  }
+
+  let result;
+  try{
+    result = JSON.parse(raw);
+  } catch(error){
+    console.error("Réponse Apps Script non reconnue :", raw);
+    throw new Error("La commande a peut-être été enregistrée, mais la confirmation du serveur est illisible. Vérifiez votre e-mail ou contactez les Pionniers avant de recommencer.");
+  }
 
   if(!result.ok){
     throw new Error(result.message || "La commande n'a pas pu être enregistrée.");
