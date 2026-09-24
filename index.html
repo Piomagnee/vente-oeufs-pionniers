@@ -346,6 +346,74 @@ button,input,textarea{
   font-weight:750;
 }
 
+
+/* ÉTAT DE LA VENTE / STOCK */
+
+.sale-status{
+  display:none;
+  max-width:760px;
+  margin:0 auto 45px;
+  padding:22px;
+  border-radius:16px;
+  text-align:center;
+  border:1px solid var(--border);
+  background:white;
+}
+
+.sale-status.waiting{
+  display:block;
+  background:#fff8e8;
+  border-color:#ead8a8;
+}
+
+.sale-status.stock{
+  display:block;
+  background:#edf5ef;
+  border-color:#c9dfcf;
+}
+
+.sale-status strong{
+  display:block;
+  color:var(--chocolate);
+  font-size:1.15rem;
+  margin-bottom:6px;
+}
+
+.stock-info{
+  margin-top:7px;
+  font-size:12px;
+  font-weight:750;
+  color:var(--success);
+}
+
+.stock-info.low{
+  color:#9a671c;
+}
+
+.stock-info.out{
+  color:var(--error);
+}
+
+.product.sold-out{
+  opacity:.68;
+}
+
+.quantity button:disabled{
+  cursor:not-allowed;
+  opacity:.38;
+}
+
+.checkout-closed{
+  display:none;
+  margin-bottom:25px;
+  padding:18px;
+  border-radius:12px;
+  background:#fff8e8;
+  border:1px solid #ead8a8;
+  color:#76591f;
+  text-align:center;
+}
+
 /* COMMANDE */
 
 .checkout-wrapper{
@@ -776,6 +844,8 @@ Blanc, lait ou noir. Découvrez nos 14 saveurs.
 
 </div>
 
+<div id="saleStatus" class="sale-status"></div>
+
 <div id="products"></div>
 
 </section>
@@ -802,6 +872,8 @@ Blanc, lait ou noir. Découvrez nos 14 saveurs.
 
 </div>
 
+
+<div id="checkoutClosed" class="checkout-closed"></div>
 
 <div class="summary">
 
@@ -1074,757 +1146,426 @@ Merci pour votre soutien
 <script>
 
 const CONFIG = {
-
   prixSachet:5,
-
   nombreOeufs:10,
-
-  googleScriptURL:
-  "https://script.google.com/macros/s/AKfycbyfC1iJWBKKj0ezK1Qo70iw2mywUKLMk3misQVvaXKxqvc80Os5p56Wluifp_QBWOym/exec",
-
-  iban:
-  "BE60082938809470",
-
-  ibanAffiche:
-  "BE60 0829 3880 9470",
-
-  nomCompte:
-  "Pionniers de Magnee"
-
+  googleScriptURL:"https://script.google.com/macros/s/AKfycbyfC1iJWBKKj0ezK1Qo70iw2mywUKLMk3misQVvaXKxqvc80Os5p56Wluifp_QBWOym/exec",
+  iban:"BE60082938809470",
+  ibanAffiche:"BE60 0829 3880 9470",
+  nomCompte:"Pionniers de Magnee",
+  stockModeStart:new Date("2027-03-16T00:00:00+01:00")
 };
 
-
 const products = [
-
   ["Blanc","Nature","blanc_plein.png"],
   ["Blanc","Praliné","blanc_praline.png"],
   ["Blanc","Manon","blanc_manon.png"],
   ["Blanc","Pistache","blanc_pistache.png"],
   ["Blanc","Croquant","blanc_croquant.png"],
-
   ["Lait","Praliné","lait_praline.png"],
   ["Lait","Croquant","lait_croquant.png"],
   ["Lait","Coco","lait_coco.png"],
   ["Lait","Pétillant","lait_petillant_NEW.png","NEW"],
-
   ["Noir","Praliné","noir_praline.png"],
   ["Noir","Croquant","noir_praline_croquant_NEW.png","NEW"],
   ["Noir","Framboise","noir_framboise.png","RENEW"],
   ["Noir","Vanille Stracciatella","noir_vanille_stracciatella.png"],
   ["Noir","Pistache","noir_pistache.png"]
-
 ].map(function(p){
-
   return {
-
     type:p[0],
     nom:p[1],
     image:"images/" + p[2],
-    badge:p[3] || ""
-
+    badge:p[3] || "",
+    key:p[0] + " - " + p[1]
   };
-
 });
 
-
-const quantities =
-  new Array(products.length).fill(0);
-
+const quantities = new Array(products.length).fill(0);
 let currentOrderReference = null;
 let orderInProgress = false;
-
-
-/* CRÉATION DES PRODUITS */
+let saleMode = new Date() < CONFIG.stockModeStart ? "PREORDER" : "WAITING";
+let stockByProduct = {};
+let backendAvailable = false;
 
 function createProducts(){
-
-  const container =
-    document.getElementById("products");
-
+  const container = document.getElementById("products");
+  container.innerHTML = "";
 
   ["Blanc","Lait","Noir"].forEach(function(type){
-
-    const section =
-      document.createElement("div");
-
-    section.className =
-      "chocolate-category";
-
-
-    const typeProducts =
-      products.filter(
-        p => p.type === type
-      );
-
+    const section = document.createElement("div");
+    section.className = "chocolate-category";
+    const typeProducts = products.filter(p => p.type === type);
 
     section.innerHTML = `
-
       <div class="category-header">
-
         <div>
-
-          <div class="category-label">
-            Collection
-          </div>
-
-          <h3>
-            Chocolat ${
-              type === "Lait"
-              ? "au lait"
-              : type.toLowerCase()
-            }
-          </h3>
-
+          <div class="category-label">Collection</div>
+          <h3>Chocolat ${type === "Lait" ? "au lait" : type.toLowerCase()}</h3>
         </div>
-
         <div class="category-count">
-
-          ${typeProducts.length}
-          saveur${typeProducts.length > 1 ? "s" : ""}
-
+          ${typeProducts.length} saveur${typeProducts.length > 1 ? "s" : ""}
         </div>
-
       </div>
-
     `;
 
-
-    const grid =
-      document.createElement("div");
-
-    grid.className =
-      "category-products";
-
+    const grid = document.createElement("div");
+    grid.className = "category-products";
 
     products.forEach(function(product,index){
+      if(product.type !== type) return;
 
-      if(product.type !== type){
-        return;
-      }
+      const available = getAvailableStock(product.key);
+      const soldOut = saleMode === "STOCK" && available <= 0;
+      const controlsDisabled = orderInProgress || saleMode === "WAITING" || soldOut;
+      const stockHtml = getStockHtml(product.key);
 
-
-      const card =
-        document.createElement("article");
-
-      card.className =
-        "product";
-
+      const card = document.createElement("article");
+      card.className = "product" + (soldOut ? " sold-out" : "");
 
       card.innerHTML = `
-
-        ${
-          product.badge
-          ?
-          `<div class="flavour-badge">
-            ${product.badge}
-          </div>`
-          :
-          ""
-        }
-
+        ${product.badge ? `<div class="flavour-badge">${product.badge}</div>` : ""}
         <div class="product-image">
-
-          <img
-            src="${product.image}"
-            alt="${product.nom}"
-            onerror="this.style.display='none'">
-
+          <img src="${product.image}" alt="${product.nom}" onerror="this.style.display='none'">
         </div>
-
         <div class="product-content">
-
-          <div class="chocolate-type">
-            Chocolat ${product.type.toLowerCase()}
-          </div>
-
-          <h4>
-            ${product.nom}
-          </h4>
-
-          <div class="product-description">
-            ${CONFIG.nombreOeufs} œufs par sachet
-          </div>
-
+          <div class="chocolate-type">Chocolat ${product.type.toLowerCase()}</div>
+          <h4>${product.nom}</h4>
+          <div class="product-description">${CONFIG.nombreOeufs} œufs par sachet</div>
+          ${stockHtml}
           <div class="product-bottom">
-
-            <div class="price">
-              ${CONFIG.prixSachet} €
-            </div>
-
+            <div class="price">${CONFIG.prixSachet} €</div>
             <div class="quantity">
-
-              <button
-                type="button"
-                onclick="changeQuantity(${index},-1)">
-                −
-              </button>
-
-              <span id="qty-${index}">
-                0
-              </span>
-
-              <button
-                type="button"
-                onclick="changeQuantity(${index},1)">
-                +
-              </button>
-
+              <button type="button" ${controlsDisabled ? "disabled" : ""} onclick="changeQuantity(${index},-1)">−</button>
+              <span id="qty-${index}">${quantities[index]}</span>
+              <button type="button" ${controlsDisabled ? "disabled" : ""} onclick="changeQuantity(${index},1)">+</button>
             </div>
-
           </div>
-
         </div>
-
       `;
 
-
       grid.appendChild(card);
-
     });
 
-
     section.appendChild(grid);
-
     container.appendChild(section);
-
   });
-
 }
 
+function getAvailableStock(key){
+  return Math.max(0, Number(stockByProduct[key]) || 0);
+}
 
-/* QUANTITÉS */
+function getStockHtml(key){
+  if(saleMode !== "STOCK") return "";
+
+  const stock = getAvailableStock(key);
+  if(stock <= 0) return `<div class="stock-info out">Épuisé</div>`;
+  if(stock <= 10) return `<div class="stock-info low">Plus que ${stock} sachet${stock > 1 ? "s" : ""} disponible${stock > 1 ? "s" : ""}</div>`;
+  return `<div class="stock-info">${stock} sachets disponibles</div>`;
+}
 
 function changeQuantity(index,change){
+  if(orderInProgress || saleMode === "WAITING") return;
 
-  if(orderInProgress){
-    return;
+  const next = quantities[index] + change;
+  if(next < 0) return;
+
+  if(saleMode === "STOCK"){
+    const available = getAvailableStock(products[index].key);
+    if(next > available){
+      alert("Il ne reste que " + available + " sachet(s) de cette saveur.");
+      return;
+    }
   }
 
-
-  quantities[index] += change;
-
-
-  if(quantities[index] < 0){
-    quantities[index] = 0;
-  }
-
-
-  document
-    .getElementById("qty-" + index)
-    .textContent =
-      quantities[index];
-
-
+  quantities[index] = next;
+  document.getElementById("qty-" + index).textContent = quantities[index];
   updateSummary();
-
 }
 
-
-/* RÉCAPITULATIF */
-
 function updateSummary(){
-
-  const container =
-    document.getElementById("summaryProducts");
-
-
+  const container = document.getElementById("summaryProducts");
   let html = "";
   let total = 0;
 
-
   products.forEach(function(product,index){
-
-    const q =
-      quantities[index];
-
-
-    if(!q){
-      return;
-    }
-
-
+    const q = quantities[index];
+    if(!q) return;
     total += q;
 
-
     html += `
-
       <div class="summary-line">
-
         <div class="summary-product">
-
-          <strong>
-            ${product.nom}
-          </strong>
-
-          <small>
-            Chocolat ${product.type.toLowerCase()}
-            • ${q} sachet${q > 1 ? "s" : ""}
-          </small>
-
+          <strong>${product.nom}</strong>
+          <small>Chocolat ${product.type.toLowerCase()} • ${q} sachet${q > 1 ? "s" : ""}</small>
         </div>
-
-        <strong>
-          ${q * CONFIG.prixSachet} €
-        </strong>
-
+        <strong>${q * CONFIG.prixSachet} €</strong>
       </div>
-
     `;
-
   });
-
 
   if(total === 0){
-
-    container.className =
-      "summary-empty";
-
-    container.textContent =
-      "Aucun sachet sélectionné.";
-
-  }
-
-  else{
-
+    container.className = "summary-empty";
+    container.textContent = "Aucun sachet sélectionné.";
+  } else {
     container.className = "";
-
     container.innerHTML = html;
-
   }
 
-
-  document
-    .getElementById("totalPrice")
-    .textContent =
-      (total * CONFIG.prixSachet) + " €";
-
+  document.getElementById("totalPrice").textContent = (total * CONFIG.prixSachet) + " €";
 }
-
-
-/* RÉFÉRENCE */
 
 function generateReference(){
-
-  const d =
-    new Date();
-
-
-  const date =
-    String(d.getFullYear()).slice(-2)
-    +
-    String(d.getMonth() + 1).padStart(2,"0")
-    +
+  const d = new Date();
+  const date = String(d.getFullYear()).slice(-2) +
+    String(d.getMonth() + 1).padStart(2,"0") +
     String(d.getDate()).padStart(2,"0");
-
-
-  const random =
-    Math.floor(
-      100000 +
-      Math.random() * 900000
-    );
-
-
-  return (
-    "PIO-" +
-    date +
-    "-" +
-    random
-  );
-
+  const random = Math.floor(100000 + Math.random() * 900000);
+  return "PIO-" + date + "-" + random;
 }
-
-
-/* CHARGEMENT QR */
 
 function loadScript(url){
-
   return new Promise(function(resolve,reject){
-
-    const script =
-      document.createElement("script");
-
-
+    const script = document.createElement("script");
     script.src = url;
-
     script.onload = resolve;
-
     script.onerror = reject;
-
-
     document.head.appendChild(script);
-
   });
-
 }
-
 
 async function ensureQRCodeLibrary(){
-
-  if(typeof QRCode !== "undefined"){
-    return true;
-  }
-
+  if(typeof QRCode !== "undefined") return true;
 
   try{
-
-    await loadScript(
-      "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
-    );
-
+    await loadScript("https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js");
+  } catch(error){
+    console.warn("Premier CDN QR indisponible.");
   }
 
-  catch(error){
-
-    console.warn(
-      "Premier CDN QR indisponible."
-    );
-
-  }
-
-
-  if(typeof QRCode !== "undefined"){
-    return true;
-  }
-
+  if(typeof QRCode !== "undefined") return true;
 
   try{
-
-    await loadScript(
-      "https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"
-    );
-
+    await loadScript("https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js");
+  } catch(error){
+    console.warn("Second CDN QR indisponible.");
   }
-
-  catch(error){
-
-    console.warn(
-      "Second CDN QR indisponible."
-    );
-
-  }
-
 
   return typeof QRCode !== "undefined";
-
 }
-
-
-/* QR DE PAIEMENT */
 
 async function generatePaymentQR(amount,reference){
-
-  const container =
-    document.getElementById("qrcode");
-
-
-  container.innerHTML =
-    "Préparation du QR...";
-
-
-  const loaded =
-    await ensureQRCodeLibrary();
-
+  const container = document.getElementById("qrcode");
+  container.innerHTML = "Préparation du QR...";
+  const loaded = await ensureQRCodeLibrary();
 
   if(!loaded){
-
-    container.innerHTML = `
-
-      <div style="
-        max-width:220px;
-        font-size:13px;
-        color:#817770;
-      ">
-
-        QR indisponible.
-        <br>
-        Utilisez les coordonnées bancaires ci-dessous.
-
-      </div>
-
-    `;
-
+    container.innerHTML = `<div style="max-width:220px;font-size:13px;color:#817770;">QR indisponible.<br>Utilisez les coordonnées bancaires ci-dessous.</div>`;
     return;
-
   }
-
 
   const payload = [
-
-    "BCD",
-    "002",
-    "1",
-    "SCT",
-    "",
-    CONFIG.nomCompte,
-    CONFIG.iban,
-    "EUR" + Number(amount).toFixed(2),
-    "",
-    "",
-    reference
-
+    "BCD","002","1","SCT","",CONFIG.nomCompte,CONFIG.iban,
+    "EUR" + Number(amount).toFixed(2),"","",reference
   ].join("\n");
 
+  try{
+    container.innerHTML = "";
+    new QRCode(container,{
+      text:payload,
+      width:210,
+      height:210,
+      correctLevel:QRCode.CorrectLevel.M
+    });
+  } catch(error){
+    console.error("Erreur QR",error);
+    container.innerHTML = "QR indisponible.";
+  }
+}
+
+async function loadSaleState(){
+  try{
+    const response = await fetch(CONFIG.googleScriptURL + "?action=stock&t=" + Date.now(), {
+      method:"GET",
+      cache:"no-store"
+    });
+
+    if(!response.ok) throw new Error("Réponse serveur indisponible.");
+    const result = await response.json();
+    if(!result.ok) throw new Error(result.message || "État de la vente indisponible.");
+
+    backendAvailable = true;
+    saleMode = result.mode;
+    stockByProduct = result.stock || {};
+  } catch(error){
+    console.warn("Impossible de charger l'état de la vente :",error);
+    backendAvailable = false;
+
+    // Avant la date limite, le site peut continuer en mode précommande.
+    // Après la date limite, on bloque par sécurité tant que le serveur n'est pas joignable.
+    saleMode = new Date() < CONFIG.stockModeStart ? "PREORDER" : "WAITING";
+    stockByProduct = {};
+  }
+
+  applySaleMode();
+  createProducts();
+  updateSummary();
+}
+
+function applySaleMode(){
+  const banner = document.getElementById("saleStatus");
+  const badge = document.getElementById("deadlineBadge");
+  const checkoutText = document.getElementById("checkoutStatusText");
+  const closed = document.getElementById("checkoutClosed");
+  const form = document.getElementById("orderForm");
+
+  banner.className = "sale-status";
+  banner.innerHTML = "";
+  closed.style.display = "none";
+  form.style.display = "block";
+
+  if(saleMode === "PREORDER"){
+    badge.textContent = "Commandes jusqu’au 15 mars 2027";
+    checkoutText.innerHTML = `Les commandes sont ouvertes jusqu’au <strong style="color:var(--chocolate);">15 mars 2027 inclus</strong>.`;
+    return;
+  }
+
+  if(saleMode === "STOCK"){
+    badge.textContent = "Précommandes terminées • stock restant";
+    banner.classList.add("stock");
+    banner.innerHTML = `<strong>Les précommandes sont terminées</strong>Merci à toutes les personnes qui ont participé à notre vente ! Il nous reste encore quelques sachets disponibles. Vous pouvez continuer à commander parmi les saveurs ci-dessous, dans la limite des stocks disponibles.`;
+    checkoutText.innerHTML = `Les précommandes sont terminées. Vous commandez maintenant uniquement parmi le <strong style="color:var(--chocolate);">stock restant disponible</strong>.`;
+    return;
+  }
+
+  badge.textContent = "Précommandes terminées";
+  banner.classList.add("waiting");
+  banner.innerHTML = `<strong>Les précommandes sont terminées</strong>Merci pour votre soutien ! Nous préparons actuellement le stock restant. Les éventuels sachets disponibles seront remis en vente ici prochainement.`;
+  checkoutText.textContent = "Les précommandes sont terminées. Le stock restant n'est pas encore ouvert à la vente.";
+  closed.style.display = "block";
+  closed.textContent = backendAvailable
+    ? "Les commandes sont momentanément fermées pendant la préparation du stock restant."
+    : "Les commandes sont actuellement fermées. Réessayez un peu plus tard.";
+  form.style.display = "none";
+}
+
+async function sendOrder(order){
+  const body = new URLSearchParams();
+  body.append("payload",JSON.stringify(order));
+
+  const response = await fetch(CONFIG.googleScriptURL,{
+    method:"POST",
+    body:body
+  });
+
+  if(!response.ok){
+    throw new Error("Le serveur n'a pas pu enregistrer la commande.");
+  }
+
+  const result = await response.json();
+
+  if(!result.ok){
+    throw new Error(result.message || "La commande n'a pas pu être enregistrée.");
+  }
+
+  return result;
+}
+
+document.getElementById("orderForm").addEventListener("submit", async function(event){
+  event.preventDefault();
+
+  if(orderInProgress || saleMode === "WAITING") return;
+
+  const totalSachets = quantities.reduce((a,b) => a + b,0);
+
+  if(totalSachets === 0){
+    alert("Veuillez sélectionner au moins un sachet.");
+    return;
+  }
+
+  if(saleMode === "STOCK"){
+    for(let i = 0; i < products.length; i++){
+      if(quantities[i] > getAvailableStock(products[i].key)){
+        alert("Le stock d'une des saveurs sélectionnées a changé. La page va être actualisée.");
+        await loadSaleState();
+        return;
+      }
+    }
+  }
+
+  currentOrderReference = generateReference();
+  const orderedProducts = [];
+
+  products.forEach(function(product,index){
+    if(quantities[index] > 0){
+      orderedProducts.push({
+        type:product.type,
+        nom:product.nom,
+        quantite:quantities[index]
+      });
+    }
+  });
+
+  const order = {
+    reference:currentOrderReference,
+    prenom:document.getElementById("firstname").value.trim(),
+    nom:document.getElementById("lastname").value.trim(),
+    telephone:document.getElementById("phone").value.trim(),
+    email:document.getElementById("email").value.trim(),
+    adresse:document.getElementById("address").value.trim(),
+    vendeur:document.getElementById("seller").value.trim(),
+    commentaire:document.getElementById("comment").value.trim(),
+    produits:orderedProducts
+  };
+
+  const button = document.getElementById("orderButton");
+  button.disabled = true;
+  button.textContent = "Enregistrement...";
 
   try{
+    const result = await sendOrder(order);
+    orderInProgress = true;
+    button.textContent = "Commande enregistrée";
 
-    container.innerHTML = "";
+    if(result.stock){
+      stockByProduct = result.stock;
+    }
 
+    const total = totalSachets * CONFIG.prixSachet;
+    document.getElementById("orderReference").textContent = currentOrderReference;
+    document.getElementById("ibanDisplay").textContent = CONFIG.ibanAffiche;
+    document.getElementById("paymentAmount").textContent = total.toFixed(2).replace(".",",") + " €";
+    document.getElementById("communication").textContent = currentOrderReference;
 
-    new QRCode(
+    const payment = document.getElementById("payment");
+    payment.style.display = "block";
+    generatePaymentQR(total,currentOrderReference);
 
-      container,
+    createProducts();
 
-      {
-
-        text:payload,
-        width:210,
-        height:210,
-        correctLevel:QRCode.CorrectLevel.M
-
-      }
-
-    );
-
+    setTimeout(function(){
+      payment.scrollIntoView({behavior:"smooth",block:"start"});
+    },100);
   }
-
   catch(error){
+    console.error(error);
+    button.disabled = false;
+    button.textContent = "Valider ma commande";
 
-    console.error(
-      "Erreur QR",
-      error
+    alert(
+      error.message +
+      (saleMode === "STOCK" ? "\n\nLe stock va être actualisé." : "")
     );
 
-
-    container.innerHTML =
-      "QR indisponible.";
-
+    if(saleMode === "STOCK"){
+      await loadSaleState();
+    }
   }
-
-}
-
-
-/* ENVOI COMMANDE */
-
-function sendOrder(order){
-
-  const body =
-    new URLSearchParams();
-
-
-  body.append(
-    "payload",
-    JSON.stringify(order)
-  );
-
-
-  fetch(
-
-    CONFIG.googleScriptURL,
-
-    {
-
-      method:"POST",
-      mode:"no-cors",
-      body:body
-
-    }
-
-  ).catch(console.error);
-
-}
-
-
-/* VALIDATION */
-
-document
-  .getElementById("orderForm")
-  .addEventListener(
-    "submit",
-    function(event){
-
-      event.preventDefault();
-
-
-      if(orderInProgress){
-        return;
-      }
-
-
-      const totalSachets =
-        quantities.reduce(
-          (a,b) => a + b,
-          0
-        );
-
-
-      if(totalSachets === 0){
-
-        alert(
-          "Veuillez sélectionner au moins un sachet."
-        );
-
-        return;
-
-      }
-
-
-      currentOrderReference =
-        generateReference();
-
-
-      const orderedProducts = [];
-
-
-      products.forEach(function(product,index){
-
-        if(quantities[index] > 0){
-
-          orderedProducts.push({
-
-            type:product.type,
-            nom:product.nom,
-            quantite:quantities[index]
-
-          });
-
-        }
-
-      });
-
-
-      const order = {
-
-        reference:
-          currentOrderReference,
-
-        prenom:
-          document
-            .getElementById("firstname")
-            .value
-            .trim(),
-
-        nom:
-          document
-            .getElementById("lastname")
-            .value
-            .trim(),
-
-        telephone:
-          document
-            .getElementById("phone")
-            .value
-            .trim(),
-
-        email:
-          document
-            .getElementById("email")
-            .value
-            .trim(),
-
-        adresse:
-          document
-            .getElementById("address")
-            .value
-            .trim(),
-
-        vendeur:
-          document
-            .getElementById("seller")
-            .value
-            .trim(),
-
-        commentaire:
-          document
-            .getElementById("comment")
-            .value
-            .trim(),
-
-        produits:
-          orderedProducts
-
-      };
-
-
-      orderInProgress = true;
-
-
-      const button =
-        document.getElementById("orderButton");
-
-
-      button.disabled = true;
-
-      button.textContent =
-        "Commande enregistrée";
-
-
-      sendOrder(order);
-
-
-      const total =
-        totalSachets *
-        CONFIG.prixSachet;
-
-
-      document
-        .getElementById("orderReference")
-        .textContent =
-          currentOrderReference;
-
-
-      document
-        .getElementById("ibanDisplay")
-        .textContent =
-          CONFIG.ibanAffiche;
-
-
-      document
-        .getElementById("paymentAmount")
-        .textContent =
-          total
-            .toFixed(2)
-            .replace(".",",")
-          +
-          " €";
-
-
-      document
-        .getElementById("communication")
-        .textContent =
-          currentOrderReference;
-
-
-      const payment =
-        document.getElementById("payment");
-
-
-      payment.style.display =
-        "block";
-
-
-      generatePaymentQR(
-        total,
-        currentOrderReference
-      );
-
-
-      setTimeout(function(){
-
-        payment.scrollIntoView({
-
-          behavior:"smooth",
-          block:"start"
-
-        });
-
-      },100);
-
-    }
-  );
-
+});
 
 createProducts();
 updateSummary();
+loadSaleState();
 
 </script>
 
