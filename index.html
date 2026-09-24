@@ -1191,8 +1191,9 @@ let orderInProgress = false;
 let saleMode = new Date() < CONFIG.stockModeStart ? "PREORDER" : "WAITING";
 let stockByProduct = {};
 let backendAvailable = false;
-let stockStateLoading = true;
-let saleStateReady = false;
+const isAfterStockDeadline = new Date() >= CONFIG.stockModeStart;
+let stockStateLoading = isAfterStockDeadline;
+let saleStateReady = !isAfterStockDeadline;
 
 const STOCK_CACHE_KEY = "pionniers-magnee-stock-state-v1";
 const STOCK_CACHE_MAX_AGE = 30 * 60 * 1000;
@@ -1251,10 +1252,10 @@ function createProducts(){
 
       const available = getAvailableStock(product.key);
       const soldOut = saleMode === "STOCK" && available <= 0;
+      const afterDeadline = new Date() >= CONFIG.stockModeStart;
       const controlsDisabled =
         orderInProgress ||
-        !saleStateReady ||
-        stockStateLoading ||
+        (afterDeadline && (!saleStateReady || stockStateLoading)) ||
         saleMode === "WAITING" ||
         soldOut;
       const stockHtml = getStockHtml(product.key);
@@ -1296,7 +1297,9 @@ function getAvailableStock(key){
 }
 
 function getStockHtml(key){
-  if(!saleStateReady || stockStateLoading){
+  const afterDeadline = new Date() >= CONFIG.stockModeStart;
+
+  if(afterDeadline && (!saleStateReady || stockStateLoading)){
     return `<div class="stock-info loading">Vérification du stock…</div>`;
   }
 
@@ -1309,10 +1312,11 @@ function getStockHtml(key){
 }
 
 function changeQuantity(index,change){
+  const afterDeadline = new Date() >= CONFIG.stockModeStart;
+
   if(
     orderInProgress ||
-    !saleStateReady ||
-    stockStateLoading ||
+    (afterDeadline && (!saleStateReady || stockStateLoading)) ||
     saleMode === "WAITING"
   ){
     return;
@@ -1481,9 +1485,16 @@ async function loadSaleState(){
     stockStateLoading = false;
     saleStateReady = false;
 
-    // Sécurité : si le serveur ne confirme pas l'état de la vente,
-    // aucune quantité ne peut être ajoutée.
-    saleMode = "WAITING";
+    // Avant la date limite, les précommandes restent immédiatement utilisables.
+    // Après la date limite, on ferme par sécurité si le serveur ne répond pas.
+    if(afterDeadline){
+      saleMode = "WAITING";
+      saleStateReady = false;
+    } else {
+      saleMode = "PREORDER";
+      saleStateReady = true;
+    }
+
     stockByProduct = {};
   }
 
