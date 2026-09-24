@@ -394,6 +394,11 @@ button,input,textarea{
   color:var(--error);
 }
 
+.stock-info.loading{
+  color:var(--muted);
+  font-weight:650;
+}
+
 .product.sold-out{
   opacity:.68;
 }
@@ -1186,6 +1191,35 @@ let orderInProgress = false;
 let saleMode = new Date() < CONFIG.stockModeStart ? "PREORDER" : "WAITING";
 let stockByProduct = {};
 let backendAvailable = false;
+let stockStateLoading = false;
+
+const STOCK_CACHE_KEY = "pionniers-magnee-stock-state-v1";
+const STOCK_CACHE_MAX_AGE = 30 * 60 * 1000;
+
+function readCachedSaleState(){
+  try{
+    const raw = localStorage.getItem(STOCK_CACHE_KEY);
+    if(!raw) return null;
+
+    const cached = JSON.parse(raw);
+    if(!cached || !cached.savedAt || !cached.mode) return null;
+    if(Date.now() - Number(cached.savedAt) > STOCK_CACHE_MAX_AGE) return null;
+
+    return cached;
+  } catch(error){
+    return null;
+  }
+}
+
+function saveCachedSaleState(){
+  try{
+    localStorage.setItem(STOCK_CACHE_KEY, JSON.stringify({
+      savedAt:Date.now(),
+      mode:saleMode,
+      stock:stockByProduct
+    }));
+  } catch(error){}
+}
 
 function createProducts(){
   const container = document.getElementById("products");
@@ -1257,6 +1291,10 @@ function getAvailableStock(key){
 
 function getStockHtml(key){
   if(saleMode !== "STOCK") return "";
+
+  if(stockStateLoading && !(key in stockByProduct)){
+    return `<div class="stock-info loading">Vérification du stock…</div>`;
+  }
 
   const stock = getAvailableStock(key);
   if(stock <= 0) return `<div class="stock-info out">Épuisé</div>`;
@@ -1384,6 +1422,28 @@ async function generatePaymentQR(amount,reference){
 }
 
 async function loadSaleState(){
+  const afterDeadline = new Date() >= CONFIG.stockModeStart;
+  const cached = readCachedSaleState();
+
+  // Affichage immédiat du dernier état connu après la fin des précommandes.
+  if(afterDeadline && cached){
+    saleMode = cached.mode;
+    stockByProduct = cached.stock || {};
+    backendAvailable = true;
+    stockStateLoading = true;
+    applySaleMode();
+    createProducts();
+    updateSummary();
+  } else if(afterDeadline){
+    // Aucun cache : on affiche immédiatement un état de chargement sécurisé.
+    saleMode = "STOCK";
+    stockByProduct = {};
+    stockStateLoading = true;
+    applySaleMode();
+    createProducts();
+    updateSummary();
+  }
+
   try{
     const response = await fetch(CONFIG.googleScriptURL + "?action=stock&t=" + Date.now(), {
       method:"GET",
@@ -1397,14 +1457,23 @@ async function loadSaleState(){
     backendAvailable = true;
     saleMode = result.mode;
     stockByProduct = result.stock || {};
+    stockStateLoading = false;
+    saveCachedSaleState();
   } catch(error){
     console.warn("Impossible de charger l'état de la vente :",error);
     backendAvailable = false;
+    stockStateLoading = false;
 
-    // Avant la date limite, le site peut continuer en mode précommande.
-    // Après la date limite, on bloque par sécurité tant que le serveur n'est pas joignable.
-    saleMode = new Date() < CONFIG.stockModeStart ? "PREORDER" : "WAITING";
-    stockByProduct = {};
+    // Si un cache existe, on le garde à l'écran, mais la validation serveur
+    // reste obligatoire au moment d'enregistrer une commande.
+    if(afterDeadline && cached){
+      saleMode = cached.mode;
+      stockByProduct = cached.stock || {};
+    } else {
+      // Avant la date limite : précommande. Après : fermeture de sécurité.
+      saleMode = afterDeadline ? "WAITING" : "PREORDER";
+      stockByProduct = {};
+    }
   }
 
   applySaleMode();
@@ -1544,6 +1613,7 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
 
     if(result.stock){
       stockByProduct = result.stock;
+      saveCachedSaleState();
     }
 
     const total = totalSachets * CONFIG.prixSachet;
