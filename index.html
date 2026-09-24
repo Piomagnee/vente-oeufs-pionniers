@@ -1191,7 +1191,8 @@ let orderInProgress = false;
 let saleMode = new Date() < CONFIG.stockModeStart ? "PREORDER" : "WAITING";
 let stockByProduct = {};
 let backendAvailable = false;
-let stockStateLoading = false;
+let stockStateLoading = true;
+let saleStateReady = false;
 
 const STOCK_CACHE_KEY = "pionniers-magnee-stock-state-v1";
 const STOCK_CACHE_MAX_AGE = 30 * 60 * 1000;
@@ -1250,7 +1251,12 @@ function createProducts(){
 
       const available = getAvailableStock(product.key);
       const soldOut = saleMode === "STOCK" && available <= 0;
-      const controlsDisabled = orderInProgress || saleMode === "WAITING" || soldOut;
+      const controlsDisabled =
+        orderInProgress ||
+        !saleStateReady ||
+        stockStateLoading ||
+        saleMode === "WAITING" ||
+        soldOut;
       const stockHtml = getStockHtml(product.key);
 
       const card = document.createElement("article");
@@ -1290,11 +1296,11 @@ function getAvailableStock(key){
 }
 
 function getStockHtml(key){
-  if(saleMode !== "STOCK") return "";
-
-  if(stockStateLoading && !(key in stockByProduct)){
+  if(!saleStateReady || stockStateLoading){
     return `<div class="stock-info loading">Vérification du stock…</div>`;
   }
+
+  if(saleMode !== "STOCK") return "";
 
   const stock = getAvailableStock(key);
   if(stock <= 0) return `<div class="stock-info out">Épuisé</div>`;
@@ -1303,7 +1309,14 @@ function getStockHtml(key){
 }
 
 function changeQuantity(index,change){
-  if(orderInProgress || saleMode === "WAITING") return;
+  if(
+    orderInProgress ||
+    !saleStateReady ||
+    stockStateLoading ||
+    saleMode === "WAITING"
+  ){
+    return;
+  }
 
   const next = quantities[index] + change;
   if(next < 0) return;
@@ -1430,6 +1443,7 @@ async function loadSaleState(){
     saleMode = cached.mode;
     stockByProduct = cached.stock || {};
     backendAvailable = true;
+    saleStateReady = false;
     stockStateLoading = true;
     applySaleMode();
     createProducts();
@@ -1438,6 +1452,7 @@ async function loadSaleState(){
     // Aucun cache : on affiche immédiatement un état de chargement sécurisé.
     saleMode = "STOCK";
     stockByProduct = {};
+    saleStateReady = false;
     stockStateLoading = true;
     applySaleMode();
     createProducts();
@@ -1458,22 +1473,18 @@ async function loadSaleState(){
     saleMode = result.mode;
     stockByProduct = result.stock || {};
     stockStateLoading = false;
+    saleStateReady = true;
     saveCachedSaleState();
   } catch(error){
     console.warn("Impossible de charger l'état de la vente :",error);
     backendAvailable = false;
     stockStateLoading = false;
+    saleStateReady = false;
 
-    // Si un cache existe, on le garde à l'écran, mais la validation serveur
-    // reste obligatoire au moment d'enregistrer une commande.
-    if(afterDeadline && cached){
-      saleMode = cached.mode;
-      stockByProduct = cached.stock || {};
-    } else {
-      // Avant la date limite : précommande. Après : fermeture de sécurité.
-      saleMode = afterDeadline ? "WAITING" : "PREORDER";
-      stockByProduct = {};
-    }
+    // Sécurité : si le serveur ne confirme pas l'état de la vente,
+    // aucune quantité ne peut être ajoutée.
+    saleMode = "WAITING";
+    stockByProduct = {};
   }
 
   applySaleMode();
