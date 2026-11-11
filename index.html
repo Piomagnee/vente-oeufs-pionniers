@@ -1706,10 +1706,11 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
     email:document.getElementById("email").value.trim(),
     adresse:document.getElementById("address").value.trim(),
     vendeur:document.getElementById("seller").value.trim(),
-    "Mode de réception : " +
+    commentaire:
+      "Mode de réception : " +
       document.getElementById("deliveryMethod").value +
       "\n" +
-       document.getElementById("comment").value.trim(),
+      document.getElementById("comment").value.trim(),
     produits:orderedProducts
   };
 
