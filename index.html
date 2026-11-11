@@ -1193,7 +1193,7 @@ let stockByProduct = {};
 let backendAvailable = false;
 const isAfterStockDeadline = new Date() >= CONFIG.stockModeStart;
 let stockStateLoading = isAfterStockDeadline;
-let saleStateReady = !isAfterStockDeadline;
+let saleStateReady = false;
 
 const STOCK_CACHE_KEY = "pionniers-magnee-stock-state-v1";
 const STOCK_CACHE_MAX_AGE = 30 * 60 * 1000;
@@ -1438,69 +1438,59 @@ async function generatePaymentQR(amount,reference){
   }
 }
 
+// Lecture JSONP : Apps Script ne fournit pas systématiquement les en-têtes CORS.
+function getBackendData(params){
+  return new Promise(function(resolve,reject){
+    const callback = "pioCb" + Math.random().toString(36).slice(2);
+    const script = document.createElement("script");
+    const timeout = setTimeout(function(){ finish(new Error("Délai serveur dépassé.")); },12000);
+    let done = false;
+    function finish(error,data){
+      if(done) return;
+      done = true;
+      clearTimeout(timeout);
+      delete window[callback];
+      script.remove();
+      if(error) reject(error); else resolve(data);
+    }
+    window[callback] = function(data){ finish(null,data); };
+    script.onerror = function(){ finish(new Error("Connexion serveur impossible.")); };
+    const query = new URLSearchParams({...params,callback:callback,t:String(Date.now())});
+    script.src = CONFIG.googleScriptURL + "?" + query.toString();
+    document.head.appendChild(script);
+  });
+}
+
 async function loadSaleState(){
   const afterDeadline = new Date() >= CONFIG.stockModeStart;
-  const cached = readCachedSaleState();
-
-  // Affichage immédiat du dernier état connu après la fin des précommandes.
-  if(afterDeadline && cached){
-    saleMode = cached.mode;
-    stockByProduct = cached.stock || {};
-    backendAvailable = true;
+  stockStateLoading = true;
+  if(afterDeadline){
     saleStateReady = false;
-    stockStateLoading = true;
+    saleMode = "WAITING";
     applySaleMode();
     createProducts();
-    updateSummary();
-  } else if(afterDeadline){
-    // Aucun cache : on affiche immédiatement un état de chargement sécurisé.
-    saleMode = "STOCK";
-    stockByProduct = {};
-    saleStateReady = false;
-    stockStateLoading = true;
-    applySaleMode();
-    createProducts();
-    updateSummary();
   }
-
   try{
-    const response = await fetch(CONFIG.googleScriptURL + "?action=stock&t=" + Date.now(), {
-      method:"GET",
-      cache:"no-store"
-    });
-
-    if(!response.ok) throw new Error("Réponse serveur indisponible.");
-    const result = await response.json();
-    if(!result.ok) throw new Error(result.message || "État de la vente indisponible.");
-
+    const result = await getBackendData({action:"stock"});
+    if(!result || !result.ok) throw new Error(result?.message || "État de vente indisponible.");
+    if(!["PREORDER","WAITING","STOCK"].includes(result.mode)) throw new Error("Mode inconnu.");
     backendAvailable = true;
     saleMode = result.mode;
     stockByProduct = result.stock || {};
-    stockStateLoading = false;
     saleStateReady = true;
     saveCachedSaleState();
   } catch(error){
-    console.warn("Impossible de charger l'état de la vente :",error);
+    console.warn("État de vente indisponible :",error);
     backendAvailable = false;
-    stockStateLoading = false;
     saleStateReady = false;
-
-    // Avant la date limite, les précommandes restent immédiatement utilisables.
-    // Après la date limite, on ferme par sécurité si le serveur ne répond pas.
-    if(afterDeadline){
-      saleMode = "WAITING";
-      saleStateReady = false;
-    } else {
-      saleMode = "PREORDER";
-      saleStateReady = true;
-    }
-
+    saleMode = "WAITING"; // Fermeture sécurisée, même avant l'échéance.
     stockByProduct = {};
+  } finally {
+    stockStateLoading = false;
+    applySaleMode();
+    createProducts();
+    updateSummary();
   }
-
-  applySaleMode();
-  createProducts();
-  updateSummary();
 }
 
 function applySaleMode(){
@@ -1544,43 +1534,38 @@ async function sendOrder(order){
   const body = new URLSearchParams();
   body.append("payload",JSON.stringify(order));
 
-  const response = await fetch(CONFIG.googleScriptURL,{
-    method:"POST",
-    body:body
-  });
-
-  if(!response.ok){
-    throw new Error("Le serveur n'a pas pu enregistrer la commande.");
+  // Envoi opaque : on NE considère JAMAIS ce fetch comme une confirmation.
+  try {
+    await fetch(CONFIG.googleScriptURL,{method:"POST",mode:"no-cors",body:body});
+  } catch(error) {
+    console.warn("Envoi incertain :",error);
   }
 
-  const raw = (await response.text()).trim();
-
-  // Le nouveau Code.gs renvoie du JSON. Cette compatibilité accepte aussi
-  // l'ancienne réponse texte "OK" afin de ne pas bloquer l'écran de paiement
-  // si le déploiement Apps Script n'a pas encore été actualisé.
-  if(raw === "OK"){
-    return {ok:true};
+  // Confirmation indépendante par recherche de la référence dans Google Sheets.
+  // Ne jamais renvoyer automatiquement le POST (risque de doublon).
+  for(let attempt = 0; attempt < 8; attempt++){
+    await new Promise(resolve => setTimeout(resolve,1500 + attempt * 400));
+    try {
+      const status = await getBackendData({action:"orderStatus",reference:order.reference});
+      if(status && status.ok && status.found) return {ok:true};
+    } catch(error){ console.warn("Vérification différée :",error); }
   }
-
-  let result;
-  try{
-    result = JSON.parse(raw);
-  } catch(error){
-    console.error("Réponse Apps Script non reconnue :", raw);
-    throw new Error("La commande a peut-être été enregistrée, mais la confirmation du serveur est illisible. Vérifiez votre e-mail ou contactez les Pionniers avant de recommencer.");
-  }
-
-  if(!result.ok){
-    throw new Error(result.message || "La commande n'a pas pu être enregistrée.");
-  }
-
-  return result;
+  const err = new Error("Impossible de confirmer l'enregistrement. Ne repassez pas commande : vérifiez votre e-mail ou contactez les Pionniers avec la référence " + order.reference + ".");
+  err.uncertain = true;
+  throw err;
 }
 
 document.getElementById("orderForm").addEventListener("submit", async function(event){
   event.preventDefault();
 
-  if(orderInProgress || saleMode === "WAITING") return;
+  if(orderInProgress || !saleStateReady || saleMode === "WAITING") {
+    alert("Vérification de la vente en cours ou commandes fermées. Réessayez plus tard.");
+    return;
+  }
+  if(new Date() >= CONFIG.stockModeStart && saleMode === "PREORDER") {
+    await loadSaleState();
+    return;
+  }
 
   const totalSachets = quantities.reduce((a,b) => a + b,0);
 
@@ -1656,8 +1641,14 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
   }
   catch(error){
     console.error(error);
-    button.disabled = false;
-    button.textContent = "Valider ma commande";
+    if(error.uncertain){
+      orderInProgress = true;
+      button.disabled = true;
+      button.textContent = "Commande à vérifier";
+    } else {
+      button.disabled = false;
+      button.textContent = "Valider ma commande";
+    }
 
     alert(
       error.message +
@@ -1670,6 +1661,8 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
   }
 });
 
+saleMode = "WAITING";
+applySaleMode();
 createProducts();
 updateSummary();
 loadSaleState();
