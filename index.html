@@ -530,7 +530,7 @@ label{
   font-weight:700;
 }
 
-input,textarea{
+input,textarea,select{
   width:100%;
   border:1px solid var(--border);
   border-radius:10px;
@@ -1045,6 +1045,19 @@ Pionnier vendeur
 
 </div>
 
+<div class="full">
+
+  <label for="deliveryMethod">
+    Mode de réception des chocolats *
+  </label>
+
+  <select id="deliveryMethod" required>
+    <option value="">Choisissez une option</option>
+    <option value="Livraison à domicile">Livraison à domicile</option>
+    <option value="Retrait aux locaux scouts">Retrait aux locaux scouts</option>
+  </select>
+
+</div>
 
 <div class="full">
 
@@ -1693,7 +1706,10 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
     email:document.getElementById("email").value.trim(),
     adresse:document.getElementById("address").value.trim(),
     vendeur:document.getElementById("seller").value.trim(),
-    commentaire:document.getElementById("comment").value.trim(),
+    "Mode de réception : " +
+      document.getElementById("deliveryMethod").value +
+      "\n" +
+       document.getElementById("comment").value.trim(),
     produits:orderedProducts
   };
 
