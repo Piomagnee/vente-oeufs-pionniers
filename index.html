@@ -533,6 +533,17 @@ textarea{
   opacity:.65;
 }
 
+#newOrderButton {
+  margin-top: 25px;
+  background: #3f251d;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+#newOrderButton:hover {
+  background: #684336;
+}
+  
 /* PAIEMENT */
 
 .payment{
@@ -1120,6 +1131,15 @@ Un e-mail récapitulatif vient de vous être envoyé. Une fois votre virement ef
 
 </div>
 
+<button
+  type="button"
+  id="newOrderButton"
+  class="order-button"
+  onclick="startNewOrder()"
+>
+  Nouvelle commande
+</button>
+  
 </div>
 
 </div>
@@ -1663,6 +1683,41 @@ document.getElementById("orderForm").addEventListener("submit", async function(e
 
 saleMode = "WAITING";
 applySaleMode();
+// NOUVEAU : recommencer une commande
+async function startNewOrder() {
+
+  // Vider le panier
+  quantities.fill(0);
+
+  // Réinitialiser le formulaire
+  document.getElementById("orderForm").reset();
+
+  // Réinitialiser la commande
+  currentOrderReference = null;
+  orderInProgress = false;
+
+  // Masquer les informations du paiement précédent
+  document.getElementById("payment").style.display = "none";
+
+  // Réactiver le bouton de validation
+  const button = document.getElementById("orderButton");
+  button.disabled = false;
+  button.textContent = "Valider ma commande";
+
+  // Actualiser le stock
+  await loadSaleState();
+
+  // Actualiser le panier
+  createProducts();
+  updateSummary();
+
+  // Retourner à la boutique
+  document.getElementById("boutique").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+}
 createProducts();
 updateSummary();
 loadSaleState();
